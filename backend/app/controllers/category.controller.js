@@ -2,10 +2,14 @@ const Category = require("../models/category.model.js");
 const asyncHandler = require('express-async-handler');
 
 const create = asyncHandler(async (req, res) => {
+    const category_name = req.body.category_name || null;
+    const id_cat = req.body.id_cat || `cat_${category_name.replace(/\s+/g, '_').toLowerCase()}`;
 
     const category_data = {
-      id_cat: req.body.id_cat || null,
-      category_name: req.body.category_name || null,
+      // id_cat: req.body.id_cat || null,
+      // category_name: req.body.category_name || null,
+      id_cat,
+      category_name,
       image: req.body.image || null,
       products: []
     };

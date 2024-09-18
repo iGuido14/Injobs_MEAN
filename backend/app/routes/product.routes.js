@@ -22,3 +22,19 @@ module.exports = (app) => {
     //Update
     app.put('/products/:slug', products.updateProduct);
 }
+
+// {
+//     "id_cat": "cat_sonido",
+//     "category_name": "Técnico de sonido",
+//     "image": "src\\assets\\img_categories\\auriculares.png"
+// }
+
+// {
+//     "name": "prod_1",
+//     "price": 50,
+//     "description": "hola buenas",
+//     "images": null,
+//     "img": "path/to/img",
+//     "id_cat": "id_cat_1",
+//     "author": null
+// }
