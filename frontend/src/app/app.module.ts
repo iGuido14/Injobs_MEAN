@@ -18,7 +18,6 @@ import { ToastrModule } from 'ngx-toastr';
     SharedModule,
     NgbModule,
     BrowserModule,
-    // CarouselModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     ToastrModule.forRoot()
