@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import  {UserService} from '../app/core/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +6,9 @@ import  {UserService} from '../app/core/services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'DeepShop';
-  constructor(private userService: UserService) {}
+  title = 'InformaJobs';
+  constructor() {}
 
   ngOnInit() {
-    this.userService.populate();
     };
 }
