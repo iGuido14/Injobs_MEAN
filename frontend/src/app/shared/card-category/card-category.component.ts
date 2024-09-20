@@ -8,7 +8,7 @@ import { Category } from 'src/app/core/models/category.model';
   styleUrls: ['./card-category.component.css']
 })
 
-export class CardCategoryComponent {
+export class CardCategoryComponent implements OnInit {
 
   @Input() categories: Category = {} as Category;
 

@@ -9,6 +9,9 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { ListCategoriesComponent } from './list-categories/list-categories.component';
 import { CardCategoryComponent } from '../shared/card-category/card-category.component';
 
+import { ListProductsComponent } from '../shared/list-products/list-products.component';
+import { CardProductComponent } from '../shared/card-product/card-product.component';
+
 
 @NgModule({
   imports: [
@@ -19,13 +22,17 @@ import { CardCategoryComponent } from '../shared/card-category/card-category.com
     HeaderComponent,
     FooterComponent,
     ListCategoriesComponent,
-    CardCategoryComponent
+    CardCategoryComponent,
+    ListProductsComponent,
+    CardProductComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     ListCategoriesComponent,
-    CardCategoryComponent
+    CardCategoryComponent,
+    ListProductsComponent,
+    CardProductComponent
   ]
 })
 
