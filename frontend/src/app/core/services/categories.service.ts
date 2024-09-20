@@ -9,7 +9,7 @@ const URL = 'http://127.0.0.1:3001/categories';
   providedIn: 'root'
 })
 
-export class CategoriesService {
+export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
