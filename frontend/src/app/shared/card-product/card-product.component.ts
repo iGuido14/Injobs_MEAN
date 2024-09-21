@@ -10,11 +10,11 @@ import { Product } from '../../core/models/product.model';
 
 export class CardProductComponent implements OnInit {
 
-  @Input() products: Product = {} as Product;
+  @Input() product: Product = {} as Product;
 
   constructor() { }
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
 
   }
 

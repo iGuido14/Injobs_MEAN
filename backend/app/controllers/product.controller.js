@@ -18,18 +18,18 @@ const createProduct = asyncHandler(async (req, res) => {
     };
 
     const id_cat = req.body.id_cat;
-    
-    const category = await Category.findOne({id_cat}).exec();
+
+    const category = await Category.findOne({ id_cat }).exec();
 
     if (!category) {
-        res.status(400).json({message: "Ha ocurrido un error al buscar la categoria"});
+        res.status(400).json({ message: "Ha ocurrido un error al buscar la categoria" });
     }
 
     const nuevoProducto = await new Product(productData);
     await nuevoProducto.save();
 
     if (!nuevoProducto) {
-        res.status(400).json({message: "Ha ocurrido un error"});
+        res.status(400).json({ message: "Ha ocurrido un error" });
     }
 
     await category.addProduct(nuevoProducto._id);
@@ -47,8 +47,8 @@ const findAllProduct = asyncHandler(async (req, res) => {
         return varQuery != "undefined" && varQuery ? varQuery : otherResult;
     };
 
-    let limit = transUndefined(req.query.limit, 3);
-    let offset = transUndefined(req.query.offset, 0);
+    // let limit = transUndefined(req.query.limit, 3);
+    // let offset = transUndefined(req.query.offset, 0);
     let category = transUndefined(req.query.category, "");
     let name = transUndefined(req.query.name, "");
     let price_min = transUndefined(req.query.price_min, 0);
@@ -66,7 +66,7 @@ const findAllProduct = asyncHandler(async (req, res) => {
         query.id_cat = category;
     }
 
-    const products = await Product.find(query).limit(Number(limit)).skip(Number(offset));
+    const products = await Product.find(query);
     const product_count = await Product.find(query).countDocuments();
 
     // return res.json(products)
@@ -89,7 +89,7 @@ const findAllProduct = asyncHandler(async (req, res) => {
 const findOneProduct = asyncHandler(async (req, res) => {
 
     const products = await Product.findOne(req.params)
-    
+
     // const user = await User.findById(req.userId);
 
     if (!products) {
@@ -112,15 +112,15 @@ const deleteOneProduct = asyncHandler(async (req, res) => {
     // res.send(product);
     // res.send(product);
     if (!product) {
-        res.status(400).json({message: "Producto no encontrado"});
+        res.status(400).json({ message: "Producto no encontrado" });
     }
 
     const id_cat = product.id_cat
     // res.send(id_cat);
-    const category = await Category.findOne({id_cat}).exec();
+    const category = await Category.findOne({ id_cat }).exec();
 
     if (!category) {
-        res.status(400).json({message: "Ha ocurrido un error"});
+        res.status(400).json({ message: "Ha ocurrido un error" });
     }
 
     await Product.deleteOne({ _id: product._id });
@@ -133,15 +133,15 @@ const deleteOneProduct = asyncHandler(async (req, res) => {
 const GetProductsByCategory = asyncHandler(async (req, res) => {
 
     // res.json("holaaa")
-    let offset = 0;
-    let limit = 3;
+    // let offset = 0;
+    // let limit = 3;
     const slug = req.params;
     let product_count = "";
 
     const category = await Category.findOne(slug).exec();
 
     if (!category) {
-        res.status(400).json({message: "Categoria no encontrada"});
+        res.status(400).json({ message: "Categoria no encontrada" });
     }
 
     // const user = await User.findById(req.userId);
@@ -151,15 +151,15 @@ const GetProductsByCategory = asyncHandler(async (req, res) => {
             const productObj = await Product.findById(productId);
             return await productObj.toProductResponse();
         })),
-        product_count : product_count
+        product_count: product_count
     })
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
 
-    const  userId  = req.userId;
+    const userId = req.userId;
 
-    const  product  = req.body;
+    const product = req.body;
     const { slug } = req.params;
     // return res.json(req.params);
     // const loginUser = await User.findById(userId).exec();

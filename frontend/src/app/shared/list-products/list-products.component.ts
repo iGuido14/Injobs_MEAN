@@ -22,21 +22,24 @@ export class ListProductsComponent implements OnInit {
   listCategories: Category[] = [];
 
 
-  constructor(private productService: ProductService, 
-    private ActivatedRoute: ActivatedRoute, 
-    private CategoryService: CategoryService, 
+  constructor(private productService: ProductService,
+    private ActivatedRoute: ActivatedRoute,
+    private CategoryService: CategoryService,
     private Location: Location
-    ) { }
+  ) { }
 
   //Lo que inicia
   ngOnInit(): void {
     console.log()
     this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug');
 
-    this.get_products();
-    this.get_products_by_cat();
+    if (this.slug_Category !== null) {
+      this.get_products_by_cat();
+    } else {
+      this.get_products();
+    }
   }
-  
+
   //traer productos
   get_products() {
 
@@ -49,14 +52,14 @@ export class ListProductsComponent implements OnInit {
   }
 
   get_products_by_cat(): void {
-  
     if (this.slug_Category !== null) {
+      console.log(this.slug_Category);
       this.productService.getProductsByCategory(this.slug_Category).subscribe(
         (data: any) => {
           this.products = data.products;
           console.log(data.products);
         });
-      }
     }
+  }
 }
 

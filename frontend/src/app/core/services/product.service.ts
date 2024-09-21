@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable, of } from 'rxjs';
 import { Product } from '../models/product.model';
+import { environment } from '../../../environments/evironment';
 
-const URL = 'http://localhost:3001/products';
-const URLcat = 'http://localhost:3001/categories';
+const URL = `${environment.api_url}/products`;
+const URLcat = `${environment.api_url}/categories`;
 
 @Injectable({
     providedIn: 'root'

@@ -1,1 +1,11 @@
-<p>details works!</p>
+<div class="details_page">
+    <div *ngIf="!product">No product</div>
+    <div class="product-info">
+        <div class="title">
+            <h3>{{product.name}}</h3>
+        </div>
+        <div class="product-bio">
+            <div class="description"><strong>Description: </strong>{{product.description}}.</div>
+        </div>
+    </div>
+</div>
