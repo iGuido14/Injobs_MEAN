@@ -12,6 +12,8 @@ import { CardCategoryComponent } from '../shared/card-category/card-category.com
 import { ListProductsComponent } from '../shared/list-products/list-products.component';
 import { CardProductComponent } from '../shared/card-product/card-product.component';
 
+// import { CarouselComponent } from './carousel/carousel.component';
+
 
 @NgModule({
   imports: [
@@ -24,7 +26,8 @@ import { CardProductComponent } from '../shared/card-product/card-product.compon
     ListCategoriesComponent,
     CardCategoryComponent,
     ListProductsComponent,
-    CardProductComponent
+    CardProductComponent,
+    // CarouselComponent
   ],
   exports: [
     HeaderComponent,
@@ -32,7 +35,8 @@ import { CardProductComponent } from '../shared/card-product/card-product.compon
     ListCategoriesComponent,
     CardCategoryComponent,
     ListProductsComponent,
-    CardProductComponent
+    CardProductComponent,
+    // CarouselComponent
   ]
 })
 

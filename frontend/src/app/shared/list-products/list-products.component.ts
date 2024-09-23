@@ -10,7 +10,13 @@ import { Category } from 'src/app/core/models/category.model';
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
-  styleUrls: ['./list-products.component.css']
+  styleUrls: ['./list-products.component.css'],
+  standalone: true,
+  imports: [
+    ActivatedRoute,
+    CategoryService,
+    ProductService
+  ]
 })
 
 export class ListProductsComponent implements OnInit {

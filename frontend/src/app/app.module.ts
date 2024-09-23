@@ -3,9 +3,10 @@ import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppRoutingModule } from './app-routing.module';
+// import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // import { FooterComponent, HeaderComponent, SharedModule } from './shared';
+import { CarouselComponent } from './shared/carousel/carousel.component';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -21,9 +22,10 @@ import { ToastrModule } from 'ngx-toastr';
     SharedModule,
     NgbModule,
     BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    CarouselComponent
   ],
   providers: [],
   bootstrap: [AppComponent,]
