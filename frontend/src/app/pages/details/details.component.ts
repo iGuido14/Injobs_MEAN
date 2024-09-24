@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { Product } from '../core/models/product.model';
-import { ProductService } from '../core/services/product.service';
+import { Product } from '../../core/models/product.model';
+import { ProductService } from '../../core/services/product.service';
 import { CommonModule } from '@angular/common';
 import { DetailsResolver } from './details-resolver.service';
 

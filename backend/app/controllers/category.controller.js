@@ -39,9 +39,9 @@ const findCategoriesSelect = asyncHandler(async (req, res) => {
 // TOTES LES CATEGORIES
 const findAll = asyncHandler(async (req, res) => {
 
-  // const { offset, limit } = req.query;
+  const { offset, limit } = req.query;
 
-  const categories = await Category.find({}, {});
+  const categories = await Category.find({}, {}, { skip: Number(offset), limit: Number(limit) });
 
   if (!categories) {
     return res.status(401).json({

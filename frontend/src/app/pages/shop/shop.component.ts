@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ListProductsComponent } from '../shared/list-products/list-products.component';
+import { ListProductsComponent } from '../../shared/list-products/list-products.component';
 import { Routes, RouterModule, RouterLink } from '@angular/router';
 
 @Component({

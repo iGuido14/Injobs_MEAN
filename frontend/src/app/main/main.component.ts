@@ -8,8 +8,6 @@ import { CommonModule } from '@angular/common';
 
 import { HeaderComponent } from '../shared/layout/header/header.component';
 import { FooterComponent } from '../shared/layout/footer/footer.component';
-// import { CategoryService } from '../core/services/categories.service';
-// import { ProductService } from '../core/services/product.service';
 
 @Component({
   selector: 'app-main',
@@ -23,13 +21,9 @@ import { FooterComponent } from '../shared/layout/footer/footer.component';
     FooterComponent,
     HttpClientModule,
     NgbModule,
-    // BrowserModule,
     CommonModule
   ],
-  providers: [
-    // CategoryService,
-    // ProductService,
-  ]
+  providers: []
 })
 export class MainComponent {
 

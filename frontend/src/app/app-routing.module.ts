@@ -1,28 +1,28 @@
 import { RouterModule, Routes } from '@angular/router';
-import { DetailsResolver } from './details/details-resolver.service';
+import { DetailsResolver } from './pages/details/details-resolver.service';
 
 export const appRoutes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
+    loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent)
   },
   {
     path: 'home',
-    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
+    loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent)
   },
   {
     path: 'shop',
-    loadComponent: () => import('./shop/shop.component').then(m => m.ShopComponent),
+    loadComponent: () => import('./pages/shop/shop.component').then(c => c.ShopComponent),
   },
   {
     path: 'categories/:slug', // Move this route to the root level
-    loadComponent: () => import('./shared/list-products/list-products.component').then(m => m.ListProductsComponent)
+    loadComponent: () => import('./shared/list-products/list-products.component').then(c => c.ListProductsComponent)
   },
   {
     path: 'details/:slug',
-    loadComponent: () => import('./details/details.component').then(m => m.DetailsComponent),
-    // resolve: { product: DetailsResolver }
-  },
+    loadComponent: () => import('./pages/details/details.component').then(c => c.DetailsComponent),
+    resolve: { product: DetailsResolver }
+  }
 ]
 
 //   const routes: Routes = [
