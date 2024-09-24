@@ -23,5 +23,6 @@ export class CardCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log('Category Name:', this.category);
+    console.log(this.category.image);
   }
 }
