@@ -15,17 +15,17 @@ import { Routes, RouterModule, RouterLink } from '@angular/router';
 
 export class ShopComponent { }
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     component: ShopComponent,
-//     resolve: {},
-//   },
-//   {
-//     path: 'categories/:slug',
-//     component: ShopComponent,
-//     resolve: {},
-//   },
-// ];
+const ShopRoutes: Routes = [
+  {
+    path: '',
+    component: ShopComponent,
+    resolve: {},
+  },
+  {
+    path: 'categories/:slug',
+    component: ShopComponent,
+    resolve: {},
+  },
+];
 
-// export const ShopRoutingModule = RouterModule.forChild(routes);
+export const ShopRoutingModule = RouterModule.forChild(ShopRoutes);

@@ -13,9 +13,15 @@ export const appRoutes: Routes = [
   {
     path: 'shop',
     loadComponent: () => import('./pages/shop/shop.component').then(c => c.ShopComponent),
+    // children: [
+    //   {
+    //     path: 'categories/:slug',
+    //     loadComponent: () => import('./shared/list-products/list-products.component').then(c => c.ListProductsComponent)
+    //   }
+    // ]
   },
   {
-    path: 'categories/:slug', // Move this route to the root level
+    path: 'categories/:slug',
     loadComponent: () => import('./shared/list-products/list-products.component').then(c => c.ListProductsComponent)
   },
   {
@@ -24,28 +30,3 @@ export const appRoutes: Routes = [
     resolve: { product: DetailsResolver }
   }
 ]
-
-//   const routes: Routes = [
-//     {
-//       path: '',
-//       loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
-//     },
-//     {
-//       path: 'home',
-//       loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
-//     },
-//     {
-//       path: 'shop',
-//       loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
-//     },
-//     {
-//       path: 'details',
-//       loadChildren: () => import('./details/details.module').then(m => m.DetailsModule)
-//     },
-//   ];
-
-// @NgModule({
-//   imports: [RouterModule.forRoot(routes)],
-//   exports: [RouterModule]
-// })
-// export class AppRoutingModule { }

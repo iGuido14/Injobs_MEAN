@@ -1,0 +1,37 @@
+<!-- <p>carousel-items works!</p> -->
+
+<swiper-container slides-per-view="1" space-between="10" pagination="true" navigation="true" loop="true">
+    <ng-container ngFor="let category of categories;">
+        <swiper-slide>
+            <img src="https://via.placeholder.com/600x400?text=Slide+1" alt="Slide 1" />
+        </swiper-slide>
+    </ng-container>
+
+
+</swiper-container>
+
+<!-- <swiper-container *ngIf="page === 'categories'" slides-per-view="1" space-between="10" pagination="true"
+    navigation="true" loop="true" style="background-color: #1e262d;">
+    <ng-container *ngFor="let category of categories;">
+        <swiper-slide>
+            <div class="picsum-img-wrapper contenedor">
+                <img class="img_carousel" [src]="'../../../' + category.image"
+                    [routerLink]="['/shop/categories/', category.slug]" />
+            </div>
+            <div class="carousel-caption display-4">
+                <h3>{{ category.category_name }}</h3>
+            </div>
+        </swiper-slide>
+    </ng-container>
+</swiper-container>
+
+<swiper-container *ngIf="page === 'details'" slides-per-view="1" space-between="10" pagination="true" navigation="true"
+    loop="true" style="background-color: #1e262d;">
+    <ng-container *ngFor="let item of products_details;">
+        <swiper-slide>
+            <div class="picsum-img-wrapper contenedor">
+                <img class="img_carousel" [src]="'../../../' + item" />
+            </div>
+        </swiper-slide>
+    </ng-container>
+</swiper-container> -->
