@@ -1,14 +1,28 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { CarouselComponent } from './shared/carousel/carousel.component';
+import { DetailsResolver } from './details/details-resolver.service';
 
-export const routes: Routes = [
+export const appRoutes: Routes = [
   {
     path: '',
     loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
   },
-
+  {
+    path: 'home',
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent)
+  },
+  {
+    path: 'shop',
+    loadComponent: () => import('./shop/shop.component').then(m => m.ShopComponent),
+  },
+  {
+    path: 'categories/:slug', // Move this route to the root level
+    loadComponent: () => import('./shared/list-products/list-products.component').then(m => m.ListProductsComponent)
+  },
+  {
+    path: 'details/:slug',
+    loadComponent: () => import('./details/details.component').then(m => m.DetailsComponent),
+    // resolve: { product: DetailsResolver }
+  },
 ]
 
 //   const routes: Routes = [

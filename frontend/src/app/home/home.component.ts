@@ -1,9 +1,9 @@
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListCategoriesComponent } from '../shared/list-categories/list-categories.component';
 import { CardCategoryComponent } from '../shared/card-category/card-category.component';
-import { routes } from '../app-routing.module';
+import { appRoutes } from '../app-routing.module';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +12,10 @@ import { routes } from '../app-routing.module';
   standalone: true,
   imports: [
     RouterModule,
+    RouterLink,
     CommonModule,
     ListCategoriesComponent,
-    CardCategoryComponent
+    CardCategoryComponent,
   ]
 })
 export class HomeComponent {

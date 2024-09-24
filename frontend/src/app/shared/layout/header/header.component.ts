@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [
     // Router
+    RouterLink
   ]
 })
 
