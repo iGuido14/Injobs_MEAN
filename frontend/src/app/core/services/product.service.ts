@@ -3,9 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable, of } from 'rxjs';
 import { Product } from '../models/product.model';
 import { environment } from '../../../environments/evironment';
-
-const URL = `${environment.api_url}/products`;
-const URLcat = `${environment.api_url}/categories`;
+import { ApiService } from './api.service';
 
 @Injectable({
     providedIn: 'root'
@@ -13,19 +11,20 @@ const URLcat = `${environment.api_url}/categories`;
 
 export class ProductService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private apiService: ApiService) { }
 
-    //GET ALL
+    // GET ALL
     get_products(): Observable<Product[]> {
-        return this.http.get<Product[]>(URL);
+        return this.apiService.get(`/products/`);
     }
 
-    //GET ONE
+    // GET ONE
     get_product(slug: String): Observable<Product> {
-        return this.http.get<Product>(`${URL}/${slug}`);
+        return this.apiService.get(`/products/${slug}`);
     }
 
+    // GET JOBS BY CATEGORY
     getProductsByCategory(slug: String): Observable<Product[]> {
-        return this.http.get<Product[]>(`${URLcat}/${slug}`);
+        return this.apiService.get(`/categories/${slug}`);
     }
 }

@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 import { Category } from '../models/category.model';
 import { CarouselDetails, CarouselHome } from '../models/carousel.model';
 import { environment } from '../../../environments/evironment';
-
-const URL = `${environment.api_url}/carousel`;
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,13 +12,13 @@ const URL = `${environment.api_url}/carousel`;
 
 export class CarouselService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
   getCarouselHome(): Observable<CarouselHome[]> {
-    return this.http.get<CarouselHome[]>(URL);
+    return this.apiService.get(`/carousel/`);
   }
 
   getCarouselDetails(slug: String | null): Observable<CarouselDetails[]> {
-    return this.http.get<CarouselDetails[]>(`${URL}/${slug}`);
+    return this.apiService.get(`/carousel/${slug}`);
   }
 }

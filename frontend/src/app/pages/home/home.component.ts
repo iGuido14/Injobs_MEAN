@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListCategoriesComponent } from '../../shared/list-categories/list-categories.component';
 import { CardCategoryComponent } from '../../shared/card-category/card-category.component';
-import { appRoutes } from '../../app-routing.module';
+import { appRoutes } from '../../app.routes';
 import { CarouselComponent } from '../../shared/carousel/carousel.component';
 
 @Component({

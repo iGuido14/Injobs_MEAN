@@ -3,8 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category } from '../models/category.model';
 import { environment } from '../../../environments/evironment';
-
-const URL = `${environment.api_url}/categories`;
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +11,15 @@ const URL = `${environment.api_url}/categories`;
 
 export class CategoryService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
   all_categories(params: any): Observable<Category[]> {
-    return this.http.get<Category[]>(URL, { params });
+    return this.apiService.get(`/categories/`);
   }
 
-
+  all_categories_select(): Observable<Category[]> {
+    return this.apiService.get(`/categories/`);
+  }
 }
 
 export { Category };
