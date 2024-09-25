@@ -12,14 +12,11 @@ import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
   standalone: true,
   imports: [
     CommonModule,
-    NgbModule,
-    NgbCarouselModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 
 export class CarouselItemsComponent implements OnChanges {
-
 
   @Input() categories!: CarouselHome[];
   @Input() products_details!: CarouselDetails[];
@@ -31,7 +28,9 @@ export class CarouselItemsComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(): void {
-    register();
-    console.log(this.page);
+    // register();
+    // console.log(this.page);
+    // console.log(this.categories);
+    console.log(this.products_details);
   }
 }

@@ -39,7 +39,7 @@ export class DetailsComponent implements OnInit {
       (data: any) => {
         this.slug = data.product.products.slug;
         this.product = data.product.products;
-        console.log(data.product.products);
+        // console.log(data.product.products);
       }
     );
   }

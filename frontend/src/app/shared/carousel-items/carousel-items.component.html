@@ -1,8 +1,20 @@
-<swiper-container slides-per-view="1" space-between="10" pagination="true" navigation="true">
-    <swiper-slide *ngFor="let category of categories">
-        <img src="../../../assets/img_categories/{{category.image}}" />
-        <div class="carousel_shadow carousel-caption display-4">
-            <h1>{{category.category_name}}</h1>
-        </div>
-    </swiper-slide>
-</swiper-container>
+<div *ngIf="page === 'home'">
+    <swiper-container slides-per-view="1" space-between="10" pagination="true" navigation="true">
+        <swiper-slide *ngFor="let category of categories">
+            <img src="../../../assets/img_categories/{{category.image}}" />
+            <div class="carousel_shadow carousel-caption display-4">
+                <h1>{{category.category_name}}</h1>
+            </div>
+        </swiper-slide>
+    </swiper-container>
+</div>
+
+<div *ngIf="page === 'details'">
+    <swiper-container slides-per-view="1" space-between="10" pagination="true" navigation="true">
+        <swiper-slide *ngFor="let item of products_details">
+            <img src="../../../assets/img_products/carousel_details/{{item}}" />
+            <div class="carousel_shadow carousel-caption display-4">
+            </div>
+        </swiper-slide>
+    </swiper-container>
+</div>

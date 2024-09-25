@@ -35,25 +35,25 @@ export class CarouselComponent {
     register();
 
     this.slug_details = this.ActivatedRoute.snapshot.paramMap.get('slug');
-    this.carousel_categories();
-    this.carousel_shop_details();
+    this.load_carousel();
   }
 
-  carousel_categories(): void {
-    this.page = "home";
-    this.CarouselService.getCarouselHome().subscribe(((data: any) => {
-      // console.log(data);
-      this.items_carousel = data.categories;
-      console.log(this.items_carousel);
-    }))
-  }
-  carousel_shop_details(): void {
-    if (this.slug_details) {
+  load_carousel(): void {
+    if (!this.slug_details) {
+      console.log(`home`);
+      this.page = `home`;
+      this.CarouselService.getCarouselHome().subscribe(((data: any) => {
+        // console.log(data);
+        this.items_carousel = data.categories;
+        // console.log(this.items_carousel);
+      }))
+    } else {
+      console.log(`details`);
       this.page = "details";
       this.CarouselService.getCarouselDetails(this.slug_details).subscribe(((data: any) => {
         // console.log(data);
         this.items_details = data.products.images;
-        console.log(this.items_details);
+        // console.log(this.items_details);
       }))
     }
   }
