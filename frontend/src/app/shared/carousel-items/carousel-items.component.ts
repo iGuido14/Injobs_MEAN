@@ -12,6 +12,7 @@ import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,21 +1,18 @@
 <!-- <h1>card category</h1> -->
 
 <div class="container mt-100">
-    <div class="">
-        <div class="col-md-4 col-sm-6 category" *ngIf="category">
-            <div class="card mb-30">
-                <a class="card-img-tiles" data-abc="true">
-                    <div class="inner">
-                        <div class="main-img">
-                            <img src="../../../assets/img_categories/{{category.image}}" alt="">
-                        </div>
-                    </div>
-                </a>
-                <div class="card-body text-center">
-                    <h4 class="card-title">{{category.category_name}}</h4>
-                    <a class="btn btn-outline-primary btn-sm" [routerLink]="['/shop/categories/', category.slug]"
-                        data-abc="true">View products</a>
+    <div class="prueba2">
+        <div class="mt-5">
+            <div class="card">
+                <div class="img_product">
+                    <img src="../../../assets/img_categories/{{category.image}}" />
                 </div>
+                <div class="info_card text-center">
+                    <div>
+                        <h1>{{category.category_name}}</h1>
+                    </div>
+                </div>
+                <a class="btn details px-auto" [routerLink]="['/shop/categories', category.slug]">View Products</a>
             </div>
         </div>
     </div>
