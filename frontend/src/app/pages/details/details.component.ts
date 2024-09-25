@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Product } from '../../core/models/product.model';
 import { ProductService } from '../../core/services/product.service';
 import { CommonModule } from '@angular/common';
+import { CarouselComponent } from 'src/app/shared/carousel/carousel.component';
 
 @Component({
   selector: 'app-details',
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     RouterLink,
+    CarouselComponent
   ],
   providers: [
     ProductService,

@@ -8,22 +8,19 @@ import { CarouselHome, CarouselDetails } from 'src/app/core/models/carousel.mode
 import { CarouselService } from 'src/app/core/services/carousel.service';
 import { ProductService } from 'src/app/core/services/product.service';
 
-register();
-
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css'],
   standalone: true,
   imports: [
-    CommonModule,
     CarouselItemsComponent,
   ],
   providers: [
     CarouselService,
     ProductService
-  ]
-  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CarouselComponent {
 
@@ -35,6 +32,8 @@ export class CarouselComponent {
   constructor(private CarouselService: CarouselService, private productService: ProductService, private ActivatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    register();
+
     this.slug_details = this.ActivatedRoute.snapshot.paramMap.get('slug');
     this.carousel_categories();
     this.carousel_shop_details();
@@ -45,6 +44,7 @@ export class CarouselComponent {
     this.CarouselService.getCarouselHome().subscribe(((data: any) => {
       // console.log(data);
       this.items_carousel = data.categories;
+      console.log(this.items_carousel);
     }))
   }
   carousel_shop_details(): void {
@@ -53,7 +53,7 @@ export class CarouselComponent {
       this.CarouselService.getCarouselDetails(this.slug_details).subscribe(((data: any) => {
         // console.log(data);
         this.items_details = data.products.images;
-        // console.log(this.items_details);
+        console.log(this.items_details);
       }))
     }
   }
