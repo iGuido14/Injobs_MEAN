@@ -5,10 +5,10 @@ const uniqueValidator = require('mongoose-unique-validator');
 const { log } = require('console');
 
 const ProductSchema = mongoose.Schema({
-    slug: { 
-        type: String, 
-        lowercase: true, 
-        unique: true 
+    slug: {
+        type: String,
+        lowercase: true,
+        unique: true
     },
     name: {
         type: String,
@@ -27,7 +27,7 @@ const ProductSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    id_cat: { 
+    id_cat: {
         type: String,
         required: true
     }
@@ -35,12 +35,12 @@ const ProductSchema = mongoose.Schema({
 
 ProductSchema.plugin(uniqueValidator, { msg: "already taken" });
 
-ProductSchema.pre('validate',  async function (next) {
+ProductSchema.pre('validate', async function (next) {
     if (!this.slug) {
         console.log('dentro del if');
         await this.slugify();
     }
-    console.log(this.slug);  
+    console.log(this.slug);
     next();
 });
 
@@ -48,23 +48,23 @@ ProductSchema.methods.slugify = async function () {
     this.slug = slugify(this.name) + '-' + (Math.random() * Math.pow(36, 10) | 0).toString(36);
 };
 
-ProductSchema.methods.toProductResponse = async function  () {
+ProductSchema.methods.toProductResponse = async function () {
 
     return {
         slug: this.slug,
-        name : this.name,
+        name: this.name,
         price: this.price,
         description: this.description,
-        id_cat : this.id_cat,
-        img : this.img,
-        images: this.images        
+        id_cat: this.id_cat,
+        img: this.img,
+        images: this.images
     }
 }
 
-// ProductSchema.methods.toProductCarouselResponse = async function () {
-//     return {
-//         images: this.images
-//     }
-// }
+ProductSchema.methods.toProductCarouselResponse = async function () {
+    return {
+        images: this.images
+    }
+}
 
 module.exports = mongoose.model('Product', ProductSchema);

@@ -1,41 +1,45 @@
-    import { Injectable } from '@angular/core';
-    import { environment } from '../../../environments/evironment';
-    import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
-    import { Observable ,  throwError } from 'rxjs';
-    import { catchError } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/evironment';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-    @Injectable({
-    providedIn: 'root'
-    })
-    export class ApiService {
-    constructor(
+const URL = `${environment.api_url}`
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ApiService {
+  constructor(
     private http: HttpClient
-    ) {}
+  ) { }
 
-    private formatErrors(error: any) {
-    return  throwError(error.error);
-    }
+  private formatErrors(error: any) {
+    return throwError(error.error);
+  }
 
-    get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
-    return this.http.get(`${environment.api_url}${path}`, { params })
-        .pipe(catchError(this.formatErrors));
-    }
+  get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+    return this.http.get(`${URL}${path}`, { params })
+      .pipe(catchError(this.formatErrors));
+  }
 
-    put(path: string, body: Object = {}): Observable<any> {
+  put(path: string, body: Object = {}): Observable<any> {
     return this.http.put(
-        `${environment.api_url}${path}`,
-        JSON.stringify(body)
+      `${URL}${path}`,
+      JSON.stringify(body)
     ).pipe(catchError(this.formatErrors));
-    }
+  }
 
-    post(path: string, body: any = {}): Observable<any> {
-        console.log(body);
-    return this.http.post(`${environment.api_url}${path}`,body).pipe(catchError(this.formatErrors));
-    }
+  post(path: string, body: Object = {}): Observable<any> {
+    return this.http.post(
+      `${URL}${path}`,
+      JSON.stringify(body)
+    ).pipe(catchError(this.formatErrors));
+  }
 
-    delete(path: any): Observable<any> {
+  delete(path: string): Observable<any> {
     return this.http.delete(
-        `${environment.api_url}${path}`
+      `${URL}${path}`
     ).pipe(catchError(this.formatErrors));
-    }
-    }
+  }
+}

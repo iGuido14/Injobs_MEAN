@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    
+
     const products = require('../controllers/product.controller.js');
     // const verifyJWT = require('../middleware/verifyJWT');
     // const  = require('../middleware/.js');

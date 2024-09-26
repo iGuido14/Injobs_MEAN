@@ -2,24 +2,24 @@ const Category = require("../models/category.model.js");
 const asyncHandler = require('express-async-handler');
 
 const create = asyncHandler(async (req, res) => {
-    const category_name = req.body.category_name || null;
-    const id_cat = req.body.id_cat || `cat_${category_name.replace(/\s+/g, '_').toLowerCase()}`;
+  const category_name = req.body.category_name || null;
+  const id_cat = req.body.id_cat || `cat_${category_name.replace(/\s+/g, '_').toLowerCase()}`;
 
-    const category_data = {
-      // id_cat: req.body.id_cat || null,
-      // category_name: req.body.category_name || null,
-      id_cat,
-      category_name,
-      image: req.body.image || null,
-      products: []
-    };
+  const category_data = {
+    // id_cat: req.body.id_cat || null,
+    // category_name: req.body.category_name || null,
+    id_cat,
+    category_name,
+    image: req.body.image || null,
+    products: []
+  };
 
-    const category = await new Category(category_data);
-    const new_category = await category.save();
-    res.json(new_category);
+  const category = await new Category(category_data);
+  const new_category = await category.save();
+  res.json(new_category);
 });
 
-const findCategoriesSelect = asyncHandler( async (req, res) => {
+const findCategoriesSelect = asyncHandler(async (req, res) => {
 
   const categories = await Category.find();
 
@@ -28,32 +28,32 @@ const findCategoriesSelect = asyncHandler( async (req, res) => {
       message: "Category not found"
     })
   }
-  
+
   return res.status(200).json({
-    categories: await Promise.all(categories.map( async categories => {
-        return await categories.toCategoryResponse()
+    categories: await Promise.all(categories.map(async categories => {
+      return await categories.toCategoryResponse()
     }))
   });
 });
 
 // TOTES LES CATEGORIES
-const findAll = asyncHandler( async (req, res) => {
+const findAll = asyncHandler(async (req, res) => {
 
-    const  {offset, limit} = req.query;
+  const { offset, limit } = req.query;
 
-    const categories = await Category.find({}, {}, { skip: Number(offset), limit: Number(limit)});
+  const categories = await Category.find({}, {}, { skip: Number(offset), limit: Number(limit) });
 
-    if (!categories) {
-      return res.status(401).json({
-        message: "Category not found"
-      })
-    }
-    
-    return res.status(200).json({
-      categories: await Promise.all(categories.map( async categories => {
-          return await categories.toCategoryResponse()
-      }))
-    });
+  if (!categories) {
+    return res.status(401).json({
+      message: "Category not found"
+    })
+  }
+
+  return res.status(200).json({
+    categories: await Promise.all(categories.map(async categories => {
+      return await categories.toCategoryResponse()
+    }))
+  });
 });
 
 // UNA CATEGORIA 
@@ -73,8 +73,8 @@ const findOne = asyncHandler(async (req, res) => {
 });
 
 const delete_category = asyncHandler(async (req, res) => {
-    await Category.findOneAndDelete(req.params);
-    res.send({message: "Category was deleted successfully!"}); 
+  await Category.findOneAndDelete(req.params);
+  res.send({ message: "Category was deleted successfully!" });
 });
 
 module.exports = {

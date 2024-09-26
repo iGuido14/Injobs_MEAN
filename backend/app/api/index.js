@@ -9,7 +9,7 @@ dotenv.config();
 
 // Habilita CORS para todas las rutas
 const corsOptions = {
-  origin: process.env.CORSURL, 
+  origin: process.env.CORSURL,
   optionsSuccessStatus: 200
 };
 
@@ -30,19 +30,20 @@ mongoose.Promise = global.Promise;
 
 // Connecting to the database
 mongoose.connect(dbConfig.url, {
-	useNewUrlParser: true
+  useNewUrlParser: true
 }).then(() => {
-    console.log("Successfully connected to the database");    
+  console.log("Successfully connected to the database");
 }).catch(err => {
-    console.log('Could not connect to the database. Exiting now...', err);
-    process.exit();
+  console.log('Could not connect to the database. Exiting now...', err);
+  process.exit();
 });
 
+require('../routes/carousel.routes')(app);
 require('../routes/category.routes')(app);
 require('../routes/product.routes')(app);
 
 app.get('/', (req, res) => {
-  res.json({"message": "Hola guido"});
+  res.json({ "message": "Hola guido" });
 });//get response
 
 app.listen(process.env.PORT, () => {

@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category } from '../models/category.model';
 import { CarouselDetails, CarouselHome } from '../models/carousel.model';
-
-const URL = 'http://localhost:3001/carousel';
+import { environment } from '../../../environments/evironment';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,13 +12,13 @@ const URL = 'http://localhost:3001/carousel';
 
 export class CarouselService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
-  getCarouselHome(): Observable<CarouselHome[]> {    
-    return this.http.get<CarouselHome[]>(URL);
+  getCarouselHome(): Observable<CarouselHome[]> {
+    return this.apiService.get(`/carousel/`);
   }
 
-  getCarouselDetails(slug: String| null): Observable<CarouselDetails[]> {    
-    return this.http.get<CarouselDetails[]>(`${URL}/${slug}`);
+  getCarouselDetails(slug: String | null): Observable<CarouselDetails[]> {
+    return this.apiService.get(`/carousel/${slug}`);
   }
 }
