@@ -54,7 +54,7 @@ const findAllProduct = asyncHandler(async (req, res) => {
     let name = transUndefined(req.query.name, "");
     let price_min = transUndefined(req.query.price_min, 0);
     let price_max = transUndefined(req.query.price_max, Number.MAX_SAFE_INTEGER);
-    let nameReg = new RegExp(name);
+    let nameReg = new RegExp(name, 'i');
     // let favorited = transUndefined(req.query.favorited, null);
     // let id_user = req.auth ? req.auth.id : null;
 

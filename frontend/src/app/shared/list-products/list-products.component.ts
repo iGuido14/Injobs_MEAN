@@ -10,6 +10,7 @@ import { CardProductComponent } from '../card-product/card-product.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FiltersComponent } from '../filters/filters.component';
 import { Filters } from 'src/app/core/models/filters.model';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-list-products',
@@ -21,7 +22,8 @@ import { Filters } from 'src/app/core/models/filters.model';
     CommonModule,
     RouterLink,
     InfiniteScrollModule,
-    FiltersComponent
+    FiltersComponent,
+    SearchComponent
   ],
   providers: [
     ProductService,

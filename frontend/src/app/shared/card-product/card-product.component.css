@@ -31,6 +31,7 @@
 
     .img_product {
         border-bottom: rgba(45, 45, 47) solid;
+        cursor: pointer;
     }
 
     .card {
