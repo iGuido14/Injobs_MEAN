@@ -52,6 +52,8 @@ export class ListProductsComponent implements OnInit {
   ngOnInit(): void {
     this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug');
     this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
+    this.filters.limit = this.limit;
+    this.filters.offset = this.offset;
 
     this.getListForCategory();
 
@@ -82,6 +84,7 @@ export class ListProductsComponent implements OnInit {
 
   get_list_filtered(filters: Filters) {
     this.filters = filters;
+    console.log(this.filters.limit);
     // console.log(JSON.stringify(this.filters));
     this.productService.get_products_filter(filters).subscribe(
       (data: any) => {
@@ -107,6 +110,29 @@ export class ListProductsComponent implements OnInit {
     } else {
       this.filters = new Filters();
     }
+  }
+
+  setPageTo(pageNumber: number) {
+
+    this.currentPage = pageNumber;
+
+    if (typeof this.routeFilters === 'string') {
+      this.refreshRouteFilter();
+    }
+
+    if (this.limit) {
+      this.filters.limit = this.limit;
+      this.filters.offset = this.limit * (this.currentPage - 1);
+    }
+
+    if (this.currentPage == null || this.currentPage == 1) {
+      this.Location.replaceState('/shop/');
+    } else {
+      this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
+    }
+    // console.log(this.Location);
+    this.get_list_filtered(this.filters);
+    console.log(`Current page: ${this.currentPage}`);
   }
 }
 
