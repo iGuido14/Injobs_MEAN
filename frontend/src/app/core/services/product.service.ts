@@ -27,4 +27,13 @@ export class ProductService {
     getProductsByCategory(slug: String): Observable<Product[]> {
         return this.apiService.get(`/categories/${slug}`);
     }
+
+    //SEARCH
+    find_product_name(search: string): Observable<any> {
+        return this.apiService.get(`/products?name=${search}`).pipe(
+            map((data) => {
+                return data;
+            })
+        );
+    }
 }
