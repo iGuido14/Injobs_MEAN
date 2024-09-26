@@ -4,6 +4,7 @@ import { map, Observable, of } from 'rxjs';
 import { Product } from '../models/product.model';
 import { environment } from '../../../environments/evironment';
 import { ApiService } from './api.service';
+import { Filters } from '../models/filters.model';
 
 @Injectable({
     providedIn: 'root'
@@ -35,5 +36,19 @@ export class ProductService {
                 return data;
             })
         );
+    }
+
+    //FILTERS
+    get_products_filter(filters: Filters): Observable<Product[]> {
+        let params = new HttpParams();
+
+        Object.keys(filters).forEach(key => {
+            const value = (filters as any)[key]; // Use 'as any' to bypass indexing issue
+            if (value !== null && value !== undefined) {
+                params = params.set(key, value);
+            }
+        });
+        // params = filters;
+        return this.apiService.get(`/products/`, params);
     }
 }

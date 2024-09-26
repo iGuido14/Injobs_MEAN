@@ -8,6 +8,8 @@ import { Product } from '../../core/models/product.model';
 import { Category } from 'src/app/core/models/category.model';
 import { CardProductComponent } from '../card-product/card-product.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { FiltersComponent } from '../filters/filters.component';
+import { Filters } from 'src/app/core/models/filters.model';
 
 @Component({
   selector: 'app-list-products',
@@ -18,7 +20,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     CardProductComponent,
     CommonModule,
     RouterLink,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    FiltersComponent
   ],
   providers: [
     ProductService,
@@ -29,12 +32,15 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 export class ListProductsComponent implements OnInit {
 
   //Declaracions
-  offset = 0;
-  limit = 3;
   routeFilters!: string | null;
   products: Product[] = [];
   slug_Category!: string | null;
   listCategories: Category[] = [];
+  filters = new Filters();
+  offset: number = 0;
+  limit: number = 3;
+  totalPages: Array<number> = [];
+  currentPage: number = 1;
 
 
   constructor(private productService: ProductService,
@@ -47,6 +53,7 @@ export class ListProductsComponent implements OnInit {
   ngOnInit(): void {
     console.log()
     this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug');
+    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
 
     if (this.slug_Category !== null) {
       this.get_products_by_cat();
@@ -76,6 +83,17 @@ export class ListProductsComponent implements OnInit {
           console.log(data.products);
         });
     }
+  }
+
+  get_list_filtered(filters: Filters) {
+    this.filters = filters;
+    // console.log(JSON.stringify(this.filters));
+    this.productService.get_products_filter(filters).subscribe(
+      (data: any) => {
+        this.products = data.products;
+        this.totalPages = Array.from(new Array(Math.ceil(data.product_count / this.limit)), (val, index) => index + 1);
+        console.log(this.products);
+      });
   }
 
   getRequestParams(offset: number, limit: number): any {
