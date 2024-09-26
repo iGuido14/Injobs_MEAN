@@ -1,8 +1,13 @@
 .productoss {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    gap: 20px;
     justify-content: center;
+    justify-items: center;
     align-items: center;
-    flex-wrap: wrap
+    text-align: center;
+    margin: 0 auto;
+    max-width: 1600px;
 }
 
 .pagination {

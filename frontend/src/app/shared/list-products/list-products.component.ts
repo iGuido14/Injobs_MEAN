@@ -1,16 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { CommonModule, Location } from '@angular/common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { ProductService } from '../../core/services/product.service';
 import { CategoryService } from 'src/app/core/services/categories.service';
 import { Product } from '../../core/models/product.model';
 import { Category } from 'src/app/core/models/category.model';
+import { CardProductComponent } from '../card-product/card-product.component';
 
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
-  styleUrls: ['./list-products.component.css']
+  styleUrls: ['./list-products.component.css'],
+  standalone: true,
+  imports: [
+    CardProductComponent,
+    CommonModule,
+    RouterLink
+  ],
+  providers: [
+    ProductService,
+    CategoryService
+  ]
 })
 
 export class ListProductsComponent implements OnInit {

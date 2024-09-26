@@ -1,7 +1,19 @@
+body {
+    margin-left: -50px;
+}
+
 .categorias {
-    display: flex;
-    /* justify-content: center; */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 50px;
+    justify-content: center;
+    justify-items: center;
     align-items: center;
-    flex-wrap: wrap;
     text-align: center;
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+.item {
+    max-width: 100%;
 }
