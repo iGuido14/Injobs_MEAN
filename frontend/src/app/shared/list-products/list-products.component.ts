@@ -38,10 +38,9 @@ export class ListProductsComponent implements OnInit {
   listCategories: Category[] = [];
   filters = new Filters();
   offset: number = 0;
-  limit: number = 3;
+  limit: number = 4;
   totalPages: Array<number> = [];
   currentPage: number = 1;
-
 
   constructor(private productService: ProductService,
     private ActivatedRoute: ActivatedRoute,
@@ -51,27 +50,21 @@ export class ListProductsComponent implements OnInit {
 
   //Lo que inicia
   ngOnInit(): void {
-    console.log()
     this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug');
     this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
 
+    this.getListForCategory();
+
     if (this.slug_Category !== null) {
       this.get_products_by_cat();
-    } else {
-      this.get_products();
     }
-  }
-
-  //traer productos
-  get_products() {
-    const params = this.getRequestParams(this.offset, this.limit);
-
-    this.productService.get_products(params).subscribe(
-      (data: any) => {
-        this.products = data.products;
-        console.log(this.products);
-      }
-    );
+    else if (this.routeFilters !== null) {
+      this.refreshRouteFilter();
+      this.get_list_filtered(this.filters);
+    } else {
+      // console.log(window.location.href);
+      this.get_list_filtered(this.filters);
+    }
   }
 
   get_products_by_cat(): void {
@@ -80,7 +73,9 @@ export class ListProductsComponent implements OnInit {
       this.productService.getProductsByCategory(this.slug_Category).subscribe(
         (data: any) => {
           this.products = data.products;
+          this.totalPages = Array.from(new Array(Math.ceil(data.product_count / this.limit)), (val, index) => index + 1);
           console.log(data.products);
+          console.log(this.totalPages);
         });
     }
   }
@@ -93,20 +88,25 @@ export class ListProductsComponent implements OnInit {
         this.products = data.products;
         this.totalPages = Array.from(new Array(Math.ceil(data.product_count / this.limit)), (val, index) => index + 1);
         console.log(this.products);
+        console.log(data.product_count);
       });
   }
 
-  getRequestParams(offset: number, limit: number): any {
-    let params: any = {};
-
-    params[`offset`] = offset;
-    params[`limit`] = limit;
-
-    return params;
+  getListForCategory() {
+    this.CategoryService.all_categories_select().subscribe(
+      (data: any) => {
+        this.listCategories = data.categories;
+      }
+    );
   }
 
-  scroll() {
-    this.get_products();
+  refreshRouteFilter() {
+    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
+    if (typeof (this.routeFilters) == "string") {
+      this.filters = JSON.parse(atob(this.routeFilters));
+    } else {
+      this.filters = new Filters();
+    }
   }
 }
 
