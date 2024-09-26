@@ -1,4 +1,5 @@
 <!-- <h1>list products</h1> -->
-<div class="productoss">
+<div class="productoss" infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
+    (scrolled)="scroll()">
     <app-card-product *ngFor="let product of products" [product]="product"></app-card-product>
 </div>

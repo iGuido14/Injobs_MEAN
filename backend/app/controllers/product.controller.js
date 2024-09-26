@@ -47,8 +47,9 @@ const findAllProduct = asyncHandler(async (req, res) => {
         return varQuery != "undefined" && varQuery ? varQuery : otherResult;
     };
 
-    let limit = transUndefined(req.query.limit, 4);
-    let offset = transUndefined(req.query.offset, 0);
+    // let limit = transUndefined(req.query.limit, 4);
+    // let offset = transUndefined(req.query.offset, 0);
+    const { offset, limit } = req.query;
     let category = transUndefined(req.query.category, "");
     let name = transUndefined(req.query.name, "");
     let price_min = transUndefined(req.query.price_min, 0);
