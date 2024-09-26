@@ -12,11 +12,7 @@ export const appRoutes: Routes = [
   },
   {
     path: 'shop',
-    loadComponent: () => import('./pages/shop/shop.component').then(c => c.ShopComponent),
-  },
-  {
-    path: 'shop/categories/:slug',
-    loadComponent: () => import('./shared/list-products/list-products.component').then(c => c.ListProductsComponent)
+    loadChildren: () => import('./pages/shop/shop.routes')
   },
   {
     path: 'details/:slug',
