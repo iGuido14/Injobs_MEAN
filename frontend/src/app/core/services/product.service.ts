@@ -14,7 +14,7 @@ export class ProductService {
     constructor(private apiService: ApiService) { }
 
     // GET ALL
-    get_products(): Observable<Product[]> {
+    get_products(params: any): Observable<Product[]> {
         return this.apiService.get(`/products/`);
     }
 

@@ -7,6 +7,7 @@ import { CategoryService } from 'src/app/core/services/categories.service';
 import { Product } from '../../core/models/product.model';
 import { Category } from 'src/app/core/models/category.model';
 import { CardProductComponent } from '../card-product/card-product.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-list-products',
@@ -16,7 +17,8 @@ import { CardProductComponent } from '../card-product/card-product.component';
   imports: [
     CardProductComponent,
     CommonModule,
-    RouterLink
+    RouterLink,
+    InfiniteScrollModule
   ],
   providers: [
     ProductService,
@@ -27,6 +29,8 @@ import { CardProductComponent } from '../card-product/card-product.component';
 export class ListProductsComponent implements OnInit {
 
   //Declaracions
+  offset = 0;
+  limit = 3;
   routeFilters!: string | null;
   products: Product[] = [];
   slug_Category!: string | null;
@@ -53,8 +57,9 @@ export class ListProductsComponent implements OnInit {
 
   //traer productos
   get_products() {
+    const params = this.getRequestParams(this.offset, this.limit);
 
-    this.productService.get_products().subscribe(
+    this.productService.get_products(params).subscribe(
       (data: any) => {
         this.products = data.products;
         console.log(this.products);
@@ -71,6 +76,19 @@ export class ListProductsComponent implements OnInit {
           console.log(data.products);
         });
     }
+  }
+
+  getRequestParams(offset: number, limit: number): any {
+    let params: any = {};
+
+    params[`offset`] = offset;
+    params[`limit`] = limit;
+
+    return params;
+  }
+
+  scroll() {
+    this.get_products();
   }
 }
 
