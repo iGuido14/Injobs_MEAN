@@ -9,13 +9,37 @@
 </div>
 
 <!-- PAGINATION -->
-<div class="pagination">
+<!-- <div class="pagination">
     <nav *ngIf="products.length != 0 && totalPages.length != 1">
         <ul class="pagination pg-blue">
             <li class="page-item" [ngClass]="{'active': pageNumber === currentPage}"
                 *ngFor="let pageNumber of totalPages" (click)="setPageTo(pageNumber)">
                 <span class="page-link">{{ pageNumber }}</span>
             </li>
+        </ul>
+    </nav>
+</div> -->
+<div class="pagination">
+    <nav *ngIf="products.length != 0 && totalPages.length != 1">
+        <ul class="pagination pg-blue">
+
+            <!-- Previous Button -->
+            <li class="page-item" [ngClass]="{'disabled': currentPage === 1}" (click)="setPageTo(currentPage - 1)">
+                <span class="page-link">Previous</span>
+            </li>
+
+            <!-- Page Numbers -->
+            <li class="page-item" [ngClass]="{'active': pageNumber === currentPage}"
+                *ngFor="let pageNumber of totalPages" (click)="setPageTo(pageNumber)">
+                <span class="page-link">{{ pageNumber }}</span>
+            </li>
+
+            <!-- Next Button -->
+            <li class="page-item" [ngClass]="{'disabled': currentPage === totalPages.length}"
+                (click)="setPageTo(currentPage + 1)">
+                <span class="page-link">Next</span>
+            </li>
+
         </ul>
     </nav>
 </div>

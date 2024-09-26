@@ -63,8 +63,6 @@ export class SearchComponent implements OnInit {
     this.filters.offset = 0;
   }
 
-
-
   getListProducts() {
     this.ProductService.find_product_name(this.search).subscribe(
       (data: any) => {
@@ -74,7 +72,6 @@ export class SearchComponent implements OnInit {
           console.log('error')
         }
       });
-
   }
 
   public search_event(data: any): void {
