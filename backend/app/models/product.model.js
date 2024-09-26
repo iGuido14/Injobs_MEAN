@@ -48,6 +48,8 @@ ProductSchema.methods.slugify = async function () {
     this.slug = slugify(this.name) + '-' + (Math.random() * Math.pow(36, 10) | 0).toString(36);
 };
 
+// ================================================================
+
 ProductSchema.methods.toProductResponse = async function () {
 
     return {

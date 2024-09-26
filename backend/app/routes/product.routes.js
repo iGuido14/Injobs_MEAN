@@ -24,9 +24,8 @@ module.exports = (app) => {
 }
 
 // {
-//     "id_cat": "cat_sonido",
-//     "category_name": "Técnico de sonido",
-//     "image": "src\\assets\\img_categories\\auriculares.png"
+//     "category_name": "Santiago",
+//     "image": "santiago.jpg"
 // }
 
 // {
