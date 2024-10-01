@@ -41,6 +41,7 @@ mongoose.connect(dbConfig.url, {
 require('../routes/carousel.routes')(app);
 require('../routes/category.routes')(app);
 require('../routes/product.routes')(app);
+require('../routes/user.routes.js')(app);
 
 app.get('/', (req, res) => {
   res.json({ "message": "Hola guido" });
