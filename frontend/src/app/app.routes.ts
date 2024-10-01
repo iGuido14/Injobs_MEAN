@@ -18,6 +18,10 @@ export const appRoutes: Routes = [
     path: 'details/:slug',
     loadComponent: () => import('./pages/details/details.component').then(c => c.DetailsComponent),
     resolve: { product: DetailsResolver }
-  }
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.routes')
+  },
 
 ]
