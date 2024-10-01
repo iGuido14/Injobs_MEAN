@@ -9,6 +9,7 @@ import { CardProductComponent } from '../card-product/card-product.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FiltersComponent } from '../filters/filters.component';
 import { SearchComponent } from '../search/search.component';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 @Component({
   selector: 'app-list-products',
@@ -21,7 +22,8 @@ import { SearchComponent } from '../search/search.component';
     RouterLink,
     InfiniteScrollModule,
     FiltersComponent,
-    SearchComponent
+    SearchComponent,
+    PaginationComponent
   ],
   providers: [
     ProductService,

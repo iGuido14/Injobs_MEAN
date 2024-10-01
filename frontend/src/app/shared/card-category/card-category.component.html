@@ -5,7 +5,8 @@
         <div class="mt-5">
             <div class="card">
                 <div class="img_product">
-                    <img src="../../../assets/img_categories/{{category.image}}" />
+                    <img src="../../../assets/img_categories/{{category.image}}"
+                        [routerLink]="['/shop/categories', category.slug]" />
                 </div>
                 <div class="info_card text-center">
                     <div>
