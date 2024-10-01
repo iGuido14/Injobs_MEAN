@@ -2,9 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output, NgModule } from '@angul
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, Location } from '@angular/common';
 
-import { Category } from 'src/app/core/models/category.model';
-import { Product } from 'src/app/core/models/product.model';
-import { Filters } from 'src/app/core/models/filters.model';
+import { Category, Product, Filters } from 'src/app/core/models';
 import { FormsModule } from '@angular/forms';
 
 

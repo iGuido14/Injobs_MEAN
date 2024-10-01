@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, Input, OnChanges } from '@angular/core';
 import { register } from 'swiper/element/bundle'; // Import for registering Swiper's custom elements
-import { CarouselHome, CarouselDetails } from 'src/app/core/models/carousel.model'; // Import your models
+import { CarouselHome, CarouselDetails } from 'src/app/core/models';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../core/services/categories.service';
-import { Category } from 'src/app/core/models/category.model';
+import { Category } from 'src/app/core/models';
 import { CardCategoryComponent } from '../card-category/card-category.component';
 import { CommonModule } from '@angular/common';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";

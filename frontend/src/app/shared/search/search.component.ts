@@ -1,9 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Filters } from 'src/app/core/models/filters.model';
+import { Filters, Product } from 'src/app/core/models';
 import { ProductService } from 'src/app/core/services/product.service';
-import { Product } from 'src/app/core/models/product.model';
 import { FormsModule } from '@angular/forms';
 
 @Component({

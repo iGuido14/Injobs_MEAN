@@ -4,12 +4,10 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { ProductService } from '../../core/services/product.service';
 import { CategoryService } from 'src/app/core/services/categories.service';
-import { Product } from '../../core/models/product.model';
-import { Category } from 'src/app/core/models/category.model';
+import { Product, Category, Filters } from '../../core/models';
 import { CardProductComponent } from '../card-product/card-product.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FiltersComponent } from '../filters/filters.component';
-import { Filters } from 'src/app/core/models/filters.model';
 import { SearchComponent } from '../search/search.component';
 
 @Component({

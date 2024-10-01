@@ -2,7 +2,7 @@ import { Injectable, } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { Product } from '../models/product.model';
+import { Product } from '../models';
 import { ProductService } from './product.service';
 import { catchError } from 'rxjs/operators';
 
