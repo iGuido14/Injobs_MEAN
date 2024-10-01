@@ -1,6 +1,6 @@
 const User = require('../models/user.model');
 const asyncHandler = require('express-async-handler');
-const bcrypt = require('bcrypt');
+const argon2 = require('argon2');
 
 
 // @desc registration for a user
@@ -17,7 +17,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     // hash password
-    const hashedPwd = await bcrypt.hash(user.password, 10); // salt rounds
+    const hashedPwd = await argon2.hash(user.password);
 
     const userObject = {
         "username": user.username,
@@ -81,7 +81,7 @@ const userLogin = asyncHandler(async (req, res) => {
         return res.status(404).json({ message: "User Not Found" });
     }
 
-    const match = await bcrypt.compare(user.password, loginUser.password);
+    const match = await argon2.verify(loginUser.password, user.password);
 
     if (!match) return res.status(401).json({ message: 'Unauthorized: Wrong password' })
 
@@ -115,7 +115,7 @@ const updateUser = asyncHandler(async (req, res) => {
         target.username = user.username;
     }
     if (user.password) {
-        const hashedPwd = await bcrypt.hash(user.password, 10);
+        const hashedPwd = await argon2.hash(user.password);
         target.password = hashedPwd;
     }
     if (typeof user.image !== 'undefined') {
