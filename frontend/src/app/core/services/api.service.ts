@@ -30,11 +30,16 @@ export class ApiService {
     ).pipe(catchError(this.formatErrors));
   }
 
+  // post(path: string, body: Object = {}): Observable<any> {
+  //   const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  //   return this.http.post(`${URL}${path}`, body, { headers })
+  //     .pipe(catchError(this.formatErrors));
+  // }
+
   post(path: string, body: Object = {}): Observable<any> {
-    return this.http.post(
-      `${URL}${path}`,
-      JSON.stringify(body)
-    ).pipe(catchError(this.formatErrors));
+    // console.log(`${URL}${path}`);
+    // console.log(JSON.stringify(body));
+    return this.http.post(`${URL}${path}`, body).pipe(catchError(this.formatErrors));
   }
 
   delete(path: string): Observable<any> {

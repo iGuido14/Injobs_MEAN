@@ -86,14 +86,14 @@ export class ListProductsComponent implements OnInit {
 
   get_list_filtered(filters: Filters) {
     this.filters = filters;
-    console.log(this.filters.limit);
+    // console.log(this.filters.limit);
     // console.log(JSON.stringify(this.filters));
     this.productService.get_products_filter(filters).subscribe(
       (data: any) => {
         this.products = data.products;
         this.totalPages = Array.from(new Array(Math.ceil(data.product_count / this.limit)), (val, index) => index + 1);
-        console.log(this.products);
-        console.log(data.product_count);
+        // console.log(this.products);
+        // console.log(data.product_count);
       });
   }
 
