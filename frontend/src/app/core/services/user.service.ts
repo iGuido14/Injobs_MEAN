@@ -58,7 +58,7 @@ export class UserService {
     this.isAuthenticatedSubject.next(false);
   }
 
-  attemptAuth(type, credentials): Observable<User> {
+  attemptAuth(type: any, credentials: any): Observable<User> {
     const route = (type === 'login') ? '/login' : '';
     return this.apiService.post(`/users${route}`, { user: credentials })
       .pipe(map(
@@ -74,7 +74,7 @@ export class UserService {
   }
 
   // Update the user on the server (email, pass, etc)
-  update(user): Observable<User> {
+  update(user: User): Observable<User> {
     return this.apiService
       .put('/user', { user })
       .pipe(map(data => {

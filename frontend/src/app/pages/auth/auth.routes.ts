@@ -4,15 +4,17 @@ import { NoAuthGuard } from "src/app/core/services";
 
 export default [
     {
+        path: '',
+        component: AuthComponent
+    },
+    {
         path: 'login',
-        // component: AuthComponent,
         loadComponent: () => import('./auth.component').then(c => c.AuthComponent),
-        canActivate: [NoAuthGuard]
+        // canActivate: [NoAuthGuard]
     },
     {
         path: 'register',
-        // component: AuthComponent,
         loadComponent: () => import('./auth.component').then(c => c.AuthComponent),
-        canActivate: [NoAuthGuard]
+        // canActivate: [NoAuthGuard]
     }
 ] as Route[]

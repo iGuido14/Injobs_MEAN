@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { User, UserService } from 'src/app/core';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +9,33 @@ import { Router, RouterLink } from '@angular/router';
   standalone: true,
   imports: [
     // Router
-    RouterLink
-  ]
+    RouterLink,
+  ],
+  providers: [
+    UserService
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  currentUser: User | null = null;
 
-  ngOnInit(): void { }
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private cd: ChangeDetectorRef
+
+  ) { }
+
+
+
+  ngOnInit(): void {
+    this.userService.currentUser.subscribe(
+      (userData) => {
+        this.currentUser = userData;
+        this.cd.markForCheck();
+      }
+    );
+  }
 }
