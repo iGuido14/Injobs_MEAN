@@ -1,4 +1,5 @@
 export * from './api.service';
+export * from './auth-guard.service';
 export * from './carousel.service';
 export * from './categories.service';
 export * from './details-resolver.service';

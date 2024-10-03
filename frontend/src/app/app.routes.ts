@@ -27,5 +27,9 @@ export const appRoutes: Routes = [
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.routing')
   },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.routing')
+  },
 
 ]

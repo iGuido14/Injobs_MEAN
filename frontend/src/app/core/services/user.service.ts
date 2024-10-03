@@ -96,13 +96,16 @@ export class UserService {
 
   // Update the user on the server (email, pass, etc)
   update(user: User): Observable<User> {
-    return this.apiService
-      .put('/user', { user })
-      .pipe(map(data => {
-        // Update the currentUser observable
-        this.currentUserSubject.next(data.user);
-        return data.user;
-      }));
+    console.log('user service: ', user);
+    const token = this.jwtService.getToken(); // Get the token from your JwtService
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token}` // Ensure you use the correct format
+    });
+    return this.apiService.put('/user', { user }, { headers }).pipe(map(data => {
+      this.currentUserSubject.next(data.user);
+      return data.user;
+    }));
   }
 
 }

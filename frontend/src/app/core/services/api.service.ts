@@ -23,9 +23,16 @@ export class ApiService {
     return this.http.get(`${URL}${path}`, options).pipe(catchError(this.formatErrors));
   }
 
-  put(path: string, body: Object = {}): Observable<any> {
-    return this.http.put(`${URL}${path}`, JSON.stringify(body)).pipe(catchError(this.formatErrors));
+  put(path: string, body: Object = {}, options?: { headers?: HttpHeaders }): Observable<any> {
+    console.log(`put api: `, `${URL}${path}`, body);
+    return this.http.put(`${URL}${path}`, body, options).pipe(catchError(this.formatErrors));
   }
+
+
+  // put(path: string, body: Object = {}): Observable<any> {
+  //   console.log(`put api: `, `${URL}${path}`, body);
+  //   return this.http.put(`${URL}${path}`, body).pipe(catchError(this.formatErrors));
+  // }
 
   post(path: string, body: Object = {}): Observable<any> {
     return this.http.post(`${URL}${path}`, body).pipe(catchError(this.formatErrors));
