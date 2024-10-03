@@ -15,9 +15,9 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
     CommonModule,
     InfiniteScrollModule
   ],
-  providers: [
-    CategoryService
-  ]
+  // providers: [
+  //   CategoryService
+  // ]
 })
 
 export class ListCategoriesComponent implements OnInit {

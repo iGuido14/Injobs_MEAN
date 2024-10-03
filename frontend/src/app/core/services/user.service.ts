@@ -79,11 +79,12 @@ export class UserService {
     const route = (type === 'login') ? '/login' : '';
     // const token = this.jwtService.getToken();
     // console.log(token);
-    // console.log(route);
+    console.log(route);
     // console.log(credentials);
     return this.apiService.post(`/users${route}`, { user: credentials })
       .pipe(map(
         data => {
+          console.log(data.user);
           this.setAuth(data.user);
           // console.log(data.user);
           return data.user;

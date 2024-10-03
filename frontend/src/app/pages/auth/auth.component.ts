@@ -17,10 +17,10 @@ import { ShowAuthedDirective } from 'src/app/shared';
     RouterLink,
     ShowAuthedDirective
   ],
-  providers: [
-    NoAuthGuard,
-    UserService
-  ],
+  // providers: [
+  //   NoAuthGuard,
+  //   UserService
+  // ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 

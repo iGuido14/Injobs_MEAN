@@ -25,10 +25,10 @@ import { PaginationComponent } from '../pagination/pagination.component';
     SearchComponent,
     PaginationComponent
   ],
-  providers: [
-    ProductService,
-    CategoryService
-  ]
+  // providers: [
+  //   ProductService,
+  //   CategoryService
+  // ]
 })
 
 export class ListProductsComponent implements OnInit {
@@ -44,7 +44,8 @@ export class ListProductsComponent implements OnInit {
   totalPages: Array<number> = [];
   currentPage: number = 1;
 
-  constructor(private productService: ProductService,
+  constructor(
+    private productService: ProductService,
     private ActivatedRoute: ActivatedRoute,
     private CategoryService: CategoryService,
     private Location: Location

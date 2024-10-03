@@ -40,6 +40,7 @@ export class ApiService {
   // }
 
   post(path: string, body: Object = {}): Observable<any> {
+    console.log(`${URL}${path}`, body);
     return this.http.post(`${URL}${path}`, body).pipe(catchError(this.formatErrors));
   }
 
