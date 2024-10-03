@@ -23,6 +23,11 @@ export class ApiService {
     return this.http.get(`${URL}${path}`, options).pipe(catchError(this.formatErrors));
   }
 
+  // get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+  //   return this.http.get(`${URL}${path}`, { params })
+  //     .pipe(catchError(this.formatErrors));
+  // }
+
   put(path: string, body: Object = {}, options?: { headers?: HttpHeaders }): Observable<any> {
     console.log(`put api: `, `${URL}${path}`, body);
     return this.http.put(`${URL}${path}`, body, options).pipe(catchError(this.formatErrors));

@@ -3,8 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@
 import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Errors } from 'src/app/core/models';
-import { UserService } from 'src/app/core/services';
-import { NoAuthGuard } from 'src/app/core/services/no-auth-guard.service';
+import { NoAuthGuard, UserService } from 'src/app/core';
 import { ShowAuthedDirective } from 'src/app/shared';
 
 @Component({

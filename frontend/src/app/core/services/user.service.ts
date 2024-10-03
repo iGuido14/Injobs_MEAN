@@ -36,6 +36,7 @@ export class UserService {
         'Authorization': `Token ${token}`
       });
       this.apiService.get("/user", { headers }).subscribe(
+        // this.apiService.get("/user").subscribe(
         (data) => {
           // console.log(`Populate user:`, data.user);
           return this.setAuth({ ...data.user, token });
