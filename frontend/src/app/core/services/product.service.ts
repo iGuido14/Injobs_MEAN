@@ -48,6 +48,6 @@ export class ProductService {
             }
         });
         // params = filters;
-        return this.apiService.get(`/products/`, params);
+        return this.apiService.get(`/products/`, { params });
     }
 }

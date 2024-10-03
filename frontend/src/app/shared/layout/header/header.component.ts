@@ -1,6 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { User, UserService } from 'src/app/core';
+import { ShowAuthedDirective } from '../../show-authed.directive';
 
 @Component({
   selector: 'app-header',
@@ -9,33 +11,36 @@ import { User, UserService } from 'src/app/core';
   standalone: true,
   imports: [
     // Router
+    CommonModule,
     RouterLink,
-  ],
-  providers: [
-    UserService
+    ShowAuthedDirective
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class HeaderComponent implements OnInit {
 
-  currentUser: User | null = null;
+  currentUser: User;
 
   constructor(
-    private router: Router,
+    // private router: Router,
     private userService: UserService,
-    private cd: ChangeDetectorRef
-
+    private cd: ChangeDetectorRef,
+    private router: Router
   ) { }
 
-
-
-  ngOnInit(): void {
-    this.userService.currentUser.subscribe(
-      (userData) => {
-        this.currentUser = userData;
-        this.cd.markForCheck();
-      }
+  ngOnInit() {
+    console.log(this.currentUser);
+    this.userService.currentUser.subscribe((userData) => {
+      console.log(userData);
+      this.currentUser = userData;
+      this.cd.markForCheck();
+    }
     );
+  }
+
+  logout() {
+    this.userService.purgeAuth();
+    this.router.navigateByUrl('/');
   }
 }

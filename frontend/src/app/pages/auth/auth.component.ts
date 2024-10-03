@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Errors } from 'src/app/core/models';
 import { UserService } from 'src/app/core/services';
 import { NoAuthGuard } from 'src/app/core/services/no-auth-guard.service';
+import { ShowAuthedDirective } from 'src/app/shared';
 
 @Component({
   selector: 'app-auth',
@@ -15,10 +16,13 @@ import { NoAuthGuard } from 'src/app/core/services/no-auth-guard.service';
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
+    ShowAuthedDirective
   ],
   providers: [
-    NoAuthGuard
-  ]
+    NoAuthGuard,
+    UserService
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AuthComponent implements OnInit {
@@ -67,7 +71,13 @@ export class AuthComponent implements OnInit {
     this.userService
       .attemptAuth(this.authType, credentials)
       .subscribe(
-        data => this.router.navigateByUrl('/'),
+        data => {
+          // window.location.reload();
+          this.router.navigateByUrl('/');
+          setTimeout(() => {
+            window.location.reload();
+          });
+        },
         err => {
           this.errors = err;
           this.isSubmitting = false;

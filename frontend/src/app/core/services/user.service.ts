@@ -5,6 +5,8 @@ import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { User } from '../models';
 import { map, distinctUntilChanged } from 'rxjs/operators';
+import { __values } from 'tslib';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -13,6 +15,7 @@ import { map, distinctUntilChanged } from 'rxjs/operators';
 export class UserService {
   private currentUserSubject = new BehaviorSubject<User>({} as User);
   public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
+  // public currentUser = this.currentUserSubject.asObservable();
 
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
@@ -25,12 +28,16 @@ export class UserService {
   // Verify JWT in localstorage with server & load user's info.
   // This runs once on application startup.
   populate() {
-    // If JWT detected, attempt to get & store user's info
+    // const token = `Token ${this.jwtService.getToken()}`;
     const token = this.jwtService.getToken();
-    console.log(token);
     if (token) {
-      this.apiService.get("/user").subscribe(
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`
+      });
+      this.apiService.get("/user", { headers }).subscribe(
         (data) => {
+          // console.log(`Populate user:`, data.user);
           return this.setAuth({ ...data.user, token });
         },
         (err) => this.purgeAuth()
@@ -43,11 +50,21 @@ export class UserService {
 
   setAuth(user: User) {
     // Save JWT sent from server in localstorage
+    // console.log(`entra en setAuth`);
+    // console.log(user.token);
     this.jwtService.saveToken(user.token);
     // Set current user data into observable
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
+    // console.log('CurrentUserSubject:', this.currentUserSubject.value);
+    this.currentUser.subscribe(userData => {
+      console.log(`Current user setAuth`, userData);
+    }).unsubscribe();
     this.isAuthenticatedSubject.next(true);
+    // console.log(this.currentUser);
+    // console.log(this.isAuthenticated);
+    console.log(`hace el setAuth entero`);
+    // window.location.reload;
   }
 
   purgeAuth() {
