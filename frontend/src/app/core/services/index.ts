@@ -5,5 +5,6 @@ export * from './details-resolver.service';
 export * from './jwt.service';
 export * from './no-auth-guard.service';
 export * from './product.service';
-export * from './profiles.service';
+export * from './profile.resolver.service';
+export * from './profile.service';
 export * from './user.service';

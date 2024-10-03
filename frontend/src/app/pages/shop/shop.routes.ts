@@ -2,7 +2,16 @@ import { Route } from "@angular/router";
 import { ShopComponent } from "./shop.component";
 
 export default [
-    { path: '', component: ShopComponent },
-    { path: 'categories/:slug', component: ShopComponent },
-    { path: ':filters', component: ShopComponent }
+    {
+        path: '',
+        loadComponent: () => import('./shop.component').then(c => c.ShopComponent)
+    },
+    {
+        path: 'categories/:slug',
+        loadComponent: () => import('./shop.component').then(c => c.ShopComponent)
+    },
+    {
+        path: ':filters',
+        loadComponent: () => import('./shop.component').then(c => c.ShopComponent)
+    }
 ] as Route[]

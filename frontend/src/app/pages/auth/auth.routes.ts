@@ -5,7 +5,7 @@ import { NoAuthGuard } from "src/app/core/services";
 export default [
     {
         path: '',
-        component: AuthComponent
+        loadComponent: () => import('./auth.component').then(c => c.AuthComponent)
     },
     {
         path: 'login',

@@ -58,13 +58,11 @@ export class UserService {
     // Set isAuthenticated to true
     // console.log('CurrentUserSubject:', this.currentUserSubject.value);
     this.currentUser.subscribe(userData => {
-      console.log(`Current user setAuth`, userData);
+      // console.log(`Current user setAuth`, userData);
     }).unsubscribe();
     this.isAuthenticatedSubject.next(true);
     // console.log(this.currentUser);
     // console.log(this.isAuthenticated);
-    console.log(`hace el setAuth entero`);
-    // window.location.reload;
   }
 
   purgeAuth() {
