@@ -10,9 +10,11 @@ const argon2 = require('argon2');
 // @return User
 const registerUser = asyncHandler(async (req, res) => {
     const { user } = req.body;
+    // return 'hola';
 
     // confirm data
     if (!user || !user.email || !user.username || !user.password) {
+        console.log(`entra al server`);
         return res.status(400).json({ message: "All fields are required" });
     }
 

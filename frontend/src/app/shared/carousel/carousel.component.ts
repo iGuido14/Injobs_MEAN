@@ -40,7 +40,7 @@ export class CarouselComponent {
 
   load_carousel(): void {
     if (!this.slug_details) {
-      console.log(`home`);
+      // console.log(`home`);
       this.page = `home`;
       this.CarouselService.getCarouselHome().subscribe(((data: any) => {
         // console.log(data);
