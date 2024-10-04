@@ -5,11 +5,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { HeaderComponent } from '../shared/layout/header/header.component';
 import { FooterComponent } from '../shared/layout/footer/footer.component';
-import { ProductService } from '../core/services/product.service';
-import { UserService } from '../core';
+import { HttpTokenInterceptor, ProductService, UserService } from '../core';
 
 @Component({
   selector: 'app-main',
@@ -23,11 +23,7 @@ import { UserService } from '../core';
     FooterComponent,
     HttpClientModule,
     NgbModule,
-    CommonModule
-  ],
-  providers: [
-    ProductService,
-    HttpClientModule
+    CommonModule,
   ]
 })
 // export class MainComponent { }

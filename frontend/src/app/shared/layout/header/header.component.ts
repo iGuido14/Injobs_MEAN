@@ -30,9 +30,9 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.currentUser);
+    // console.log(this.currentUser);
     this.userService.currentUser.subscribe((userData) => {
-      console.log(userData);
+      // console.log(userData);
       this.currentUser = userData;
       this.cd.markForCheck();
     }

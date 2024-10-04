@@ -3,8 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@
 import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Errors } from 'src/app/core/models';
-import { UserService } from 'src/app/core/services';
-import { NoAuthGuard } from 'src/app/core/services/no-auth-guard.service';
+import { NoAuthGuard, UserService } from 'src/app/core';
 import { ShowAuthedDirective } from 'src/app/shared';
 
 @Component({
@@ -18,10 +17,10 @@ import { ShowAuthedDirective } from 'src/app/shared';
     RouterLink,
     ShowAuthedDirective
   ],
-  providers: [
-    NoAuthGuard,
-    UserService
-  ],
+  // providers: [
+  //   NoAuthGuard,
+  //   UserService
+  // ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
@@ -66,17 +65,11 @@ export class AuthComponent implements OnInit {
     this.errors = { errors: {} };
 
     const credentials = this.authForm.value;
-    // console.log(credentials);
-    // console.log(this.authType);
     this.userService
       .attemptAuth(this.authType, credentials)
       .subscribe(
         data => {
-          // window.location.reload();
           this.router.navigateByUrl('/');
-          setTimeout(() => {
-            window.location.reload();
-          });
         },
         err => {
           this.errors = err;

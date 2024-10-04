@@ -1,11 +1,11 @@
 import { Route } from "@angular/router";
 import { AuthComponent } from "./auth.component";
-import { NoAuthGuard } from "src/app/core/services";
+import { NoAuthGuard } from "src/app/core";
 
 export default [
     {
         path: '',
-        component: AuthComponent
+        loadComponent: () => import('./auth.component').then(c => c.AuthComponent)
     },
     {
         path: 'login',

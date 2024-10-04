@@ -16,10 +16,10 @@ import { ProductService } from 'src/app/core/services/product.service';
   imports: [
     CarouselItemsComponent,
   ],
-  providers: [
-    CarouselService,
-    ProductService
-  ],
+  // providers: [
+  //   CarouselService,
+  //   ProductService
+  // ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CarouselComponent {

@@ -17,9 +17,9 @@ import { CarouselComponent } from 'src/app/shared/carousel/carousel.component';
     RouterLink,
     CarouselComponent
   ],
-  providers: [
-    ProductService,
-  ]
+  // providers: [
+  //   ProductService,
+  // ]
 })
 
 export class DetailsComponent implements OnInit {
