@@ -25,7 +25,10 @@
                 <a routerLink='/shop'>Shop</a>
             </li>
             <li>
-                <a [routerLink]="['/profile', currentUser.username]">{{ currentUser.username }}</a>
+                <a [routerLink]="['/profile', currentUser.username]">
+                    <img [src]="currentUser.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'"
+                        *ngIf="currentUser.image" class="user-pic" alt="user image" />
+                    {{ currentUser.username }}</a>
             </li>
             <li>
                 <a (click)="logout()">Logout</a>

@@ -10,7 +10,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from '../shared/layout/header/header.component';
 import { FooterComponent } from '../shared/layout/footer/footer.component';
 import { HttpTokenInterceptor, ProductService, UserService } from '../core';
-import { CoreModule } from '../core/core.module';
 
 @Component({
   selector: 'app-main',
@@ -25,13 +24,7 @@ import { CoreModule } from '../core/core.module';
     HttpClientModule,
     NgbModule,
     CommonModule,
-    // CoreModule
-  ],
-  // providers: [
-  //   ProductService,
-  //   HttpClientModule,
-  //   { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true }
-  // ]
+  ]
 })
 // export class MainComponent { }
 
