@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 
-import { User, UserService, Profile, ProfileResolver } from '../../core';
+import { User, UserService, Profile } from '../../core';
 import { concatMap, tap } from 'rxjs/operators';
 
 @Component({

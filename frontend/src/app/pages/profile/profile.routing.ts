@@ -1,6 +1,5 @@
 import { Route } from '@angular/router';
 import { ProfileResolver } from '../../core';
-import { ProfileComponent } from './profile.component';
 
 export default [
   {
