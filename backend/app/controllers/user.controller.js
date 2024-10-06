@@ -1,96 +1,92 @@
 const User = require('../models/user.model');
 const asyncHandler = require('express-async-handler');
 const argon2 = require('argon2');
+const { generateAccessToken, generateRefreshToken } = require('../middleware/authService');
+const RefreshToken = require('../models/refreshToken.model');
 
-
-// @desc registration for a user
+// @desc Register a new user
 // @route POST /api/users
 // @access Public
-// @required fields {email, username, password}
-// @return User
 const registerUser = asyncHandler(async (req, res) => {
     const { user } = req.body;
-    // return 'hola';
 
-    // confirm data
     if (!user || !user.email || !user.username || !user.password) {
-        console.log(`entra al server`);
         return res.status(400).json({ message: "All fields are required" });
     }
 
-    // hash password
     const hashedPwd = await argon2.hash(user.password);
 
-    const userObject = {
-        "username": user.username,
-        "password": hashedPwd,
-        "email": user.email
+    const newUser = {
+        username: user.username,
+        password: hashedPwd,
+        email: user.email,
     };
 
-    const createdUser = await User.create(userObject);
+    const createdUser = await User.create(newUser);
 
-    if (createdUser) { // user object created successfully
+    if (createdUser) {
         res.status(201).json({
             user: createdUser.toUserResponse()
-        })
+        });
     } else {
         res.status(422).json({
-            errors: {
-                body: "Unable to register a user"
-            }
+            errors: { body: "Unable to register a user" }
         });
     }
 });
 
-// @desc get currently logged-in user
-// @route GET /api/user
-// @access Private
-// @return User
-const getCurrentUser = asyncHandler(async (req, res) => {
-    // After authentication; email and hashsed password was stored in req
-    const email = req.userEmail;
-
-    const user = await User.findOne({ email }).exec();
-
-    if (!user) {
-        return res.status(404).json({ message: "User Not Found" });
-    }
-
-    res.status(200).json({
-        user: user.toUserResponse()
-    })
-
-});
-
-// @desc login for a user
+// @desc Login user and return tokens
 // @route POST /api/users/login
 // @access Public
-// @required fields {email, password}
-// @return User
 const userLogin = asyncHandler(async (req, res) => {
     const { user } = req.body;
 
-    // confirm data
     if (!user || !user.email || !user.password) {
         return res.status(400).json({ message: "All fields are required" });
     }
 
     const loginUser = await User.findOne({ email: user.email }).exec();
 
-    // console.log(loginUser);
+    if (!loginUser) return res.status(404).json({ message: "User Not Found" });
 
-    if (!loginUser) {
+    const match = await argon2.verify(loginUser.password, user.password);
+    if (!match) return res.status(401).json({ message: 'Unauthorized' });
+
+    // Generate tokens
+    const accessToken = generateAccessToken(loginUser);
+    const refreshToken = generateRefreshToken(loginUser);
+
+    await new RefreshToken({
+        token: refreshToken,
+        userId: loginUser._id,
+        expiryDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Expires in 7 days
+    }).save();
+
+    res.status(200).json({
+        user: loginUser.toUserResponse(accessToken, refreshToken)
+        // accessToken,
+        // refreshToken
+    });
+});
+
+// @desc Get current user
+// @route GET /api/user
+// @access Private
+const getCurrentUser = asyncHandler(async (req, res) => {
+    const email = req.userEmail;
+    const user = await User.findOne({ email }).exec();
+
+    if (!user) {
         return res.status(404).json({ message: "User Not Found" });
     }
 
-    const match = await argon2.verify(loginUser.password, user.password);
-
-    if (!match) return res.status(401).json({ message: 'Unauthorized: Wrong password' })
+    console.log(user);
+    const accessToken = generateAccessToken(user);
+    const refreshToken = await RefreshToken.findOne({ userId: user._id }).exec();
 
     res.status(200).json({
-        user: loginUser.toUserResponse()
+        user: user.toUserResponse(accessToken, refreshToken.token)
     });
-
 });
 
 // @desc update currently logged-in user

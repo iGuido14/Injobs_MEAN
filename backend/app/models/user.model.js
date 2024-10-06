@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const jwt = require("jsonwebtoken");
+const { refreshToken } = require('../controllers/auth.controller');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -46,28 +47,39 @@ userSchema.plugin(uniqueValidator);
 
 // @desc generate access token for a user
 // @required valid email and password
-userSchema.methods.generateAccessToken = function () {
-    const accessToken = jwt.sign({
-        "user": {
-            "id": this._id,
-            "email": this.email,
-            "password": this.password
-        }
-    },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "1d" }
-    );
-    return accessToken;
-}
+// userSchema.methods.generateAccessToken = function () {
+//     const accessToken = jwt.sign({
+//         "user": {
+//             "id": this._id,
+//             "email": this.email,
+//             "password": this.password
+//         }
+//     },
+//         process.env.ACCESS_TOKEN_SECRET,
+//         { expiresIn: "1d" }
+//     );
+//     return accessToken;
+// }
 
-userSchema.methods.toUserResponse = function () {
+// userSchema.methods.toUserResponse = function () {
+//     return {
+//         username: this.username,
+//         email: this.email,
+//         bio: this.bio,
+//         image: this.image,
+//         token: this.generateAccessToken()
+//     }
+// };
+
+userSchema.methods.toUserResponse = function (jwt_access, jwt_refresh) {
     return {
         username: this.username,
         email: this.email,
         bio: this.bio,
         image: this.image,
-        token: this.generateAccessToken()
-    }
+        accessToken: jwt_access,
+        refreshToken: jwt_refresh
+    };
 };
 
 userSchema.methods.toProfileJSON = function (user) {
