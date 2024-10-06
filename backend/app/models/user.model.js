@@ -46,19 +46,29 @@ userSchema.plugin(uniqueValidator);
 
 // @desc generate access token for a user
 // @required valid email and password
-userSchema.methods.generateAccessToken = function () {
-    const accessToken = jwt.sign({
-        "user": {
-            "id": this._id,
-            "email": this.email,
-            "password": this.password
-        }
-    },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "1d" }
-    );
-    return accessToken;
-}
+// userSchema.methods.generateAccessToken = function () {
+//     const accessToken = jwt.sign({
+//         "user": {
+//             "id": this._id,
+//             "email": this.email,
+//             "password": this.password
+//         }
+//     },
+//         process.env.ACCESS_TOKEN_SECRET,
+//         { expiresIn: "1d" }
+//     );
+//     return accessToken;
+// }
+
+// userSchema.methods.toUserResponse = function () {
+//     return {
+//         username: this.username,
+//         email: this.email,
+//         bio: this.bio,
+//         image: this.image,
+//         token: this.generateAccessToken()
+//     }
+// };
 
 userSchema.methods.toUserResponse = function () {
     return {
@@ -66,8 +76,7 @@ userSchema.methods.toUserResponse = function () {
         email: this.email,
         bio: this.bio,
         image: this.image,
-        token: this.generateAccessToken()
-    }
+    };
 };
 
 userSchema.methods.toProfileJSON = function (user) {
