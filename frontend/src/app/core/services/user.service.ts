@@ -44,7 +44,8 @@ export class UserService {
   }
 
   setAuth(user: User) {
-    this.jwtService.saveToken(user.token);
+    console.log(user);
+    this.jwtService.saveToken(user.accessToken);
     this.currentUserSubject.next(user);
     this.currentUser.subscribe(userData => { }).unsubscribe();
     this.isAuthenticatedSubject.next(true);

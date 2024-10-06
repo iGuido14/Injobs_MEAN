@@ -65,17 +65,16 @@ export class AuthComponent implements OnInit {
     this.errors = { errors: {} };
 
     const credentials = this.authForm.value;
-    this.userService
-      .attemptAuth(this.authType, credentials)
-      .subscribe(
-        data => {
-          this.router.navigateByUrl('/');
-        },
-        err => {
-          this.errors = err;
-          this.isSubmitting = false;
-          this.cd.markForCheck();
-        }
-      );
+    this.userService.attemptAuth(this.authType, credentials).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigateByUrl('/');
+      },
+      err => {
+        this.errors = err;
+        this.isSubmitting = false;
+        this.cd.markForCheck();
+      }
+    );
   }
 }

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const jwt = require("jsonwebtoken");
+const { refreshToken } = require('../controllers/auth.controller');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -70,12 +71,14 @@ userSchema.plugin(uniqueValidator);
 //     }
 // };
 
-userSchema.methods.toUserResponse = function () {
+userSchema.methods.toUserResponse = function (jwt_access, jwt_refresh) {
     return {
         username: this.username,
         email: this.email,
         bio: this.bio,
         image: this.image,
+        accessToken: jwt_access,
+        refreshToken: jwt_refresh
     };
 };
 
