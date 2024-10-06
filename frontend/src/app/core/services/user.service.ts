@@ -26,16 +26,19 @@ export class UserService {
 
   populate() {
     const token = this.jwtService.getToken();
+    // console.log(token);
     if (token) {
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Token ${token}`
+        'Authorization': `Token ${token.access_token}`
       });
       this.apiService.get("/user", { headers }).subscribe(
         // this.apiService.get("/user").subscribe(
         (data) => {
+          console.log(data);
           return this.setAuth({ ...data.user, token });
         },
+        // (err) => console.log(err)
         (err) => this.purgeAuth()
       );
     } else {
@@ -44,8 +47,8 @@ export class UserService {
   }
 
   setAuth(user: User) {
-    console.log(user);
-    this.jwtService.saveToken(user.accessToken);
+    // console.log(user);
+    this.jwtService.saveToken(user.accessToken, user.refreshToken);
     this.currentUserSubject.next(user);
     this.currentUser.subscribe(userData => { }).unsubscribe();
     this.isAuthenticatedSubject.next(true);

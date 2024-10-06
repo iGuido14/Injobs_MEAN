@@ -80,8 +80,12 @@ const getCurrentUser = asyncHandler(async (req, res) => {
         return res.status(404).json({ message: "User Not Found" });
     }
 
+    console.log(user);
+    const accessToken = generateAccessToken(user);
+    const refreshToken = await RefreshToken.findOne({ userId: user._id }).exec();
+
     res.status(200).json({
-        user: user.toUserResponse()
+        user: user.toUserResponse(accessToken, refreshToken.token)
     });
 });
 
