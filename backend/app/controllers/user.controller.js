@@ -54,13 +54,17 @@ const userLogin = asyncHandler(async (req, res) => {
 
     // Generate tokens
     const accessToken = generateAccessToken(loginUser);
-    const refreshToken = generateRefreshToken(loginUser);
+    const refreshToken = await RefreshToken.findOne({ userId: loginUser._id }).exec();
 
-    await new RefreshToken({
-        token: refreshToken,
-        userId: loginUser._id,
-        expiryDate: new Date(Date.now() + 60 * 1000),
-    }).save();
+    if (!refreshToken) {
+        const refreshToken = generateRefreshToken(loginUser);
+
+        await new RefreshToken({
+            token: refreshToken,
+            userId: loginUser._id,
+            expiryDate: new Date(Date.now() + 2 * 60 * 60 * 1000),
+        }).save();
+    }
 
     res.status(200).json({
         user: loginUser.toUserResponse(accessToken, refreshToken)
@@ -81,7 +85,7 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     }
 
     console.log(user);
-    const accessToken = generateAccessToken(user);
+    const accessToken = req.newAccessToken;
     const refreshToken = await RefreshToken.findOne({ userId: user._id }).exec();
 
     // if(refreshToken.expiryDate )
