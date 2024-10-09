@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 const uniqueValidator = require('mongoose-unique-validator');
-// const User = require('../models/user.model.js');
+const User = require('./user.model.js');
 const { log } = require('console');
 
 const ProductSchema = mongoose.Schema({
@@ -63,7 +63,10 @@ ProductSchema.methods.slugify = async function () {
 // ================================================================
 
 ProductSchema.methods.toProductResponse = async function (user) {
+    const User = mongoose.model('User');  // Lazy loading User model
     const authorObj = await User.findById(this.author).exec();
+
+    // return authorObj;
     return {
         slug: this.slug,
         name: this.name,
@@ -85,6 +88,8 @@ ProductSchema.methods.toProductCarouselResponse = async function () {
 }
 
 ProductSchema.methods.updateFavoriteCount = async function () {
+    // return "hola2";
+    const User = mongoose.model('User');
     const favoriteCount = await User.count({
         favouriteProducts: { $in: [this._id] }
     });

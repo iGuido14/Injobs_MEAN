@@ -10,20 +10,19 @@ const verifyJWTOptional = (req, res, next) => {
 
     const token = authHeader.split(' ')[1];
 
-    jwt.verify(
-        token,
-        process.env.ACCESS_TOKEN_SECRET,
-        (err, decoded) => {
-            if (err) {
-                return res.status(403).json({ message: 'Forbidden' });
-            }
-            req.loggedin = true;
-            req.userId = decoded.user.id;
-            req.userEmail = decoded.user.email;
-            req.userHashedPwd = decoded.user.password;
-            next();
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+        // return res.json({ message: decoded })
+        if (err) {
+            return res.status(403).json({ message: err });
         }
-    )
+        req.loggedin = true;
+        req.userId = decoded.user.id;
+        req.userEmail = decoded.user.email;
+        // req.userHashedPwd = decoded.user.password;
+        // return res.json({ message: req.userEmail })
+        // return res.json({ message: req.userId });
+        next();
+    })
 };
 
 module.exports = verifyJWTOptional;

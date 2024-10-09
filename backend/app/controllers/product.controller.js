@@ -1,4 +1,5 @@
 const Product = require('../models/product.model.js');
+const User = require('../models/user.model.js');
 const Category = require('../models/category.model.js');
 const mongoose = require('mongoose');
 const asyncHandler = require('express-async-handler');
@@ -7,6 +8,8 @@ const asyncHandler = require('express-async-handler');
 //create
 const createProduct = asyncHandler(async (req, res) => {
 
+    // return res.json({ message: req.body.author })
+
     const productData = {
         name: req.body.name || null,
         price: req.body.price || 0,
@@ -14,7 +17,9 @@ const createProduct = asyncHandler(async (req, res) => {
         images: req.body.images,
         img: req.body.img || null,
         id_cat: req.body.id_cat || null,
-        author: req.author || null
+        // favorited: req.body.favorited || null,
+        // favoritesCount: req.body.favoritesCount || null,
+        author: req.body.author || null
     };
 
     const id_cat = req.body.id_cat;
@@ -41,11 +46,13 @@ const createProduct = asyncHandler(async (req, res) => {
 
 //findALL
 const findAllProduct = asyncHandler(async (req, res) => {
-
+    // return res.json({ message: "res" });
     let query = {};
     let transUndefined = (varQuery, otherResult) => {
         return varQuery != "undefined" && varQuery ? varQuery : otherResult;
     };
+
+    // return res.json({ message: "res" });
 
     // let limit = transUndefined(req.query.limit, 4);
     // let offset = transUndefined(req.query.offset, 0);
@@ -55,8 +62,10 @@ const findAllProduct = asyncHandler(async (req, res) => {
     let price_min = transUndefined(req.query.price_min, 0);
     let price_max = transUndefined(req.query.price_max, Number.MAX_SAFE_INTEGER);
     let nameReg = new RegExp(name, 'i');
-    // let favorited = transUndefined(req.query.favorited, null);
+    let favorited = transUndefined(req.query.favorited, null);
     // let id_user = req.auth ? req.auth.id : null;
+
+    // return res.json({ message: query });
 
     query = {
         name: { $regex: nameReg },
@@ -67,6 +76,14 @@ const findAllProduct = asyncHandler(async (req, res) => {
         query.id_cat = category;
     }
 
+    if (favorited) {
+        // return res.json({ message: "hola" });
+        const favoriter = await User.findOne({ username: favorited });
+        query._id = { $in: favoriter.favorites };
+    }
+
+    // return res.json({ message: "res" });
+
     const products = await Product.find(query).limit(Number(limit)).skip(Number(offset));
     const product_count = await Product.find(query).countDocuments();
 
@@ -76,13 +93,15 @@ const findAllProduct = asyncHandler(async (req, res) => {
         res.status(404).json({ msg: "Falló" });
     }
 
-    // const user = await User.findById(req.userId);
+    // return res.json({ message: req.userId });
 
-    // return res.json(user)
+    const user = await User.findById(req.userId);
+
+    // return res.json(user);
 
     return res.status(200).json({
         products: await Promise.all(products.map(async product => {
-            return await product.toProductResponse();
+            return await product.toProductResponse(user);
         })), product_count: product_count
     });
 });
@@ -139,7 +158,11 @@ const GetProductsByCategory = asyncHandler(async (req, res) => {
     const slug = req.params;
     let product_count = "";
 
+    // return res.json(slug)
+
     const category = await Category.findOne(slug).exec();
+
+    // return res.json(await Category.findOne(slug).exec())
 
     if (!category) {
         res.status(400).json({ message: "Categoria no encontrada" });
@@ -179,8 +202,77 @@ const updateProduct = asyncHandler(async (req, res) => {
 
     await target.save();
     return res.status(200).json({
-        article: await target.toProductResponse()
+        product: await target.toProductResponse()
     })
+});
+
+const favoriteProduct = asyncHandler(async (req, res) => {
+    const id = req.userId;
+
+    const { slug } = req.params;
+
+    const loginUser = await User.findById(id).exec();
+
+    if (!loginUser) {
+        return res.status(401).json({
+            message: "User Not Found"
+        });
+    }
+
+    const product = await Product.findOne({ slug }).exec();
+
+    if (!product) {
+        return res.status(401).json({
+            message: "Product Not Found"
+        });
+    }
+    // console.log(`product info ${product}`);
+
+    await loginUser.favorite(product._id);
+
+    // return res.json({ message: "hola" })
+
+    const updatedProduct = await product.updateFavoriteCount();
+
+    // return res.json(updatedProduct)
+
+    return res.status(200).json({
+        product: await updatedProduct.toProductResponse(loginUser)
+    });
+});
+
+const unfavoriteProduct = asyncHandler(async (req, res) => {
+    const id = req.userId;
+
+    const { slug } = req.params;
+
+    const loginUser = await User.findById(id).exec();
+
+    if (!loginUser) {
+        return res.status(401).json({
+            message: "User Not Found"
+        });
+    }
+
+    const product = await Product.findOne({ slug }).exec();
+
+    if (!product) {
+        return res.status(401).json({
+            message: "product Not Found"
+        });
+    }
+
+    // return res.json({ message: "hola" })
+
+    await loginUser.unfavorite(product._id);
+    // return res.json(product)
+
+    const updatedProduct = await product.updateFavoriteCount();
+    // return res.json(updatedProduct)
+
+    return res.status(200).json({
+        product: await updatedProduct.toProductResponse(loginUser)
+    });
 });
 
 module.exports = {
@@ -189,5 +281,7 @@ module.exports = {
     findOneProduct,
     deleteOneProduct,
     GetProductsByCategory,
-    updateProduct
+    updateProduct,
+    favoriteProduct,
+    unfavoriteProduct
 }
