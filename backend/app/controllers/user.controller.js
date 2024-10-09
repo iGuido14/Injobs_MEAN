@@ -67,7 +67,8 @@ const userLogin = asyncHandler(async (req, res) => {
     }
 
     res.status(200).json({
-        user: loginUser.toUserResponse(accessToken, refreshToken)
+        // user: loginUser.toUserResponse(accessToken, refreshToken.token)
+        user: loginUser.toUserResponse(accessToken)
         // accessToken,
         // refreshToken
     });

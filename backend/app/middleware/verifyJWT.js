@@ -1,63 +1,3 @@
-// const jwt = require('jsonwebtoken');
-// const RefreshToken = require('../models/refreshToken.model');
-// const RefreshBlacklist = require('../models/blacklistRefresh.model');
-// const User = require('../models/user.model');
-// const { generateAccessToken } = require('../middleware/authService');
-
-// const verifyJWT = async (req, res, next) => {
-//     const authHeader = req.headers.authorization || req.headers.Authorization;
-
-//     if (!authHeader?.startsWith('Token ')) {
-//         return res.status(401).json({ message: 'Unauthorized' });
-//     }
-
-//     const token = authHeader.split(' ')[1];
-
-//     const loginUser = await User.findOne({ email: req.body.user.email }).exec();
-//     const refresh_token = await RefreshToken.findOne({ userId: loginUser._id }).exec()
-
-//     // return res.json({ message: refresh_token });
-
-//     if (!refresh_token) {
-//         return res.status(403).json({ message: 'Refresh token not found' });
-//     } else {
-//         if (refresh_token.expiryDate < Date.now()) {
-//             await RefreshBlacklist.create({
-//                 token: refresh_token.token,
-//                 userId: loginUser._id,
-//                 expiryDate: refresh_token.expiryDate
-//             });
-//             await RefreshToken.deleteOne({ _id: refresh_token.id });
-//             return res.status(403).json({ message: 'Refresh sent to blacklist' });
-//         } else {
-//             jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-//                 // return res.json({ message: decoded });
-//                 if (err) {
-//                     return res.status(403).json({ message: 'Forbidden' });
-//                 }
-//                 else if (decoded.expiryDate < Date.now()) {
-//                     // generar uno nuevo
-//                     const accessToken = generateAccessToken(loginUser);
-//                     res.setHeader('Authorization', `Token ${accessToken}`);
-//                     //mandar los pasos
-//                     req.userId = loginUser.id;
-//                     req.userEmail = loginUser.email;
-//                     req.newAccessToken = accessToken;
-//                     next();
-//                 }
-//                 else {
-//                     req.userId = loginUser.id;
-//                     req.userEmail = loginUser.email;
-//                     next();
-//                 }
-//             });
-//         }
-//     }
-// };
-
-// module.exports = verifyJWT;
-
-
 const jwt = require('jsonwebtoken');
 const RefreshToken = require('../models/refreshToken.model');
 const RefreshBlacklist = require('../models/blacklistRefresh.model');
@@ -76,18 +16,16 @@ const verifyJWT = async (req, res, next) => {
     const token = authHeader.split(' ')[1];
 
     try {
-        // Verify the token
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        // return res.json({ message: decoded.user.email });
 
-        // Check if user exists
-        const loginUser = await User.findOne({ email: req.body.user.email }).exec();
+        const loginUser = await User.findOne({ email: decoded.user.email }).exec();
         // return res.json({ message: loginUser });
 
         if (!loginUser) {
             return res.status(403).json({ message: 'User not found' });
         }
 
-        // Find the refresh token associated with the user
         const refreshToken = await RefreshToken.findOne({ userId: loginUser._id }).exec();
         // return res.json({ message: refreshToken });
 
@@ -95,7 +33,6 @@ const verifyJWT = async (req, res, next) => {
             return res.status(403).json({ message: 'Refresh token not found' });
         }
 
-        // Check if refresh token has expired
         if (refreshToken.expiryDate < Date.now()) {
             await RefreshBlacklist.create({
                 token: refreshToken.token,
@@ -115,7 +52,6 @@ const verifyJWT = async (req, res, next) => {
                 // return res.json({ message: decoded });
             }
 
-            // Attach user information and access token to the request for further routes/middleware
             req.userId = loginUser.id;
             req.userEmail = loginUser.email;
             req.newAccessToken = accessToken;  // Attach the new or valid access token
