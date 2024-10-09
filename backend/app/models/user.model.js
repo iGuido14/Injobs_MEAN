@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const jwt = require("jsonwebtoken");
 const { refreshToken } = require('../controllers/auth.controller');
+const Product = require('../models/product.model.js');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -30,14 +31,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "https://static.productionready.io/images/smiley-cyrus.jpg"
     },
-    // favouriteArticles: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Article'
-    // }],
-    // followingUsers: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // }]
+    favouriteProducts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    }],
+    followingUsers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 },
     {
         timestamps: true
@@ -91,8 +92,8 @@ userSchema.methods.unfollow = function (id) {
 
 userSchema.methods.isFavourite = function (id) {
     const idStr = id.toString();
-    for (const article of this.favouriteArticles) {
-        if (article.toString() === idStr) {
+    for (const product of this.favouriteProducts) {
+        if (product.toString() === idStr) {
             return true;
         }
     }
@@ -100,29 +101,29 @@ userSchema.methods.isFavourite = function (id) {
 }
 
 userSchema.methods.favorite = function (id) {
-    if (this.favouriteArticles.indexOf(id) === -1) {
-        this.favouriteArticles.push(id);
+    if (this.favouriteProducts.indexOf(id) === -1) {
+        this.favouriteProducts.push(id);
     }
 
-    // const article = await Article.findById(id).exec();
+    // const product = await Product.findById(id).exec();
     //
-    // article.favouritesCount += 1;
+    // product.favouritesCount += 1;
     //
-    // await article.save();
+    // await product.save();
 
     return this.save();
 }
 
 userSchema.methods.unfavorite = function (id) {
-    if (this.favouriteArticles.indexOf(id) !== -1) {
-        this.favouriteArticles.remove(id);
+    if (this.favouriteProducts.indexOf(id) !== -1) {
+        this.favouriteProducts.remove(id);
     }
 
-    // const article = await Article.findById(id).exec();
+    // const product = await Product.findById(id).exec();
     //
-    // article.favouritesCount -= 1;
+    // product.favouritesCount -= 1;
     //
-    // await article.save();
+    // await product.save();
 
     return this.save();
 };

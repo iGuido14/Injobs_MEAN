@@ -30,7 +30,19 @@ const ProductSchema = mongoose.Schema({
     id_cat: {
         type: String,
         required: true
-    }
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    favouritesCount: {
+        type: Number,
+        default: 0
+    },
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
 });
 
 ProductSchema.plugin(uniqueValidator, { msg: "already taken" });
@@ -50,8 +62,8 @@ ProductSchema.methods.slugify = async function () {
 
 // ================================================================
 
-ProductSchema.methods.toProductResponse = async function () {
-
+ProductSchema.methods.toProductResponse = async function (user) {
+    const authorObj = await User.findById(this.author).exec();
     return {
         slug: this.slug,
         name: this.name,
@@ -59,7 +71,10 @@ ProductSchema.methods.toProductResponse = async function () {
         description: this.description,
         id_cat: this.id_cat,
         img: this.img,
-        images: this.images
+        images: this.images,
+        favorited: user ? user.isFavourite(this._id) : false,
+        favoritesCount: this.favouritesCount,
+        author: authorObj.toProfileJSON(user)
     }
 }
 
@@ -68,5 +83,29 @@ ProductSchema.methods.toProductCarouselResponse = async function () {
         images: this.images
     }
 }
+
+ProductSchema.methods.updateFavoriteCount = async function () {
+    const favoriteCount = await User.count({
+        favouriteProducts: { $in: [this._id] }
+    });
+
+    this.favouritesCount = favoriteCount;
+
+    return this.save();
+}
+
+ProductSchema.methods.addComment = function (commentId) {
+    if (this.comments.indexOf(commentId) === -1) {
+        this.comments.push(commentId);
+    }
+    return this.save();
+};
+
+ProductSchema.methods.removeComment = function (commentId) {
+    if (this.comments.indexOf(commentId) !== -1) {
+        this.comments.remove(commentId);
+    }
+    return this.save();
+};
 
 module.exports = mongoose.model('Product', ProductSchema);
