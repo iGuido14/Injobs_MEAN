@@ -28,10 +28,5 @@ export class CarouselItemsComponent implements OnChanges {
 
   constructor() { }
 
-  ngOnChanges(): void {
-    // register();
-    // console.log(this.page);
-    // console.log(this.categories);
-    console.log(this.products_details);
-  }
+  ngOnChanges(): void { }
 }
