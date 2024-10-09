@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { HeaderComponent } from '../shared/layout/header/header.component';
 import { FooterComponent } from '../shared/layout/footer/footer.component';
-import { ProductService } from '../core/services/product.service';
+import { HttpTokenInterceptor, ProductService, UserService } from '../core';
 
 @Component({
   selector: 'app-main',
@@ -22,13 +23,15 @@ import { ProductService } from '../core/services/product.service';
     FooterComponent,
     HttpClientModule,
     NgbModule,
-    CommonModule
-  ],
-  providers: [
-    ProductService,
-    HttpClientModule
+    CommonModule,
   ]
 })
-export class MainComponent {
+// export class MainComponent { }
 
+export class MainComponent implements OnInit {
+  constructor(private userService: UserService) { }
+
+  ngOnInit(): void {
+    this.userService.populate();
+  }
 }

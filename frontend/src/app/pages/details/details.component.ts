@@ -2,7 +2,7 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-import { Product } from '../../core/models/product.model';
+import { Product } from '../../core/models';
 import { ProductService } from '../../core/services/product.service';
 import { CommonModule } from '@angular/common';
 import { CarouselComponent } from 'src/app/shared/carousel/carousel.component';
@@ -17,9 +17,9 @@ import { CarouselComponent } from 'src/app/shared/carousel/carousel.component';
     RouterLink,
     CarouselComponent
   ],
-  providers: [
-    ProductService,
-  ]
+  // providers: [
+  //   ProductService,
+  // ]
 })
 
 export class DetailsComponent implements OnInit {

@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { DetailsResolver } from './core/services/details-resolver.service';
+import { DetailsResolver } from './core/services';
 
 export const appRoutes: Routes = [
   {
@@ -12,16 +12,24 @@ export const appRoutes: Routes = [
   },
   {
     path: 'shop',
-    loadComponent: () => import('./pages/shop/shop.component').then(c => c.ShopComponent),
-  },
-  {
-    path: 'shop/categories/:slug',
-    loadComponent: () => import('./shared/list-products/list-products.component').then(c => c.ListProductsComponent)
+    loadChildren: () => import('./pages/shop/shop.routes')
   },
   {
     path: 'details/:slug',
     loadComponent: () => import('./pages/details/details.component').then(c => c.DetailsComponent),
     resolve: { product: DetailsResolver }
-  }
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.routes')
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.routing')
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.routing')
+  },
 
 ]

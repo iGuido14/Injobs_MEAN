@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Category } from 'src/app/core/models/category.model';
+import { Category } from 'src/app/core/models';
 
 @Component({
   selector: 'app-card-category',

@@ -47,13 +47,14 @@ const findAllProduct = asyncHandler(async (req, res) => {
         return varQuery != "undefined" && varQuery ? varQuery : otherResult;
     };
 
-    // let limit = transUndefined(req.query.limit, 3);
+    // let limit = transUndefined(req.query.limit, 4);
     // let offset = transUndefined(req.query.offset, 0);
+    const { offset, limit } = req.query;
     let category = transUndefined(req.query.category, "");
     let name = transUndefined(req.query.name, "");
     let price_min = transUndefined(req.query.price_min, 0);
     let price_max = transUndefined(req.query.price_max, Number.MAX_SAFE_INTEGER);
-    let nameReg = new RegExp(name);
+    let nameReg = new RegExp(name, 'i');
     // let favorited = transUndefined(req.query.favorited, null);
     // let id_user = req.auth ? req.auth.id : null;
 
@@ -66,7 +67,7 @@ const findAllProduct = asyncHandler(async (req, res) => {
         query.id_cat = category;
     }
 
-    const products = await Product.find(query);
+    const products = await Product.find(query).limit(Number(limit)).skip(Number(offset));
     const product_count = await Product.find(query).countDocuments();
 
     // return res.json(products)

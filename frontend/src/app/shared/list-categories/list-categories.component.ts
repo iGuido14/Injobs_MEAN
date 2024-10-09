@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../core/services/categories.service';
-import { Category } from 'src/app/core/models/category.model';
+import { Category } from 'src/app/core/models';
 import { CardCategoryComponent } from '../card-category/card-category.component';
 import { CommonModule } from '@angular/common';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
@@ -15,9 +15,9 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
     CommonModule,
     InfiniteScrollModule
   ],
-  providers: [
-    CategoryService
-  ]
+  // providers: [
+  //   CategoryService
+  // ]
 })
 
 export class ListCategoriesComponent implements OnInit {

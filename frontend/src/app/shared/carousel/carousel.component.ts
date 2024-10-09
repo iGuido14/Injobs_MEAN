@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { register } from 'swiper/element/bundle';
 import { CarouselItemsComponent } from '../carousel-items/carousel-items.component';
-import { CarouselHome, CarouselDetails } from 'src/app/core/models/carousel.model';
+import { CarouselHome, CarouselDetails } from 'src/app/core/models';
 import { CarouselService } from 'src/app/core/services/carousel.service';
 import { ProductService } from 'src/app/core/services/product.service';
 
@@ -16,10 +16,10 @@ import { ProductService } from 'src/app/core/services/product.service';
   imports: [
     CarouselItemsComponent,
   ],
-  providers: [
-    CarouselService,
-    ProductService
-  ],
+  // providers: [
+  //   CarouselService,
+  //   ProductService
+  // ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CarouselComponent {
@@ -40,7 +40,7 @@ export class CarouselComponent {
 
   load_carousel(): void {
     if (!this.slug_details) {
-      console.log(`home`);
+      // console.log(`home`);
       this.page = `home`;
       this.CarouselService.getCarouselHome().subscribe(((data: any) => {
         // console.log(data);
