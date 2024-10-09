@@ -1,12 +1,16 @@
 const Product = require('../models/product.model');
-const User = require('../models/User');
-const Comment = require('../models/Comment');
+const User = require('../models/user.model');
+const Comment = require('../models/comment.model');
 const asyncHandler = require('express-async-handler');
+// const User = require('../models/user.model');
 
 const addCommentsToProduct = asyncHandler(async (req, res) => {
+
+    // return res.json({ message: "andrea mosca" })
     const id = req.userId;
 
     const commenter = await User.findById(id).exec();
+    // return res.json(commenter);
 
     if (!commenter) {
         return res.status(401).json({
@@ -14,9 +18,11 @@ const addCommentsToProduct = asyncHandler(async (req, res) => {
         });
     }
     const { slug } = req.params;
+    // return res.json(slug)
 
     // console.log(`the slug is ${slug}`)
     const product = await Product.findOne({ slug }).exec();
+    // return res.json(product);
 
     if (!product) {
         return res.status(401).json({
@@ -24,7 +30,10 @@ const addCommentsToProduct = asyncHandler(async (req, res) => {
         });
     }
 
+    // return res.json(req.comment);
+
     const { body } = req.body.comment;
+    // return res.json(body);
 
     const newComment = await Comment.create({
         body: body,
@@ -75,6 +84,7 @@ const getCommentsFromProduct = asyncHandler(async (req, res) => {
 });
 
 const deleteComment = asyncHandler(async (req, res) => {
+    // return res.json("hola");
     const userId = req.userId;
 
     const commenter = await User.findById(userId).exec();

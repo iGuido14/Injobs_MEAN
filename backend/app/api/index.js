@@ -41,6 +41,7 @@ mongoose.connect(dbConfig.url, {
 require('../routes/auth.routes.js')(app);
 require('../routes/carousel.routes')(app);
 require('../routes/category.routes')(app);
+require('../routes/comment.routes.js')(app);
 require('../routes/product.routes')(app);
 require('../routes/profile.routes.js')(app);
 require('../routes/user.routes.js')(app);
