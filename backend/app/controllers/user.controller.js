@@ -87,12 +87,9 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 
     console.log(user);
     const accessToken = req.newAccessToken;
-    const refreshToken = await RefreshToken.findOne({ userId: user._id }).exec();
-
-    // if(refreshToken.expiryDate )
 
     res.status(200).json({
-        user: user.toUserResponse(accessToken, refreshToken.token)
+        user: user.toUserResponse(accessToken)
     });
 });
 

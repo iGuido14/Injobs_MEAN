@@ -7,8 +7,6 @@ const { generateAccessToken } = require('../middleware/authService');
 const verifyJWT = async (req, res, next) => {
     const authHeader = req.headers.authorization || req.headers.Authorization;
 
-    // return res.json({ message: authHeader });
-
     if (!authHeader || !authHeader.startsWith('Token ')) {
         return res.status(401).json({ message: 'Unauthorized: No token provided' });
     }
@@ -17,17 +15,13 @@ const verifyJWT = async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        // return res.json({ message: decoded.user.email });
-
         const loginUser = await User.findOne({ email: decoded.user.email }).exec();
-        // return res.json({ message: loginUser });
 
         if (!loginUser) {
             return res.status(403).json({ message: 'User not found' });
         }
 
         const refreshToken = await RefreshToken.findOne({ userId: loginUser._id }).exec();
-        // return res.json({ message: refreshToken });
 
         if (!refreshToken) {
             return res.status(403).json({ message: 'Refresh token not found' });
@@ -43,20 +37,17 @@ const verifyJWT = async (req, res, next) => {
             return res.status(403).json({ message: 'Refresh token has expired and sent to blacklist' });
         } else {
             let accessToken = token;
-            // return res.json({ decoded_exp: decoded.exp, date_now: Date.now() / 1000 });
 
             if (decoded.exp < Date.now() / 1000) {
-                // Token has expired, generate a new access token
                 accessToken = generateAccessToken(loginUser);
                 res.setHeader('Authorization', `Token ${accessToken}`);
-                // return res.json({ message: decoded });
             }
 
             req.userId = loginUser.id;
             req.userEmail = loginUser.email;
-            req.newAccessToken = accessToken;  // Attach the new or valid access token
+            req.newAccessToken = accessToken;
 
-            next(); // Proceed to the next middleware/route
+            next();
         }
     } catch (error) {
         return res.status(403).json({ message: 'Forbidden: Invalid token', error: error.message });
