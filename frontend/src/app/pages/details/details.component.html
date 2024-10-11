@@ -4,3 +4,33 @@
     <h1>Name: {{ product.name }}</h1>
     <h2>Description: {{product.description}}</h2>
 </div>
+
+<div class="comments-section">
+    <app-comments *ngFor="let comment of comments" [comment]="comment" (deleteComment)="delete_comment(comment)">
+    </app-comments>
+
+    <div class="comment" *ngIf="NoComments">
+        <p>Be the first to comment on this article.</p>
+    </div>
+    <div class="create-comment" *ngIf="isLogged === true">
+        <form (ngSubmit)="create_comment()">
+            <div class="comment-new">
+                <div class="comment-avatar-container">
+                    <img class="comment-avatar" src={{user_image}} />
+                </div>
+                <fieldset [disabled]="isSubmitting">
+                    <textarea class="comment-textarea" name="enter-comment" placeholder="Write a comment..."
+                        [formControl]="commentControl"></textarea>
+                    <div class="comment-actions">
+                        <button class="post" type="submit">COMMENT</button>
+                        <button class="cancel" type="button" (click)="empty_comment()">CANCEL</button>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="isLogged === false">
+        <a [routerLink]="['/auth/login']">Sign in</a> or <a [routerLink]="['/auth/register']">sign up</a> to add
+        comments on this article.
+    </div>
+</div>

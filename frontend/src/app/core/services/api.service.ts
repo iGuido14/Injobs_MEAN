@@ -39,10 +39,15 @@ export class ApiService {
   //   return this.http.put(`${URL}${path}`, body).pipe(catchError(this.formatErrors));
   // }
 
-  post(path: string, body: Object = {}): Observable<any> {
+  post(path: string, body: Object = {}, options?: { headers?: HttpHeaders }): Observable<any> {
     console.log(`${URL}${path}`, body);
-    return this.http.post(`${URL}${path}`, body).pipe(catchError(this.formatErrors));
+    return this.http.post(`${URL}${path}`, body, options).pipe(catchError(this.formatErrors));
   }
+
+  // post(path: string, body: Object = {}): Observable<any> {
+  //   console.log(`${URL}${path}`, body);
+  //   return this.http.post(`${URL}${path}`, body).pipe(catchError(this.formatErrors));
+  // }
 
   delete(path: string): Observable<any> {
     return this.http.delete(`${URL}${path}`).pipe(catchError(this.formatErrors));

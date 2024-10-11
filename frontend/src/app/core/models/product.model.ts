@@ -1,3 +1,5 @@
+import { Profile } from "./profile.model";
+
 export interface Product {
     slug: string;
     name: string;
@@ -6,7 +8,7 @@ export interface Product {
     images: [],
     img: string,
     id_cat: string;
-    // favorited: boolean;
-    // favoritesCount: number;
-    // author: Profile;
+    favorited: boolean;
+    favoritesCount: number;
+    author: Profile;
 }

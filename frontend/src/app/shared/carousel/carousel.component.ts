@@ -48,7 +48,7 @@ export class CarouselComponent {
         // console.log(this.items_carousel);
       }))
     } else {
-      console.log(`details`);
+      // console.log(`details`);
       this.page = "details";
       this.CarouselService.getCarouselDetails(this.slug_details).subscribe(((data: any) => {
         // console.log(data);
