@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Profile } from 'src/app/core/models/profile.model';
 import { ProfilesService } from 'src/app/core/services/profile.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { User } from '../../core/models/user.model';
+import { User } from '../../../core/models/user.model';
 import { concatMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
