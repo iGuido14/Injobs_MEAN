@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink, RouterLinkActive, RouterModule } from '@ang
 
 import { User, UserService, Profile } from '../../core';
 import { concatMap, tap } from 'rxjs/operators';
+import { FollowButtonComponent } from 'src/app/shared/buttons/follow-button/follow-button.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -12,11 +13,13 @@ import { concatMap, tap } from 'rxjs/operators';
   imports: [
     RouterModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    FollowButtonComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileComponent implements OnInit {
+
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
