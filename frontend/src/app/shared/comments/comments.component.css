@@ -17,28 +17,37 @@
 .comment-avatar {
     overflow: hidden;
     border: 4px solid white;
-    box-shadow: 0 2px 2px rgba(0,0,0, 0.2);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
     display: inline-block;
 }
+
 .comment-delete-icon {
+    background-color: crimson;
+    color: white;
+    padding: 10px 30px;
     position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    padding: 15px;
+    right: 5%;
+    top: 28%;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: red;
+        cursor: pointer;
+    }
 }
 
 .comment-title {
     display: inline-block;
     vertical-align: top;
     margin: 0;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: bold;
 }
 
 .comment-text {
     display: block;
     padding-top: 10px;
+    font-size: 18px;
     margin: 0;
 }
 
@@ -49,33 +58,33 @@
     font-size: 14px;
     color: #434343;
     opacity: 0.6;
-} 
-    
+}
+
 @media screen and (max-width: 576px) {
 
     .comment-avatar-container {
         width: 100px;
         padding: 30px 10px;
     }
-    
+
     .comment-avatar {
         width: 80px;
         height: 80px;
         border-radius: 80px;
     }
 
-    .comment-delete-icon i{
+    .comment-delete-icon i {
         font-size: 25px;
     }
-    
+
     .comment-title {
         padding-left: 90px;
     }
-    
+
     .comment-text {
         padding-left: 90px;
     }
-    
+
     .comment-time-stamp {
         left: 110px;
     }
@@ -101,12 +110,12 @@
     .comment-text {
         padding-left: 140px;
     }
-    
+
     .comment-time-stamp {
         left: 160px;
     }
 
-    .comment-delete-icon i{
+    .comment-delete-icon i {
         font-size: 25px;
     }
 }
@@ -130,12 +139,12 @@
     .comment-text {
         padding-left: 140px;
     }
-    
+
     .comment-time-stamp {
         left: 160px;
     }
 
-    .comment-delete-icon i{
+    .comment-delete-icon i {
         font-size: 30px;
     }
 }

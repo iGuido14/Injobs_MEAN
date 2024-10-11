@@ -1,9 +1,9 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgModule, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 
 import { Product, Profile, User } from '../../core/models';
-import { ProductService } from '../../core/services/product.service';
+// import { ProductService } from '../../core/services/product.service';
 import { CommonModule } from '@angular/common';
 import { CarouselComponent } from 'src/app/shared/carousel/carousel.component';
 import { UserService } from 'src/app/core';
@@ -22,7 +22,7 @@ import { CommentsComponent } from 'src/app/shared/comments/comments.component';
     RouterLink,
     CarouselComponent,
     CommentsComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 
@@ -44,9 +44,10 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private commentService: CommentsService,
-    private productService: ProductService,
+    // private productService: ProductService,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -66,23 +67,16 @@ export class DetailsComponent implements OnInit {
       }
     );
 
-    // this.route.data.subscribe(
-    //   (data: any) => {
-    //     this.slug = data.product.products.slug;
-    //     this.product = data.product.products;
-    //     // console.log(data.product.products);
-    //     // console.log(data);
-    //   }
-    // );
-
     this.userService.isAuthenticated.subscribe((data) => {
       this.isLogged = data;
       console.log('is Logged: ', this.isLogged);
     });
 
+    this.cd.markForCheck();
+
     const commentBody = this.commentControl.value;
     console.log(commentBody, this.product.slug);
-  } // fin onInit
+  } // FIN ONINIT
 
   get_user_author() {
     this.userService.currentUser.subscribe(
@@ -129,24 +123,32 @@ export class DetailsComponent implements OnInit {
   }
 
   create_comment() {
+    // console.log(`hola`);
     this.isSubmitting = true;
     this.commentFormErrors = {};
     // console.log(this.commentControl.value);
     if (this.slug) {
-      // console.log("yeeee");
       const commentBody = this.commentControl.value;
-      // console.log(commentBody);
-      // console.log(this.product.slug);
-      this.commentService.add(this.slug, commentBody).subscribe(
-        (data: any) => {
+      console.log(commentBody);
+      // console.log(this.slug);
+      this.commentService.add(this.slug, { body: commentBody }).subscribe(
+        data => {
           console.log(data);
-          // this.ToastrService.success("Comment added successfully");
-          console.log("Comment added successfully");
+          // console.log("Comment added successfully");
           this.commentControl.reset('');
           this.isSubmitting = false;
           this.comments.push(data);
           window.location.reload();
-        });
+        },
+        err => {
+          console.log(err);
+          this.error = err;
+          this.isSubmitting = false;
+          this.cd.markForCheck();
+        }
+      );
+    } else {
+      console.log(`no hay slug `);
     }
   }
 

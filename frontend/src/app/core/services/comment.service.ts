@@ -17,15 +17,16 @@ export class CommentsService {
     private jwtService: JwtService
   ) { }
 
-  add(slug: any, body: any): Observable<Comment> {
+  add(slug: any, payload: any): Observable<any> {
     console.log(slug);
+    console.log(payload);
     const accessToken = this.jwtService.getToken();
     const headers = new HttpHeaders({
       'Authorization': `Token ${accessToken}` // Format: Token <token>
     });
 
     // return slug;
-    return this.apiService.post(`/${slug}/comments`, { comment: body }, { headers })
+    return this.apiService.post(`/${slug}/comments`, { comment: payload }, { headers })
       .pipe(map((data) => {
         console.log(data);
         return data

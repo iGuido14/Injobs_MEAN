@@ -13,7 +13,7 @@
         <p>Be the first to comment on this article.</p>
     </div>
     <div class="create-comment" *ngIf="isLogged === true">
-        <form (ngSubmit)="create_comment()">
+        <form>
             <div class="comment-new">
                 <div class="comment-avatar-container">
                     <img class="comment-avatar" src={{user_image}} />
@@ -22,7 +22,7 @@
                     <textarea class="comment-textarea" name="enter-comment" placeholder="Write a comment..."
                         [formControl]="commentControl"></textarea>
                     <div class="comment-actions">
-                        <button class="post" type="submit">COMMENT</button>
+                        <button class="post" type="button" (click)="create_comment()">COMMENT</button>
                         <button class="cancel" type="button" (click)="empty_comment()">CANCEL</button>
                     </div>
                 </fieldset>
