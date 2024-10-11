@@ -29,7 +29,6 @@ export class FollowButtonComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private cd: ChangeDetectorRef,
-    private toastr: ToastrService
   ) { }
 
   @Input() profile!: Profile;
