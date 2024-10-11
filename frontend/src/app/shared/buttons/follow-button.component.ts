@@ -7,10 +7,16 @@ import { User } from '../../core/models/user.model';
 import { concatMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-follow-button',
   templateUrl: './follow-button.component.html',
+  styleUrls: ['./follow-button.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 

@@ -4,11 +4,16 @@ import { Router } from '@angular/router';
 import { Product } from '../../core/models/product.model';
 import { ProductService } from 'src/app/core/services/product.service';
 import { UserService } from '../../core/services/user.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-favorite-button',
   templateUrl: './favorite-button.component.html',
-  styleUrls: ['./favorite-button.component.css']
+  styleUrls: ['./favorite-button.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule
+  ]
 })
 export class FavoriteButtonComponent implements OnInit {
 
@@ -29,29 +34,29 @@ export class FavoriteButtonComponent implements OnInit {
   toggleFavorite() {
     this.isSubmitting = true;
     this.UserService.isAuthenticated.subscribe({
-        next: data => this.isLoged = data,
+      next: data => this.isLoged = data,
     });
 
     if (!this.isLoged) {
-        setTimeout(() => { this.Router.navigate(['/login']); }, 600);
+      setTimeout(() => { this.Router.navigate(['/login']); }, 600);
     } else {
-      
+
       if (!this.products.favorited) {
         this.ProductService.favorite(this.products.slug as String).subscribe({
           next: data => {
             console.log(data);
-              this.products.favorited = true;
-              this.isSubmitting = false;
-              this.toggle.emit(true);
+            this.products.favorited = true;
+            this.isSubmitting = false;
+            this.toggle.emit(true);
           },
         });
       } else {
         this.ProductService.unfavorite(this.products.slug as String).subscribe({
           next: data => {
             console.log(data);
-              this.products.favorited = false;
-              this.isSubmitting = false;
-              this.toggle.emit(false);
+            this.products.favorited = false;
+            this.isSubmitting = false;
+            this.toggle.emit(false);
           },
         });
       }

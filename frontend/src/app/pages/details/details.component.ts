@@ -11,6 +11,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommentsService } from 'src/app/core/services/comment.service';
 import { Comment } from 'src/app/core/models/comment.model';
 import { CommentsComponent } from 'src/app/shared/comments/comments.component';
+import { FavoriteButtonComponent } from 'src/app/shared/buttons/favorite-button.component';
+import { FollowButtonComponent } from 'src/app/shared/buttons/follow-button.component';
 
 @Component({
   selector: 'app-details',
@@ -23,6 +25,8 @@ import { CommentsComponent } from 'src/app/shared/comments/comments.component';
     CarouselComponent,
     CommentsComponent,
     ReactiveFormsModule,
+    FavoriteButtonComponent,
+    FollowButtonComponent
   ]
 })
 
