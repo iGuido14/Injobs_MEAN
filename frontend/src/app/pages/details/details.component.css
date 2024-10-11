@@ -1,4 +1,3 @@
-/* Estilo general de la sección de comentarios */
 .comment,
 .create-comment {
     margin: 20px 0;
@@ -8,26 +7,22 @@
     background-color: #f9f9f9;
 }
 
-/* Mensaje cuando no hay comentarios */
 .comment p {
     color: #666;
     font-size: 16px;
     text-align: center;
 }
 
-/* Contenedor de comentario nuevo */
 .comment-new {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
 }
 
-/* Estilo del contenedor del avatar */
 .comment-avatar-container {
     margin-right: 15px;
 }
 
-/* Imagen del avatar */
 .comment-avatar {
     width: 50px;
     height: 50px;
@@ -36,7 +31,6 @@
     object-fit: cover;
 }
 
-/* Estilo del textarea para escribir comentarios */
 .comment-textarea {
     width: 600px;
     height: 180px;
@@ -52,14 +46,12 @@
     border-color: #007bff;
 }
 
-/* Contenedor de las acciones (botones) de comentario */
 .comment-actions {
     display: flex;
     justify-content: flex-end;
     margin-top: 10px;
 }
 
-/* Estilo de los botones */
 button {
     padding: 10px 15px;
     border: none;
@@ -69,7 +61,6 @@ button {
     font-weight: bold;
 }
 
-/* Botón para publicar el comentario */
 button.post {
     background-color: #28a745;
     color: white;
@@ -80,7 +71,6 @@ button.post:hover {
     background-color: #218838;
 }
 
-/* Botón para cancelar */
 button.cancel {
     background-color: #dc3545;
     color: white;
@@ -90,7 +80,6 @@ button.cancel:hover {
     background-color: #c82333;
 }
 
-/* Estilo para los enlaces de iniciar sesión o registrarse */
 a {
     color: #007bff;
     text-decoration: none;

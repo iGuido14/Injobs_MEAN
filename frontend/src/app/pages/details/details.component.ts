@@ -11,8 +11,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommentsService } from 'src/app/core/services/comment.service';
 import { Comment } from 'src/app/core/models/comment.model';
 import { CommentsComponent } from 'src/app/shared/comments/comments.component';
-import { FavoriteButtonComponent } from 'src/app/shared/buttons/favorite-button.component';
-import { FollowButtonComponent } from 'src/app/shared/buttons/follow-button.component';
+import { FavoriteButtonComponent } from 'src/app/shared/buttons/favorite-button/favorite-button.component';
+import { FollowButtonComponent } from 'src/app/shared/buttons/follow-button/follow-button.component';
 
 @Component({
   selector: 'app-details',
@@ -76,10 +76,7 @@ export class DetailsComponent implements OnInit {
       console.log('is Logged: ', this.isLogged);
     });
 
-    this.cd.markForCheck();
-
-    const commentBody = this.commentControl.value;
-    console.log(commentBody, this.product.slug);
+    // this.cd.markForCheck();
   } // FIN ONINIT
 
   get_user_author() {
@@ -95,7 +92,7 @@ export class DetailsComponent implements OnInit {
   // LIKES
   onToggleFavorite(favorited: boolean) {
     this.product.favorited = favorited;
-    console.log("hola", this.product.favorited);
+    // console.log("hola", this.product.favorited);
 
     if (favorited) {
       this.product.favoritesCount++;

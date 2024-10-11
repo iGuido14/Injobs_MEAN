@@ -4,6 +4,9 @@
             <div class="card">
                 <img class="img_product" style="margin-bottom: 10px;" src="../../../assets/img_products/{{product.img}}"
                     width="350px" height="350px" [routerLink]="['/details/', product.slug]" />
+                <app-favorite-button [product]="product" (toggle)="onToggleFavorite($event)" class="pull-xs-right">
+                    {{product.favoritesCount}}
+                </app-favorite-button>
                 <div class="info_card text-center">
                     <div>
                         <h5 class="card-title font-weight-bold">{{product.name}}</h5>
