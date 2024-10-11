@@ -81,7 +81,7 @@ export class DetailsComponent implements OnInit {
     });
 
     const commentBody = this.commentControl.value;
-    console.log(commentBody);
+    console.log(commentBody, this.product.slug);
   } // fin onInit
 
   get_user_author() {
@@ -132,12 +132,12 @@ export class DetailsComponent implements OnInit {
     this.isSubmitting = true;
     this.commentFormErrors = {};
     // console.log(this.commentControl.value);
-    if (this.product.slug) {
+    if (this.slug) {
       // console.log("yeeee");
       const commentBody = this.commentControl.value;
       // console.log(commentBody);
       // console.log(this.product.slug);
-      this.commentService.add(this.product.slug, commentBody).subscribe(
+      this.commentService.add(this.slug, commentBody).subscribe(
         (data: any) => {
           console.log(data);
           // this.ToastrService.success("Comment added successfully");

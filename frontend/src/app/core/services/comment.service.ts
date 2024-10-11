@@ -17,7 +17,7 @@ export class CommentsService {
     private jwtService: JwtService
   ) { }
 
-  add(slug: any, payload: any): Observable<Comment> {
+  add(slug: any, body: any): Observable<Comment> {
     console.log(slug);
     const accessToken = this.jwtService.getToken();
     const headers = new HttpHeaders({
@@ -25,7 +25,7 @@ export class CommentsService {
     });
 
     // return slug;
-    return this.apiService.post(`/${slug}/comments`, { comment: payload }, { headers })
+    return this.apiService.post(`/${slug}/comments`, { comment: body }, { headers })
       .pipe(map((data) => {
         console.log(data);
         return data
@@ -38,9 +38,11 @@ export class CommentsService {
   }
 
   destroy(commentId: any, productSlug: any) {
-    return this.apiService.delete(
-      `/${productSlug}/comments/${commentId}`
-    );
+    const accessToken = this.jwtService.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Token ${accessToken}` // Format: Token <token>
+    });
+    return this.apiService.delete(`/${productSlug}/comments/${commentId}`, { headers });
   }
 
 }

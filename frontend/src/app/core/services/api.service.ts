@@ -49,7 +49,11 @@ export class ApiService {
   //   return this.http.post(`${URL}${path}`, body).pipe(catchError(this.formatErrors));
   // }
 
-  delete(path: string): Observable<any> {
-    return this.http.delete(`${URL}${path}`).pipe(catchError(this.formatErrors));
+  delete(path: string, options?: { headers?: HttpHeaders }): Observable<any> {
+    return this.http.delete(`${URL}${path}`, options).pipe(catchError(this.formatErrors));
   }
+
+  // delete(path: string): Observable<any> {
+  //   return this.http.delete(`${URL}${path}`).pipe(catchError(this.formatErrors));
+  // }
 }
