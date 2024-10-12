@@ -1,11 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 
-import { User, UserService, Profile, Product, ProfilesService } from '../../core';
+import { User, UserService, Profile, Product, ProfilesService, ProductService } from '../../core';
 import { FollowButtonComponent } from 'src/app/shared/buttons/follow-button/follow-button.component';
 import { FollowListComponent } from 'src/app/pages/profile/follow-list/follow-list.component';
 import { CommonModule } from '@angular/common';
 import { concatMap, map, tap } from 'rxjs';
+import { ListProductsOnProfileComponent } from './list-products-profile/list-products-on-profile.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -19,6 +20,7 @@ import { concatMap, map, tap } from 'rxjs';
     RouterLinkActive,
     FollowButtonComponent,
     FollowListComponent,
+    ListProductsOnProfileComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -42,8 +44,7 @@ export class ProfileComponent implements OnInit {
   product: Product[] = [];
 
   constructor(
-    private ActivatedRoute: ActivatedRoute,
-    private profileService: ProfilesService,
+    private productService: ProductService,
     private userService: UserService,
     private route: ActivatedRoute,
     private cd: ChangeDetectorRef
@@ -56,6 +57,7 @@ export class ProfileComponent implements OnInit {
 
       this.followers = data.profile.followerList;
       this.follow = data.profile.followList;
+      this.product = data.profile.products;
       console.log(data.profile);
 
       // Load the current user's data.

@@ -120,3 +120,14 @@ i {
     color: #007bff;
     margin-right: 5px;
 }
+
+.products-profile {
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-evenly;
+    margin: 0 auto;
+
+    & h1 {
+        margin-bottom: 20px;
+    }
+}

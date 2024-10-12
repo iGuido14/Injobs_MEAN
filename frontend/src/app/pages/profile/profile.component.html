@@ -17,7 +17,7 @@
           <ul class="flex-menu">
             <li (click)="change_followers()"><strong>{{profile.n_followers}}</strong> Followers</li>
             <li (click)="change_follows()"><strong>{{profile.n_follows}}</strong> Following</li>
-            <li (click)="change_products()">Fav Products</li>
+            <li (click)="change_products()">Created Products</li>
           </ul>
         </div>
 
@@ -38,7 +38,9 @@
   <app-follow-list *ngFor="let follow of follow" [follow]="follow" [pages_profile]="pages_profile"></app-follow-list>
 </div>
 
-<!-- <div class="row" *ngIf="pages_profile === 'products'">
-  <h1>{{profile.username}} Products</h1>
-  <app-list-products-on-profile *ngFor="let product of products" [products]="product"></app-list-products-on-profile>
-</div> -->
+<div *ngIf="pages_profile === 'products'">
+  <h1>Favorited Products</h1>
+  <div class="products-profile">
+    <app-list-products-on-profile *ngFor="let product of product" [products]="product"></app-list-products-on-profile>
+  </div>
+</div>
