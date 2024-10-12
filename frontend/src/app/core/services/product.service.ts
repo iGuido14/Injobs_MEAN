@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, Observable, of } from 'rxjs';
 import { Product, Filters } from '../models';
 import { environment } from '../../../environments/evironment';
 import { ApiService } from './api.service';
+import { JwtService } from './jwt.service';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,10 @@ import { ApiService } from './api.service';
 
 export class ProductService {
 
-    constructor(private apiService: ApiService) { }
+    constructor(
+        private apiService: ApiService,
+        private jwtService: JwtService
+    ) { }
 
     // GET ALL
     get_products(params: any): Observable<Product[]> {
@@ -50,5 +54,21 @@ export class ProductService {
         // params = filters;
         return this.apiService.get(`/products/`, { params });
         // return this.apiService.get(`/products/`, params);
+    }
+
+    favorite(slug: String): Observable<any> {
+        const accessToken = this.jwtService.getToken();
+        const headers = new HttpHeaders({
+            'Authorization': `Token ${accessToken}` // Format: Token <token>
+        });
+        return this.apiService.post(`/${slug}/favorite`, {}, { headers })
+    }
+
+    unfavorite(slug: String): Observable<any> {
+        const accessToken = this.jwtService.getToken();
+        const headers = new HttpHeaders({
+            'Authorization': `Token ${accessToken}` // Format: Token <token>
+        });
+        return this.apiService.delete(`/${slug}/favorite`, { headers })
     }
 }

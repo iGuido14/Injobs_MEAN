@@ -91,3 +91,42 @@ i {
         font-size: 12px;
     }
 }
+
+.flex-menu {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.flex-menu li {
+    cursor: pointer;
+    padding: 5px;
+    height: 35px;
+    width: 150px;
+    /* padding: 10px 15px; */
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    color: #333;
+}
+
+.flex-menu li:hover {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+.flex-menu li strong {
+    color: #007bff;
+    margin-right: 5px;
+}
+
+.menus-profile {
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-evenly;
+    margin: 0 auto;
+}

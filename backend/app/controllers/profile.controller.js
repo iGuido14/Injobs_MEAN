@@ -1,3 +1,4 @@
+const Product = require('../models/product.model');
 const User = require('../models/user.model');
 const asyncHandler = require('express-async-handler');
 
@@ -23,7 +24,42 @@ const getProfile = asyncHandler(async (req, res) => {
             profile: user.toProfileJSON(loginUser)
         })
     }
+});
 
+const getProfile_User = asyncHandler(async (req, res) => {
+
+    const { username } = req.params;
+
+    const user_logged = await User.findOne({ "email": req.userEmail })
+
+    // return res.json(user_logged._id)
+
+    const user = await User.findOne({ username }).exec();
+
+    if (!user) {
+        return res.status(404).json({
+            message: "User Not Found"
+        })
+    }
+
+    const followers = await User.find({ followingUsers: { $in: [user._id] } })
+        .select('username bio image -_id')
+        .exec();
+
+    const number_followers = followers.length;
+
+    const follows = await User.find({ followersUsers: { $in: [user._id] } })
+        .select('username bio image')
+        .exec();
+
+    const number_follows = follows.length;
+
+    const products = await Product.find({ "author": user._id }).select('-_id -author').exec();
+
+    // return res.json(products)
+    return res.json({
+        profile: user.toSeeProfileUser(user_logged, followers, number_followers, follows, number_follows, products)
+    })
 });
 
 const followUser = asyncHandler(async (req, res) => {
@@ -38,6 +74,7 @@ const followUser = asyncHandler(async (req, res) => {
         })
     }
     await loginUser.follow(user._id);
+    await user.addFollower(loginUser._id);
 
     return res.status(200).json({
         profile: user.toProfileJSON(loginUser)
@@ -57,6 +94,7 @@ const unFollowUser = asyncHandler(async (req, res) => {
         })
     }
     await loginUser.unfollow(user._id);
+    await user.removeFollower(loginUser._id);
 
     return res.status(200).json({
         profile: user.toProfileJSON(loginUser)
@@ -67,5 +105,6 @@ const unFollowUser = asyncHandler(async (req, res) => {
 module.exports = {
     getProfile,
     followUser,
-    unFollowUser
+    unFollowUser,
+    getProfile_User
 }

@@ -1,0 +1,54 @@
+.followers-container,
+.follows-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 -10px;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    width: 200px;
+    height: 150px;
+    margin: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.comment:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+.comment-avatar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.comment-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-title {
+    font-size: 16px;
+    margin: 0;
+    color: #333;
+    text-align: center;
+}
+
+.comment-text {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin: 5px 0 0 0;
+}

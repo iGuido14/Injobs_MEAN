@@ -38,6 +38,10 @@ const userSchema = new mongoose.Schema({
     followingUsers: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    }],
+    followersUsers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }]
 },
     {
@@ -66,6 +70,35 @@ userSchema.methods.toProfileJSON = function (user) {
     }
 };
 
+userSchema.methods.toSeeProfileUser = function (user_logged, followerList, n_followers, followList, n_follows, products) {
+    if (user_logged) {
+        return {
+            username: this.username,
+            bio: this.bio,
+            image: this.image,
+            followerList: followerList,
+            n_followers: n_followers,
+            followList: followList,
+            n_follows: n_follows,
+            following: user_logged.isFollowing(this._id),
+            products: products
+        }
+    } else {
+        return {
+            username: this.username,
+            bio: this.bio,
+            image: this.image,
+            followerList: followerList,
+            n_followers: n_followers,
+            followList: followList,
+            n_follows: n_follows,
+            following: false,
+            products: products
+        }
+    }
+};
+
+// manejar el seguir a alguien (following)
 userSchema.methods.isFollowing = function (id) {
     const idStr = id.toString();
     for (const followingUser of this.followingUsers) {
@@ -90,6 +123,33 @@ userSchema.methods.unfollow = function (id) {
     return this.save();
 };
 
+// manejar el que alguien te siga (follower)
+userSchema.methods.isFollower = function (id) {
+    const idStr = id.toString();
+    for (const followerUser of this.followersUsers) {
+        if (followerUser.toString() === idStr) {
+            return true;
+        }
+    }
+    return false;
+};
+
+userSchema.methods.addFollower = function (id) {
+    if (this.followersUsers.indexOf(id) === -1) {
+        this.followersUsers.push(id);
+    }
+    return this.save();
+};
+
+userSchema.methods.removeFollower = function (id) {
+    if (this.followersUsers.indexOf(id) !== -1) {
+        this.followersUsers.remove(id);
+    }
+    return this.save();
+};
+
+
+// manejar likes
 userSchema.methods.isFavourite = function (id) {
     const idStr = id.toString();
     for (const product of this.favouriteProducts) {

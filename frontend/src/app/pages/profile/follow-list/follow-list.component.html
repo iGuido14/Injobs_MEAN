@@ -1,0 +1,20 @@
+<div *ngIf="pages_profile === 'followers'" class="followers-container"
+    (click)="navigateToProfile(followersInput.username)">
+    <div class="comment initial">
+        <div class="comment-avatar-container">
+            <img class="comment-avatar" src="{{followersInput.image}}" />
+        </div>
+        <h2 class="comment-title">{{ followersInput.username }}</h2>
+        <p class="comment-text">{{ followersInput.bio }}</p>
+    </div>
+</div>
+
+<div *ngIf="pages_profile === 'follows'" class="follows-container" (click)="navigateToProfile(follow.username)">
+    <div class="comment initial">
+        <div class="comment-avatar-container">
+            <img class="comment-avatar" src="{{follow.image}}" />
+        </div>
+        <h2 class="comment-title">{{ follow.username }}</h2>
+        <p class="comment-text">{{ follow.bio }}</p>
+    </div>
+</div>

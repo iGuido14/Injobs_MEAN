@@ -27,18 +27,18 @@ export class UserService {
   populate() {
     const token = this.jwtService.getToken();
     // const jwt_access = token.access_token;
-    console.log(token);
+    // console.log(token);
 
     if (token) {
-      console.log(`sí hay access`);
+      // console.log(`sí hay access`);
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Token ${token}`
       });
-      console.log(headers);
+      // console.log(headers);
       this.apiService.get("/user", { headers }).subscribe(
         (data) => {
-          console.log('entra');
+          // console.log('entra');
           return this.setAuth({ ...data.user, token });
         },
         // (err) => console.log(err)
@@ -46,15 +46,15 @@ export class UserService {
       );
     }
     else {
-      console.log(`no hay access`);
+      // console.log(`no hay access`);
       this.purgeAuth();
     }
   }
 
   setAuth(user: User) {
-    console.log(user);
+    // console.log(user);
     // this.jwtService.saveToken(user.accessToken, user.refreshToken);
-    console.log(`intenta guardar token`);
+    // console.log(`intenta guardar token`);
     this.jwtService.saveToken(user.accessToken);
     this.currentUserSubject.next(user);
     this.currentUser.subscribe(userData => { }).unsubscribe();

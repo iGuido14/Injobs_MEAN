@@ -1,0 +1,5 @@
+<button class="like-button" (click)="toggleFavorite()">
+  <i *ngIf="isLiked" class="fas fa-heart"></i>
+  <i *ngIf="!isLiked" class="far fa-heart"></i>
+  <ng-content></ng-content>
+</button>

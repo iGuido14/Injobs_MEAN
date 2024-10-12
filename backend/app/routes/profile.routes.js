@@ -4,7 +4,8 @@ module.exports = (app) => {
     const verifyJWTOptional = require('../middleware/verifyJWTOptional');
 
     // Get profile - authentication optional
-    app.get('/profile/:username', verifyJWTOptional, profileController.getProfile);
+    // app.get('/profile/:username', verifyJWTOptional, profileController.getProfile);
+    app.get('/profile/:username', verifyJWTOptional, profileController.getProfile_User);
 
     // Follow a user
     app.post('/profile/:username/follow', verifyJWT, profileController.followUser);
