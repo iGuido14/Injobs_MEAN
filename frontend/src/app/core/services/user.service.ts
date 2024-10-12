@@ -52,7 +52,7 @@ export class UserService {
   }
 
   setAuth(user: User) {
-    console.log(user);
+    // console.log(user);
     // this.jwtService.saveToken(user.accessToken, user.refreshToken);
     // console.log(`intenta guardar token`);
     this.jwtService.saveToken(user.accessToken);

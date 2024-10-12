@@ -88,9 +88,9 @@ userSchema.methods.toSeeProfileUser = function (user_logged, followerList, n_fol
             username: this.username,
             bio: this.bio,
             image: this.image,
-            followers: followers,
+            followerList: followerList,
             n_followers: n_followers,
-            follows: follows,
+            followList: followList,
             n_follows: n_follows,
             following: false,
             products: products
