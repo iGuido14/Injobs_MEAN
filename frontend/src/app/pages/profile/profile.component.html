@@ -18,6 +18,7 @@
             <li (click)="change_followers()"><strong>{{profile.n_followers}}</strong> Followers</li>
             <li (click)="change_follows()"><strong>{{profile.n_follows}}</strong> Following</li>
             <li (click)="change_products()">Created Products</li>
+            <li (click)="change_favorite()"><strong>{{profile.n_favorited}}</strong>Liked Products</li>
           </ul>
         </div>
 
@@ -45,6 +46,15 @@
 <div *ngIf="pages_profile === 'products'">
   <h1>{{profile.username}}'s Products</h1>
   <div class="menus-profile">
-    <app-list-products-on-profile *ngFor="let product of product" [products]="product"></app-list-products-on-profile>
+    <app-list-products-on-profile *ngFor="let product of product" [products]="product"
+      [pages_profile]="pages_profile"></app-list-products-on-profile>
+  </div>
+</div>
+
+<div *ngIf="pages_profile === 'favorite'">
+  <h1>Liked products</h1>
+  <div class="menus-profile">
+    <app-list-products-on-profile *ngFor="let favoriteProducts of favoriteProducts" [favorite]="favoriteProducts"
+      [pages_profile]="pages_profile"></app-list-products-on-profile>
   </div>
 </div>

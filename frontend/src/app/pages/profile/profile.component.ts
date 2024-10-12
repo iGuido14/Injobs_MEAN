@@ -32,8 +32,9 @@ export class ProfileComponent implements OnInit {
   username_user: any;
   img: any;
   bio: any;
-  num_followers: any;
-  num_follows: any;
+  num_followers: number;
+  num_follows: number;
+  num_favorite: number
   author: Profile;
   profile: Profile;
   followers: Profile[] = [{ username: '', bio: '', image: '' }];
@@ -42,6 +43,7 @@ export class ProfileComponent implements OnInit {
   currentUser: User;
   username_profile: any;
   product: Product[] = [];
+  favoriteProducts: Product[] = [];
 
   constructor(
     private productService: ProductService,
@@ -53,11 +55,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.data.pipe(concatMap((data: { profile: Profile }) => {
+      // console.log(data.profile);
       this.profile = data.profile;
 
       this.followers = data.profile.followerList;
       this.follow = data.profile.followList;
       this.product = data.profile.products;
+      this.favoriteProducts = data.profile.favouriteProducts;
       console.log(data.profile);
 
       // Load the current user's data.
@@ -70,37 +74,6 @@ export class ProfileComponent implements OnInit {
     })).subscribe((() => {
       this.cd.markForCheck();
     }));
-
-
-
-    // this.username = this.ActivatedRoute.snapshot.paramMap.get('username');
-    // // console.log(this.username);
-
-    // this.profileService.get(this.username).subscribe(
-    //   (data: any) => {
-
-    //     this.profile = data;
-    //     console.log(this.profile);
-
-    //     this.product = data.products
-    //     this.followers = data.followers
-    //     this.follow = data.follows
-
-    //     console.log(data.profile);
-    //     console.log(this.follow);
-    //     this.author = data.profile;
-
-    //   });
-
-    // this.userService.currentUser.subscribe({
-    //   next: data => this.isUser = data,
-    // });
-
-    // if (this.isUser.username === this.username) {
-    //   this.settings_buttons = true
-    // } else {
-    //   this.settings_buttons = false
-    // }
   }
 
 
@@ -122,6 +95,9 @@ export class ProfileComponent implements OnInit {
   }
   change_products() {
     this.pages_profile = "products";
+  }
+  change_favorite() {
+    this.pages_profile = "favorite";
   }
 }
 

@@ -8,4 +8,6 @@ export interface Profile {
   followList?: [];
   n_follows?: number;
   products?: [];
+  favouriteProducts?: [];
+  n_favorited?: number;
 }

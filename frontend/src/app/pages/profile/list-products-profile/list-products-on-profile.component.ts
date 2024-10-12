@@ -16,13 +16,17 @@ import { Product } from 'src/app/core/models/product.model';
 export class ListProductsOnProfileComponent {
 
   @Input() products: Product = {} as Product;
+  @Input() favorite: Product = {} as Product;
+
+  @Input() pages_profile!: string;
 
   constructor() { }
 
   ngOnInit(): void {
     // Assuming `this.products.img` holds the image file name, e.g., 'product1.jpg'
     this.products.img = `assets/img_products/${this.products.img}`;
-    console.log(this.products);
+    this.favorite.img = `assets/img_products/${this.products.img}`;
+    // console.log(this.products);
   }
 
 }
