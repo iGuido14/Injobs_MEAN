@@ -70,7 +70,7 @@ userSchema.methods.toProfileJSON = function (user) {
     }
 };
 
-userSchema.methods.toSeeProfileUser = function (user_logged, followerList, n_followers, followList, n_follows, products) {
+userSchema.methods.toSeeProfileUser = function (user_logged, followerList, n_followers, followList, n_follows, products, favouriteProducts) {
     if (user_logged) {
         return {
             username: this.username,
@@ -81,7 +81,8 @@ userSchema.methods.toSeeProfileUser = function (user_logged, followerList, n_fol
             followList: followList,
             n_follows: n_follows,
             following: user_logged.isFollowing(this._id),
-            products: products
+            products: products,
+            favouriteProducts: favouriteProducts
         }
     } else {
         return {
@@ -93,7 +94,8 @@ userSchema.methods.toSeeProfileUser = function (user_logged, followerList, n_fol
             followList: followList,
             n_follows: n_follows,
             following: false,
-            products: products
+            products: products,
+            favouriteProducts: favouriteProducts
         }
     }
 };

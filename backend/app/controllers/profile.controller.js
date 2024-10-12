@@ -32,8 +32,6 @@ const getProfile_User = asyncHandler(async (req, res) => {
 
     const user_logged = await User.findOne({ "email": req.userEmail })
 
-    // return res.json(user_logged._id)
-
     const user = await User.findOne({ username }).exec();
 
     if (!user) {
@@ -56,9 +54,11 @@ const getProfile_User = asyncHandler(async (req, res) => {
 
     const products = await Product.find({ "author": user._id }).select('-_id -author').exec();
 
-    // return res.json(products)
+    const favouriteProducts = await Product.find({ _id: { $in: user.favouriteProducts } }).select('-_id -author').exec();
+
+    // return res.json(favouriteProducts)
     return res.json({
-        profile: user.toSeeProfileUser(user_logged, followers, number_followers, follows, number_follows, products)
+        profile: user.toSeeProfileUser(user_logged, followers, number_followers, follows, number_follows, products, favouriteProducts)
     })
 });
 
