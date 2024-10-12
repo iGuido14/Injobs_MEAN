@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "6706c9c295866e3fd9b1495a"
+  },
+  "body": "Kiriade gay",
+  "author": {
+    "$oid": "6706af5b50fd9cd7a666bde8"
+  },
+  "product": {
+    "$oid": "6706bb163bde00a60b16dcea"
+  },
+  "createdAt": {
+    "$date": "2024-10-09T18:21:54.755Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-09T18:21:54.755Z"
+  },
+  "__v": 0
+}]

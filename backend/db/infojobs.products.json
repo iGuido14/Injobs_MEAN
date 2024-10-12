@@ -1,0 +1,240 @@
+[{
+  "_id": {
+    "$oid": "6707ea4e2cf50c000bc1f39d"
+  },
+  "name": "Guía turístico",
+  "price": 1300,
+  "description": "Guía turístico para la catedral de santiago",
+  "images": [
+    "placeholder_1.png",
+    "placeholder_2.png",
+    "placeholder_3.png",
+    "placeholder_4.png",
+    "placeholder_5.png"
+  ],
+  "img": "product_1.png",
+  "id_cat": "cat_santiago",
+  "author": {
+    "$oid": "670a68e19fc905bae2f9d710"
+  },
+  "favouritesCount": 1,
+  "comments": [],
+  "slug": "guia-turistico-6tgxjn",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707ea692cf50c000bc1f3a4"
+  },
+  "name": "Probador de albaricoques",
+  "price": 1000,
+  "description": "Prueba albaricoques muy ricos de Africa",
+  "images": [
+    "placeholder_1.png",
+    "placeholder_2.png",
+    "placeholder_3.png",
+    "placeholder_4.png",
+    "placeholder_5.png"
+  ],
+  "img": "product_2.png",
+  "id_cat": "cat_ourense",
+  "author": {
+    "$oid": "670a68e19fc905bae2f9d710"
+  },
+  "favouritesCount": 1,
+  "comments": [],
+  "slug": "probador-de-albaricoques--6ashz9",
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "6707ea752cf50c000bc1f3ab"
+  },
+  "name": "Pensador",
+  "price": 1700,
+  "description": "Piensa en muchas cosas, más que el resto",
+  "images": [
+    "placeholder_1.png",
+    "placeholder_2.png",
+    "placeholder_3.png",
+    "placeholder_4.png",
+    "placeholder_5.png"
+  ],
+  "img": "product_3.png",
+  "id_cat": "cat_santiago",
+  "author": {
+    "$oid": "670a68e19fc905bae2f9d710"
+  },
+  "favouritesCount": 1,
+  "comments": [],
+  "slug": "pensador--x3gwi5",
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "6707ea802cf50c000bc1f3b2"
+  },
+  "name": "Abanicador de pavos",
+  "price": 3000,
+  "description": "Se dedica a mover el abanico hacia los pavos",
+  "images": [
+    "placeholder_1.png",
+    "placeholder_2.png",
+    "placeholder_3.png",
+    "placeholder_4.png",
+    "placeholder_5.png"
+  ],
+  "img": "product_4.png",
+  "id_cat": "cat_santiago",
+  "author": {
+    "$oid": "670a68f19fc905bae2f9d715"
+  },
+  "favouritesCount": 1,
+  "comments": [],
+  "slug": "abanicador-de-pavos--topijd",
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "6707ea892cf50c000bc1f3b9"
+  },
+  "name": "Contador de gorros",
+  "price": 694.2,
+  "description": "Cuenta muchos gorros al día",
+  "images": [
+    "placeholder_1.png",
+    "placeholder_2.png",
+    "placeholder_3.png",
+    "placeholder_4.png",
+    "placeholder_5.png"
+  ],
+  "img": "product_5.png",
+  "id_cat": "cat_a_coruña",
+  "author": {
+    "$oid": "670a68f19fc905bae2f9d715"
+  },
+  "favouritesCount": 1,
+  "comments": [],
+  "slug": "contador-de-gorros--dus0gs",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707ea912cf50c000bc1f3c0"
+  },
+  "name": "Acicalador de calvos",
+  "price": 2300,
+  "description": "Trabajo sensible. A veces no se comportan",
+  "images": [
+    "placeholder_1.png",
+    "placeholder_2.png",
+    "placeholder_3.png",
+    "placeholder_4.png",
+    "placeholder_5.png"
+  ],
+  "img": "product_6.png",
+  "id_cat": "cat_lugo",
+  "author": {
+    "$oid": "670a68f19fc905bae2f9d715"
+  },
+  "favouritesCount": 0,
+  "comments": [],
+  "slug": "acicalador-de-calvos--z0fqf8",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707eaa32cf50c000bc1f3c7"
+  },
+  "name": "Reponedor de luces de navidad",
+  "price": 4500,
+  "description": "Trabajo susceptible al animo del alcalde",
+  "images": [
+    "placeholder_1.png",
+    "placeholder_2.png",
+    "placeholder_3.png",
+    "placeholder_4.png",
+    "placeholder_5.png"
+  ],
+  "img": "product_7.png",
+  "id_cat": "cat_vigo",
+  "author": {
+    "$oid": "670a68f19fc905bae2f9d715"
+  },
+  "favouritesCount": 0,
+  "comments": [],
+  "slug": "reponedor-de-luces-de-navidad--dhhh2s",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707eaae2cf50c000bc1f3ce"
+  },
+  "name": "Provador de camas",
+  "price": 2400,
+  "description": "zzz a dormir, ay que bien",
+  "images": [
+    "placeholder_1.png",
+    "placeholder_2.png",
+    "placeholder_3.png",
+    "placeholder_4.png",
+    "placeholder_5.png"
+  ],
+  "img": "product_8.png",
+  "id_cat": "cat_vigo",
+  "author": {
+    "$oid": "670a68f19fc905bae2f9d715"
+  },
+  "favouritesCount": 1,
+  "comments": [],
+  "slug": "provador-de-camas--6fx1cq",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707eab62cf50c000bc1f3d5"
+  },
+  "name": "Esquilador de cabras",
+  "price": 7000,
+  "description": "Tiene que ponerse cuchillas en las manos",
+  "images": [
+    "placeholder_1.png",
+    "placeholder_2.png",
+    "placeholder_3.png",
+    "placeholder_4.png",
+    "placeholder_5.png"
+  ],
+  "img": "product_10.png",
+  "id_cat": "cat_lugo",
+  "author": {
+    "$oid": "670a68f19fc905bae2f9d715"
+  },
+  "favouritesCount": 1,
+  "comments": [],
+  "slug": "esquilador-de-cabras-1o1c2a",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6707eac52cf50c000bc1f3dc"
+  },
+  "name": "Traductor de Rajoy",
+  "price": 2100,
+  "description": "Requiere de persona políglota con alto nivel en Esperanto",
+  "images": [
+    "placeholder_1.png",
+    "placeholder_2.png",
+    "placeholder_3.png",
+    "placeholder_4.png",
+    "placeholder_5.png"
+  ],
+  "img": "product_9.png",
+  "id_cat": "cat_pontevedra",
+  "author": {
+    "$oid": "670a68f19fc905bae2f9d715"
+  },
+  "favouritesCount": 0,
+  "comments": [],
+  "slug": "traductor-de-rajoy--kfllxy",
+  "__v": 0
+}]

@@ -1,0 +1,108 @@
+[{
+  "_id": {
+    "$oid": "66eb54a3a18c46c5f626204f"
+  },
+  "id_cat": "cat_santiago",
+  "category_name": "Santiago",
+  "image": "santiago.jpg",
+  "products": [
+    {
+      "$oid": "66f46e9f0d771b57b73ebe82"
+    },
+    {
+      "$oid": "66f477629a5c3ab74ee16973"
+    },
+    {
+      "$oid": "66f477989a5c3ab74ee1697b"
+    }
+  ],
+  "slug": "santiago-ndv99q",
+  "__v": 3
+},
+{
+  "_id": {
+    "$oid": "66f46ce90d771b57b73ebe5d"
+  },
+  "id_cat": "cat_vigo",
+  "category_name": "Vigo",
+  "image": "vigo.jpg",
+  "products": [
+    {
+      "$oid": "6706bb163bde00a60b16dcea"
+    }
+  ],
+  "slug": "vigo-b1tt3m",
+  "__v": 13
+},
+{
+  "_id": {
+    "$oid": "66f46cfb0d771b57b73ebe61"
+  },
+  "id_cat": "cat_a_coruña",
+  "category_name": "A Coruña",
+  "image": "coruña.webp",
+  "products": [
+    {
+      "$oid": "66f477ef9a5c3ab74ee16983"
+    }
+  ],
+  "slug": "a-coruna-i0bwvd",
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "66f46d290d771b57b73ebe65"
+  },
+  "id_cat": "cat_lugo",
+  "category_name": "Lugo",
+  "image": "lugo.jpg",
+  "products": [
+    {
+      "$oid": "66f478729a5c3ab74ee16997"
+    },
+    {
+      "$oid": "66f47a98cba179d2ad8264a7"
+    }
+  ],
+  "slug": "lugo-o3v79j",
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "66f46d5d0d771b57b73ebe69"
+  },
+  "id_cat": "cat_ourense",
+  "category_name": "Ourense",
+  "image": "ourense.jpg",
+  "products": [
+    {
+      "$oid": "66f476df9a5c3ab74ee16965"
+    }
+  ],
+  "slug": "ourense-mydafm",
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "66f47963cba179d2ad826481"
+  },
+  "id_cat": "cat_pontevedra",
+  "category_name": "Pontevedra",
+  "image": "pontevedra.jpg",
+  "products": [
+    {
+      "$oid": "66f47c42cba179d2ad826501"
+    },
+    {
+      "$oid": "66f5bb591726965674832009"
+    },
+    {
+      "$oid": "66f5bb696790e1eb5412baf2"
+    },
+    {
+      "$oid": "66f5bb746790e1eb5412baf8"
+    }
+  ],
+  "slug": "pontevedra-2znt5n",
+  "__v": 7
+}]
