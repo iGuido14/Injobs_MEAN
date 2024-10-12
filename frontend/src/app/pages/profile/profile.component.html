@@ -29,18 +29,22 @@
 
 <div *ngIf="pages_profile === 'followers'">
   <h1>Followers</h1>
-  <app-follow-list *ngFor="let follower of followers" [followersInput]="follower"
-    [pages_profile]="pages_profile"></app-follow-list>
+  <div class="menus-profile">
+    <app-follow-list *ngFor="let follower of followers" [followersInput]="follower"
+      [pages_profile]="pages_profile"></app-follow-list>
+  </div>
 </div>
 
 <div *ngIf="pages_profile === 'follows'">
   <h1>Following</h1>
-  <app-follow-list *ngFor="let follow of follow" [follow]="follow" [pages_profile]="pages_profile"></app-follow-list>
+  <div class="menus-profile">
+    <app-follow-list *ngFor="let follow of follow" [follow]="follow" [pages_profile]="pages_profile"></app-follow-list>
+  </div>
 </div>
 
 <div *ngIf="pages_profile === 'products'">
-  <h1>Favorited Products</h1>
-  <div class="products-profile">
+  <h1>{{profile.username}}'s Products</h1>
+  <div class="menus-profile">
     <app-list-products-on-profile *ngFor="let product of product" [products]="product"></app-list-products-on-profile>
   </div>
 </div>

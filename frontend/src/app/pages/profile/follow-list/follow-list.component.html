@@ -1,4 +1,5 @@
-<div *ngIf="pages_profile === 'followers'">
+<div *ngIf="pages_profile === 'followers'" class="followers-container"
+    (click)="navigateToProfile(followersInput.username)">
     <div class="comment initial">
         <div class="comment-avatar-container">
             <img class="comment-avatar" src="{{followersInput.image}}" />
@@ -7,7 +8,8 @@
         <p class="comment-text">{{ followersInput.bio }}</p>
     </div>
 </div>
-<div *ngIf="pages_profile === 'follows'">
+
+<div *ngIf="pages_profile === 'follows'" class="follows-container" (click)="navigateToProfile(follow.username)">
     <div class="comment initial">
         <div class="comment-avatar-container">
             <img class="comment-avatar" src="{{follow.image}}" />

@@ -105,7 +105,10 @@ i {
 
 .flex-menu li {
     cursor: pointer;
-    padding: 10px 15px;
+    padding: 5px;
+    height: 35px;
+    width: 150px;
+    /* padding: 10px 15px; */
     transition: background-color 0.3s ease;
     font-size: 16px;
     color: #333;
@@ -121,13 +124,9 @@ i {
     margin-right: 5px;
 }
 
-.products-profile {
+.menus-profile {
     display: flex;
     /* align-items: center; */
     justify-content: space-evenly;
     margin: 0 auto;
-
-    & h1 {
-        margin-bottom: 20px;
-    }
 }
