@@ -43,22 +43,21 @@ const getProfile_User = asyncHandler(async (req, res) => {
     const followers = await User.find({ followingUsers: { $in: [user._id] } })
         .select('username bio image -_id')
         .exec();
-
     const number_followers = followers.length;
 
     const follows = await User.find({ followersUsers: { $in: [user._id] } })
         .select('username bio image')
         .exec();
-
     const number_follows = follows.length;
 
     const products = await Product.find({ "author": user._id }).select('-_id -author').exec();
 
     const favouriteProducts = await Product.find({ _id: { $in: user.favouriteProducts } }).select('-_id -author').exec();
+    const number_favorited = favouriteProducts.length;
 
     // return res.json(favouriteProducts)
     return res.json({
-        profile: user.toSeeProfileUser(user_logged, followers, number_followers, follows, number_follows, products, favouriteProducts)
+        profile: user.toSeeProfileUser(user_logged, followers, number_followers, follows, number_follows, products, favouriteProducts, number_favorited)
     })
 });
 
