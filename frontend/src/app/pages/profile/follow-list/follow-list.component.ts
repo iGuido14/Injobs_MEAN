@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Profile } from 'src/app/core';
-import { Follower_follow } from 'src/app/core/models/follower_follow.model';
 
 @Component({
     selector: 'app-follow-list',
@@ -14,8 +13,8 @@ import { Follower_follow } from 'src/app/core/models/follower_follow.model';
 })
 
 export class FollowListComponent implements OnInit {
-    @Input() followersInput: Follower_follow = {} as Follower_follow;
-    @Input() follow: Follower_follow = {} as Follower_follow;
+    @Input() followersInput: Profile = {} as Profile;
+    @Input() follow: Profile = {} as Profile;
     @Input() pages_profile!: string;
 
     constructor() { }
