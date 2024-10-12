@@ -43,4 +43,11 @@ export class HeaderComponent implements OnInit {
     this.userService.purgeAuth();
     this.router.navigateByUrl('/');
   }
+
+  navigateToOwnProfile(username: string): void {
+    this.router.navigateByUrl(`/profile/${username}`);
+    setTimeout(() => {
+      location.reload();
+    }, 50)
+  }
 }
