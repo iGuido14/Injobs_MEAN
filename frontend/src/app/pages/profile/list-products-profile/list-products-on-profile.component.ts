@@ -22,11 +22,6 @@ export class ListProductsOnProfileComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
-    // Assuming `this.products.img` holds the image file name, e.g., 'product1.jpg'
-    this.products.img = `assets/img_products/${this.products.img}`;
-    this.favorite.img = `assets/img_products/${this.products.img}`;
-    // console.log(this.products);
-  }
+  ngOnInit(): void { }
 
 }

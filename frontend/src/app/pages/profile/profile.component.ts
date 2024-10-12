@@ -100,7 +100,3 @@ export class ProfileComponent implements OnInit {
     this.pages_profile = "favorite";
   }
 }
-
-
-
-
