@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, } from '@angular/core';
-import { Follower_follow } from '../../core/models/follower_follow.model';
 import { CommonModule } from '@angular/common';
+import { Profile } from 'src/app/core';
+import { Follower_follow } from 'src/app/core/models/follower_follow.model';
 
 @Component({
     selector: 'app-follow-list',
@@ -21,10 +22,6 @@ export class FollowListComponent implements OnInit {
 
     ngOnInit(): void {
         console.log(this.pages_profile);
-
-        // if(this.pages_profile === "followers"){
-
-        // }
     }
 
 }
