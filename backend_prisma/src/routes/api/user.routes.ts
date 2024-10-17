@@ -6,10 +6,11 @@ import userGetAll from "../../controllers/userController/userGetAll";
 
 const router = Router();
 
-router.get("/", userGetAll);
+router.get("/users", userGetAll);
 
-router.get("/:username", authenticate, userGet);
+// router.get("/user/:username", authenticate, userGet);
+router.get("/user/:username", userGet);
 
-router.put("/", authenticate, userUpdateValidator, userUpdate);
+router.put("/user/:username", authenticate, userUpdateValidator, userUpdate);
 
 export default router;

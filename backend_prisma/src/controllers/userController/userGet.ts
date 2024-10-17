@@ -16,19 +16,16 @@ export default async function userGet(
   res: Response,
   next: NextFunction
 ) {
-  const username = req.auth?.user?.username;
+  const username = req.params.username;
   try {
     // Get current user
     const currentUser = await userGetPrisma(username);
     if (!currentUser) return res.sendStatus(404);
 
-    // Create the authentication token
     const token = createUserToken(currentUser);
+    // const response = userViewer(currentUser, token);
 
-    // Create the user view with the authentication token
-    const response = userViewer(currentUser, token);
-
-    return res.json(response);
+    return res.json(currentUser);
   } catch (error) {
     return next(error);
   }

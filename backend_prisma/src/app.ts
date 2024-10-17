@@ -1,5 +1,5 @@
 import express from "express";
-import userRouter from "./routes/api/user";
+import userRouter from "./routes/api/user.routes";
 import generalErrorHandler from "./middleware/errorHandling/generalErrorHandler";
 import { authErrorHandler, prismaErrorHandler } from "./middleware/errorHandling";
 
@@ -8,7 +8,7 @@ const app = express();
 // Allows parsing of json in the body of the request.
 app.use(express.json());
 
-app.use("/users", userRouter);
+app.use("/", userRouter);
 
 
 app.get("/", function (_req, res) {
