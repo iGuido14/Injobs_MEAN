@@ -44,6 +44,7 @@ model products {
   name            String
   price           Float
   slug            String   @unique(map: "slug_1")
+  isAccepted      Boolean
 }
 
 model refreshblacklists {
@@ -76,4 +77,5 @@ model users {
   password          String
   updatedAt         DateTime @db.Date
   username          String   @unique(map: "username_1")
+  userType          String
 }

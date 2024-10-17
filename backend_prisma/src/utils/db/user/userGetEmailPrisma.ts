@@ -5,10 +5,7 @@ export default async function userGetEmailPrisma(email: string) {
   const user = await prisma.users.findUnique({
     where: { email },
     // include: {
-    //   follows: true,
-    //   followedBy: true,
-    //   authored: true,
-    //   favorites: true,
+    //   products: true
     // },
   });
   return user;
