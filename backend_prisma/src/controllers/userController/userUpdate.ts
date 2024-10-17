@@ -16,8 +16,11 @@ export default async function userUpdate(
   res: Response,
   next: NextFunction
 ) {
-  const username = req.auth?.user?.username;
-  const info = req.body.user;
+  const username = req.params.username;
+  const info = req.body;
+
+  // return res.json(info);
+
   try {
     // Get current user
     const user = await userUpdatePrisma(username, info);

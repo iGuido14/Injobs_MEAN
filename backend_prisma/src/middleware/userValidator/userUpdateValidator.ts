@@ -19,6 +19,8 @@ export default async function userUpdateValidator(
   const errors: ValidationError = {};
   errors.body = [];
 
+  // return res.json(req.body);
+
   if (!req.body) {
     errors.body.push("can't be empty");
     return res.status(400).json({ errors });

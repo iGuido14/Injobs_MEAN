@@ -1,5 +1,6 @@
 import express from "express";
 import userRouter from "./routes/api/user.routes";
+import productRouter from "./routes/api/product.routes";
 import generalErrorHandler from "./middleware/errorHandling/generalErrorHandler";
 import { authErrorHandler, prismaErrorHandler } from "./middleware/errorHandling";
 
@@ -9,6 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/", userRouter);
+app.use("/", productRouter);
 
 
 app.get("/", function (_req, res) {

@@ -8,10 +8,7 @@ interface UpdateFields {
   bio?: string;
 }
 
-export default async function userUpdatePrisma(
-  username: string,
-  info: UpdateFields
-) {
+export default async function userUpdatePrisma(username: string, info: UpdateFields) {
   if (!username) return null;
   const user = await prisma.users.update({ where: { username }, data: info });
   return user;

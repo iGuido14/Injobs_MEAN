@@ -22,10 +22,12 @@ export default async function userGet(
     const currentUser = await userGetPrisma(username);
     if (!currentUser) return res.sendStatus(404);
 
-    const token = createUserToken(currentUser);
-    // const response = userViewer(currentUser, token);
+    // const token = createUserToken(currentUser);
+    const token = "hola";
 
-    return res.json(currentUser);
+    const response = userViewer(currentUser, token);
+
+    return res.json(response);
   } catch (error) {
     return next(error);
   }
