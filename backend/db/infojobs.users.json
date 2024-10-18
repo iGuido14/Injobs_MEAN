@@ -1,121 +1,127 @@
-[{
-  "_id": {
-    "$oid": "670a68c79fc905bae2f9d70b"
-  },
-  "username": "test",
-  "password": "$argon2id$v=19$m=65536,t=3,p=4$AHeIzKmN2dpQPHEfl2vN0Q$F738qLvpHxxgZAFilc5I1fSMA0dkZOUedX+1nTRpnp8",
-  "email": "test@gmail.com",
-  "bio": "",
-  "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
-  "favouriteProducts": [
-    {
-      "$oid": "6707ea4e2cf50c000bc1f39d"
+[
+  {
+    "_id": {
+      "$oid": "670a68c79fc905bae2f9d70b"
     },
-    {
-      "$oid": "6707ea802cf50c000bc1f3b2"
-    }
-  ],
-  "followingUsers": [
-    {
+    "username": "test",
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$AHeIzKmN2dpQPHEfl2vN0Q$F738qLvpHxxgZAFilc5I1fSMA0dkZOUedX+1nTRpnp8",
+    "email": "test@gmail.com",
+    "bio": "",
+    "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+    "userType": "client",
+    "favouriteProducts": [
+      {
+        "$oid": "6707ea4e2cf50c000bc1f39d"
+      },
+      {
+        "$oid": "6707ea802cf50c000bc1f3b2"
+      }
+    ],
+    "followingUsers": [
+      {
+        "$oid": "670a68e19fc905bae2f9d710"
+      }
+    ],
+    "followersUsers": [],
+    "createdAt": {
+      "$date": "2024-10-12T12:17:11.934Z"
+    },
+    "updatedAt": {
+      "$date": "2024-10-12T14:46:29.884Z"
+    },
+    "__v": 3
+  },
+  {
+    "_id": {
       "$oid": "670a68e19fc905bae2f9d710"
-    }
-  ],
-  "followersUsers": [],
-  "createdAt": {
-    "$date": "2024-10-12T12:17:11.934Z"
-  },
-  "updatedAt": {
-    "$date": "2024-10-12T14:46:29.884Z"
-  },
-  "__v": 3
-},
-{
-  "_id": {
-    "$oid": "670a68e19fc905bae2f9d710"
-  },
-  "username": "guido",
-  "password": "$argon2id$v=19$m=65536,t=3,p=4$P494Xetvdznt0fnw4jn02w$NDpoAW/OUGHAtbPbvfZ54ulC8hqe/sAXo3lzhw8+/Fo",
-  "email": "guido@gmail.com",
-  "bio": "asdasd",
-  "image": "https://avatars.githubusercontent.com/u/91422053?v=4",
-  "favouriteProducts": [
-    {
-      "$oid": "6707eaae2cf50c000bc1f3ce"
     },
-    {
-      "$oid": "6707ea892cf50c000bc1f3b9"
-    }
-  ],
-  "followingUsers": [
-    {
+    "username": "guido",
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$P494Xetvdznt0fnw4jn02w$NDpoAW/OUGHAtbPbvfZ54ulC8hqe/sAXo3lzhw8+/Fo",
+    "email": "guido@gmail.com",
+    "bio": "asdasd",
+    "image": "https://avatars.githubusercontent.com/u/91422053?v=4",
+    "userType": "company",
+    "favouriteProducts": [
+      {
+        "$oid": "6707eaae2cf50c000bc1f3ce"
+      },
+      {
+        "$oid": "6707ea892cf50c000bc1f3b9"
+      }
+    ],
+    "followingUsers": [
+      {
+        "$oid": "670a68fa9fc905bae2f9d71a"
+      },
+      {
+        "$oid": "670a68f19fc905bae2f9d715"
+      }
+    ],
+    "followersUsers": [
+      {
+        "$oid": "670a68c79fc905bae2f9d70b"
+      }
+    ],
+    "createdAt": {
+      "$date": "2024-10-12T12:17:37.373Z"
+    },
+    "updatedAt": {
+      "$date": "2024-10-12T20:17:34.628Z"
+    },
+    "__v": 9
+  },
+  {
+    "_id": {
+      "$oid": "670a68f19fc905bae2f9d715"
+    },
+    "username": "juan",
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$Fy2a4r9sO26LNwyk/7DW3Q$s8sWSnrbQIwz5VRdTUux9/UIwaDxuuMdWpEL5gEIsTE",
+    "email": "juan@gmail.com",
+    "bio": "",
+    "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+    "userType": "client",
+    "favouriteProducts": [],
+    "followingUsers": [],
+    "followersUsers": [
+      {
+        "$oid": "670a68e19fc905bae2f9d710"
+      }
+    ],
+    "createdAt": {
+      "$date": "2024-10-12T12:17:53.169Z"
+    },
+    "updatedAt": {
+      "$date": "2024-10-12T20:17:34.638Z"
+    },
+    "__v": 1
+  },
+  {
+    "_id": {
       "$oid": "670a68fa9fc905bae2f9d71a"
     },
-    {
-      "$oid": "670a68f19fc905bae2f9d715"
-    }
-  ],
-  "followersUsers": [
-    {
-      "$oid": "670a68c79fc905bae2f9d70b"
-    }
-  ],
-  "createdAt": {
-    "$date": "2024-10-12T12:17:37.373Z"
-  },
-  "updatedAt": {
-    "$date": "2024-10-12T20:17:34.628Z"
-  },
-  "__v": 9
-},
-{
-  "_id": {
-    "$oid": "670a68f19fc905bae2f9d715"
-  },
-  "username": "juan",
-  "password": "$argon2id$v=19$m=65536,t=3,p=4$Fy2a4r9sO26LNwyk/7DW3Q$s8sWSnrbQIwz5VRdTUux9/UIwaDxuuMdWpEL5gEIsTE",
-  "email": "juan@gmail.com",
-  "bio": "",
-  "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
-  "favouriteProducts": [],
-  "followingUsers": [],
-  "followersUsers": [
-    {
-      "$oid": "670a68e19fc905bae2f9d710"
-    }
-  ],
-  "createdAt": {
-    "$date": "2024-10-12T12:17:53.169Z"
-  },
-  "updatedAt": {
-    "$date": "2024-10-12T20:17:34.638Z"
-  },
-  "__v": 1
-},
-{
-  "_id": {
-    "$oid": "670a68fa9fc905bae2f9d71a"
-  },
-  "username": "pepe",
-  "password": "$argon2id$v=19$m=65536,t=3,p=4$SUQuQSrXScfjikZoXBeKCA$AzlnqWvRy6XW2ImB4DQ+5Lb0nhEzZjfh4Tg2kWYe/V8",
-  "email": "pepe@gmail.com",
-  "bio": "",
-  "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
-  "favouriteProducts": [],
-  "followingUsers": [
-    {
-      "$oid": "670a68e19fc905bae2f9d710"
-    }
-  ],
-  "followersUsers": [
-    {
-      "$oid": "670a68e19fc905bae2f9d710"
-    }
-  ],
-  "createdAt": {
-    "$date": "2024-10-12T12:18:02.339Z"
-  },
-  "updatedAt": {
-    "$date": "2024-10-12T12:37:18.910Z"
-  },
-  "__v": 4
-}]
+    "username": "pepe",
+    "password": "$argon2id$v=19$m=65536,t=3,p=4$SUQuQSrXScfjikZoXBeKCA$AzlnqWvRy6XW2ImB4DQ+5Lb0nhEzZjfh4Tg2kWYe/V8",
+    "email": "pepe@gmail.com",
+    "bio": "",
+    "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+    "userType": "client",
+    "favouriteProducts": [],
+    "followingUsers": [
+      {
+        "$oid": "670a68e19fc905bae2f9d710"
+      }
+    ],
+    "followersUsers": [
+      {
+        "$oid": "670a68e19fc905bae2f9d710"
+      }
+    ],
+    "createdAt": {
+      "$date": "2024-10-12T12:18:02.339Z"
+    },
+    "updatedAt": {
+      "$date": "2024-10-12T12:37:18.910Z"
+    },
+    "__v": 4
+  }
+]
