@@ -14,6 +14,8 @@ export default async function userLoginValidator(
   res: Response,
   next: NextFunction
 ) {
+  // return res.json("hola");
+
   const errors: ValidationError = {};
   errors.body = [];
   if (!req.body) {
