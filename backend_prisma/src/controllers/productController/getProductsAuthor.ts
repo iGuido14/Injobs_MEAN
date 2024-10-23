@@ -1,8 +1,8 @@
 import { NextFunction, Response } from "express";
 import { Request } from "express-jwt";
 // import userViewer from "../../view/userViewer";
-import productGetAllPrisma from "../../utils/db/product/productGetAllPrisma";
-import productGetPrismaSlug from "../../utils/db/product/productGetPrismaSlug";
+import userGetPrisma from "../../utils/db/user/userGetPrisma";
+import productGetPrismaAuthor from "../../utils/db/product/productGetPrismaAuthor";
 
 /**
  * User controller that gets the current user based on the JWT given.
@@ -11,19 +11,22 @@ import productGetPrismaSlug from "../../utils/db/product/productGetPrismaSlug";
  * @param next NextFunction
  * @returns void
  */
-export default async function productGetOne(
+export default async function getProductsAuthor(
     req: Request,
     res: Response,
     next: NextFunction
 ) {
-    const slug = req.params.slug;
+    const username = req.params.username;
     // return res.json(slug);
 
     try {
         // Get current user
-        const oneUser = await productGetPrismaSlug(slug);
+        const currentUser = await userGetPrisma(username);
+        if (!currentUser) return res.sendStatus(404);
 
-        return res.json(oneUser);
+        const productAuthor = await productGetPrismaAuthor(currentUser.id);
+
+        return res.json(productAuthor);
     } catch (error) {
         return next(error);
     }
