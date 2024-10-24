@@ -16,10 +16,14 @@ const generateApplication = asyncHandler(async (req, res) => {
 
     const product = await Product.findOne({ slug }).exec();
     const user = await User.findOne({ username }).exec();
+    const recruiterList = await User.find({ userType: 'recruiter' }).exec();
+
+    const recruiter = recruiterList[Math.floor(Math.random() * recruiterList.length)];
 
     const application_data = {
         product: product._id,
         user: user._id,
+        asignedRecruiter: recruiter._id,
         status: 'pending',
         isUserAccepted: false
     };

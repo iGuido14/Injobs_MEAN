@@ -13,6 +13,11 @@ const ApplicationSchema = mongoose.Schema({
         ref: 'User',
         required: true
     },
+    asignedRecruiter: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     status: {
         type: String,
         required: true,

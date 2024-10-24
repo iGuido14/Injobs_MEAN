@@ -9,11 +9,11 @@ const checkUserType = async (req, res, next) => {
         next();
     }
 
-    if (user.userType === 'admin') {
+    if (user.userType === 'company') {
         return res.status(403).json({ message: 'Forbidden' });
     }
 
-    if (user.userType === 'company') {
+    if (user.userType === 'admin' || user.userType === 'recuiter') {
         return res.status(403).json({ message: 'Forbidden' });
     }
 }
