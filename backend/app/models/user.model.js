@@ -42,7 +42,15 @@ const userSchema = new mongoose.Schema({
     followersUsers: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    applications: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Application'
+    }],
+    isWorking: {
+        type: Boolean,
+        default: false
+    }
 },
     {
         timestamps: true
