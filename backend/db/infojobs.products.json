@@ -16,11 +16,12 @@
     "img": "product_1.png",
     "id_cat": "cat_santiago",
     "author": {
-      "$oid": "670a68e19fc905bae2f9d710"
+      "$oid": "671ada98299ed65d222ec3d1"
     },
     "favouritesCount": 0,
     "comments": [],
     "slug": "guia-turistico-6tgxjn",
+    "isClosed": false,
     "isAccepted": true,
     "__v": 0
   },
@@ -41,11 +42,12 @@
     "img": "product_2.png",
     "id_cat": "cat_ourense",
     "author": {
-      "$oid": "670a68e19fc905bae2f9d710"
+      "$oid": "671ada98299ed65d222ec3d1"
     },
     "favouritesCount": 0,
     "comments": [],
     "slug": "probador-de-albaricoques--6ashz9",
+    "isClosed": false,
     "isAccepted": true,
     "__v": 2
   },
@@ -66,11 +68,12 @@
     "img": "product_3.png",
     "id_cat": "cat_santiago",
     "author": {
-      "$oid": "670a68e19fc905bae2f9d710"
+      "$oid": "671ada98299ed65d222ec3d1"
     },
     "favouritesCount": 0,
     "comments": [],
     "slug": "pensador--x3gwi5",
+    "isClosed": false,
     "isAccepted": true,
     "__v": 2
   },
@@ -91,11 +94,12 @@
     "img": "product_4.png",
     "id_cat": "cat_santiago",
     "author": {
-      "$oid": "670a68f19fc905bae2f9d715"
+      "$oid": "671ada98299ed65d222ec3d1"
     },
     "favouritesCount": 0,
     "comments": [],
     "slug": "abanicador-de-pavos--topijd",
+    "isClosed": false,
     "isAccepted": true,
     "__v": 2
   },
@@ -116,11 +120,12 @@
     "img": "product_5.png",
     "id_cat": "cat_a_coruña",
     "author": {
-      "$oid": "670a68f19fc905bae2f9d715"
+      "$oid": "671ada92299ed65d222ec3cc"
     },
     "favouritesCount": 0,
     "comments": [],
     "slug": "contador-de-gorros--dus0gs",
+    "isClosed": false,
     "isAccepted": true,
     "__v": 0
   },
@@ -141,11 +146,12 @@
     "img": "product_6.png",
     "id_cat": "cat_lugo",
     "author": {
-      "$oid": "670a68f19fc905bae2f9d715"
+      "$oid": "671ada92299ed65d222ec3cc"
     },
     "favouritesCount": 0,
     "comments": [],
     "slug": "acicalador-de-calvos--z0fqf8",
+    "isClosed": false,
     "isAccepted": true,
     "__v": 0
   },
@@ -166,11 +172,12 @@
     "img": "product_7.png",
     "id_cat": "cat_vigo",
     "author": {
-      "$oid": "670a68f19fc905bae2f9d715"
+      "$oid": "671ada92299ed65d222ec3cc"
     },
     "favouritesCount": 0,
     "comments": [],
     "slug": "reponedor-de-luces-de-navidad--dhhh2s",
+    "isClosed": false,
     "isAccepted": true,
     "__v": 0
   },
@@ -191,11 +198,12 @@
     "img": "product_8.png",
     "id_cat": "cat_vigo",
     "author": {
-      "$oid": "670a68f19fc905bae2f9d715"
+      "$oid": "671ada92299ed65d222ec3cc"
     },
     "favouritesCount": 0,
     "comments": [],
     "slug": "provador-de-camas--6fx1cq",
+    "isClosed": false,
     "isAccepted": true,
     "__v": 0
   },
@@ -216,11 +224,12 @@
     "img": "product_10.png",
     "id_cat": "cat_lugo",
     "author": {
-      "$oid": "670a68f19fc905bae2f9d715"
+      "$oid": "671ada92299ed65d222ec3cc"
     },
     "favouritesCount": 0,
     "comments": [],
     "slug": "esquilador-de-cabras-1o1c2a",
+    "isClosed": false,
     "isAccepted": true,
     "__v": 0
   },
@@ -241,11 +250,12 @@
     "img": "product_9.png",
     "id_cat": "cat_pontevedra",
     "author": {
-      "$oid": "670a68f19fc905bae2f9d715"
+      "$oid": "671ada92299ed65d222ec3cc"
     },
     "favouritesCount": 0,
     "comments": [],
     "slug": "traductor-de-rajoy--kfllxy",
+    "isClosed": false,
     "isAccepted": true,
     "__v": 0
   }
