@@ -1,18 +1,19 @@
 const mongoose = require('mongoose');
+const User = require('../models/user.model');
 
-const checkUserType = (req, res, next) => {
-    const { user } = req.body;
-    const { userType } = user;
+const checkUserType = async (req, res, next) => {
+    const email = req.body.user.email;
+    const user = await User.findOne({ email }).exec();
 
-    if (userType === 'client') {
+    if (user.userType === 'client') {
         next();
     }
 
-    if (userType === 'admin') {
+    if (user.userType === 'admin') {
         return res.status(403).json({ message: 'Forbidden' });
     }
 
-    if (userType === 'company') {
+    if (user.userType === 'company') {
         return res.status(403).json({ message: 'Forbidden' });
     }
 }

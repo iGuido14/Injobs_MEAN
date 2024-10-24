@@ -50,6 +50,10 @@ const userSchema = new mongoose.Schema({
     isWorking: {
         type: Boolean,
         default: false
+    },
+    userType: {
+        type: String,
+        default: "client"
     }
 },
     {
