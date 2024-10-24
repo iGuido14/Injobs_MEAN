@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const axios = require('axios');
 const User = require('../models/user.model');
 
 const checkUserType = async (req, res, next) => {
@@ -9,13 +10,24 @@ const checkUserType = async (req, res, next) => {
         next();
     }
 
-    if (user.userType === 'company') {
-        return res.status(403).json({ message: 'Forbidden' });
+    try {
+        if (user.userType === 'company') {
+            // Forward POST request to backend on port 3002
+            const response = await axios.post('http://localhost:3002/login', req.body);
+            return res.status(response.status).json(response.data);
+        }
+
+        if (user.userType === 'admin' || user.userType === 'recruiter') {
+            // Forward POST request to backend on port 3003
+            const response = await axios.post('http://localhost:3003/login', req.body);
+            return res.status(response.status).json(response.data);
+        }
+    } catch (error) {
+        // Handle errors from the target server
+        return res.status(500).json({ message: 'Error forwarding request', error: error.message });
     }
 
-    if (user.userType === 'admin' || user.userType === 'recuiter') {
-        return res.status(403).json({ message: 'Forbidden' });
-    }
+    return res.status(403).json({ message: 'Forbidden' });
 }
 
 module.exports = checkUserType;
