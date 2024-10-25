@@ -25,9 +25,9 @@ export default async function userGet(
     // const token = createUserToken(currentUser);
     const token = "hola";
 
-    const response = userViewer(currentUser, token);
+    // const response = userViewer(currentUser, token);
 
-    return res.json(response);
+    return res.json(currentUser);
   } catch (error) {
     return next(error);
   }

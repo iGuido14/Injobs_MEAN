@@ -23,12 +23,17 @@ export default async function userLogin(
       return res.json({ message: `User is ${user.userType}, must be a company` });
     }
 
-    if (!compareWithHash(password, user.password)) return res.sendStatus(403);
+    const isPasswordMatch = await compareWithHash(password, user.password);
 
-    const token = createUserToken(user);
-    const userView = userViewer(user, token);
+    if (!isPasswordMatch) {
+      return res.sendStatus(403);
+    } else {
+      const token = createUserToken(user);
+      const userView = userViewer(user, token);
 
-    return res.json(userView);
+      return res.json(userView);
+    }
+
   } catch (error) {
     return next(error);
   }

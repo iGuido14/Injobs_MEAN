@@ -7,28 +7,15 @@ datasource db {
   url      = "mongodb://localhost:27017/infojobs?authSource=admin"
 }
 
-model categories {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  v             Int      @map("__v")
-  category_name String
-  id_cat        String
-  image         String
-  products      String[]
-  slug          String   @unique(map: "slug_1")
-}
+model applications {
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  product        String  @db.ObjectId
+  user           String  @db.ObjectId
+  status         String
+  isUserAccepted Boolean
 
-model comments {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  v         Int      @map("__v")
-  author    String   @db.ObjectId
-  body      String
-  createdAt DateTime @db.Date
-  product   String   @db.ObjectId
-  updatedAt DateTime @db.Date
-}
-
-model inscriptions {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  productRelation products @relation(fields: [product], references: [id])
+  userRelation    users    @relation(fields: [user], references: [id])
 }
 
 model products {
@@ -44,24 +31,11 @@ model products {
   name            String
   price           Float
   slug            String   @unique(map: "slug_1")
+  isClosed        Boolean
   isAccepted      Boolean
-}
 
-model refreshblacklists {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  v             Int      @map("__v")
-  blacklistedAt DateTime @db.Date
-  expiryDate    DateTime @db.Date
-  token         String
-  userId        String   @db.ObjectId
-}
-
-model refreshtokens {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  v          Int      @map("__v")
-  expiryDate DateTime @db.Date
-  token      String
-  userId     String   @db.ObjectId
+  authorRelation users          @relation(fields: [author], references: [id])
+  applications   applications[]
 }
 
 model users {
@@ -78,4 +52,7 @@ model users {
   updatedAt         DateTime @db.Date
   username          String   @unique(map: "username_1")
   userType          String
+
+  products     products[]
+  applications applications[]
 }

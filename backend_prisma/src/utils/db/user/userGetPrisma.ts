@@ -5,12 +5,9 @@ export default async function userGetPrisma(username: string) {
   if (!username) return null;
   const user = await prisma.users.findUnique({
     where: { username },
-    // include: {
-    //   follows: true,
-    //   followedBy: true,
-    //   authored: true,
-    //   favorites: true,
-    // },
+    include: {
+      products: true
+    },
   });
   return user;
 }
