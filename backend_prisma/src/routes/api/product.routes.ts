@@ -12,6 +12,6 @@ router.get("/product/:slug", productGetOne);
 
 router.get("/product/company/:username", getProductsAuthor);
 
-router.post("productCreate", productCreate);
+router.post("/productCreate/:username", productCreate);
 
 export default router;
