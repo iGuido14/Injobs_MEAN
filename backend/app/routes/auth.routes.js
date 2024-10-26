@@ -1,3 +1,5 @@
+const checkUserType = require('../middleware/checkUserType');
+
 module.exports = (app) => {
     const express = require('express');
     const userController = require('../controllers/user.controller');
@@ -5,15 +7,9 @@ module.exports = (app) => {
 
     const router = express.Router();
 
-    // Public routes
-    // router.post('/login', userLogin);
-    // router.post('/register', registerUser);
-
     // Authentication
-    app.post('/users/login', userController.userLogin);
+    app.post('/users/login', checkUserType, userController.userLogin);
 
     // Registration
     app.post('/users', userController.registerUser);
-
-    app.post('/refresh-token', refreshToken);
 }

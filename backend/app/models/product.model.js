@@ -42,7 +42,15 @@ const ProductSchema = mongoose.Schema({
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment'
-    }]
+    }],
+    isClosed: {
+        type: Boolean,
+        default: false
+    },
+    isAccepted: {
+        type: Boolean,
+        default: false
+    }
 });
 
 ProductSchema.plugin(uniqueValidator, { msg: "already taken" });
@@ -77,7 +85,8 @@ ProductSchema.methods.toProductResponse = async function (user) {
         images: this.images,
         favorited: user ? user.isFavourite(this._id) : false,
         favoritesCount: this.favouritesCount,
-        author: authorObj.toProfileJSON(user)
+        author: authorObj.toProfileJSON(user),
+        isClosed: this.isClosed
     }
 }
 

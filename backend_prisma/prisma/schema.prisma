@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb://localhost:27017/infojobs?authSource=admin"
+}
+
+model applications {
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  product        String  @db.ObjectId
+  user           String  @db.ObjectId
+  status         String
+  isUserAccepted Boolean
+
+  productRelation products @relation(fields: [product], references: [id])
+  userRelation    users    @relation(fields: [user], references: [id])
+}
+
+model products {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  v               Int      @map("__v")
+  author          String   @db.ObjectId
+  comments        String[]
+  description     String
+  favouritesCount Int
+  id_cat          String
+  images          String[]
+  img             String
+  name            String
+  price           Float
+  slug            String   @unique(map: "slug_1")
+  isClosed        Boolean
+  isAccepted      Boolean
+
+  authorRelation users          @relation(fields: [author], references: [id])
+  applications   applications[]
+}
+
+model users {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  v                 Int      @map("__v")
+  bio               String
+  createdAt         DateTime @db.Date
+  email             String   @unique(map: "email_1")
+  favouriteProducts String[]
+  followersUsers    String[]
+  followingUsers    String[]
+  image             String
+  password          String
+  updatedAt         DateTime @db.Date
+  username          String   @unique(map: "username_1")
+  userType          String
+
+  products     products[]
+  applications applications[]
+}

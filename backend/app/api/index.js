@@ -45,7 +45,7 @@ require('../routes/comment.routes.js')(app);
 require('../routes/product.routes')(app);
 require('../routes/profile.routes.js')(app);
 require('../routes/user.routes.js')(app);
-
+require('../routes/application.routes.js')(app);
 
 app.get('/', (req, res) => {
   res.json({ "message": "Hola guido" });

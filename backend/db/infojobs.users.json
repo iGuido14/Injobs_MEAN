@@ -7,6 +7,7 @@
   "email": "test@gmail.com",
   "bio": "",
   "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+  "userType": "client",
   "favouriteProducts": [
     {
       "$oid": "6707ea4e2cf50c000bc1f39d"
@@ -38,6 +39,7 @@
   "email": "guido@gmail.com",
   "bio": "asdasd",
   "image": "https://avatars.githubusercontent.com/u/91422053?v=4",
+  "userType": "client",
   "favouriteProducts": [
     {
       "$oid": "6707eaae2cf50c000bc1f3ce"
@@ -76,6 +78,7 @@
   "email": "juan@gmail.com",
   "bio": "",
   "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+  "userType": "client",
   "favouriteProducts": [],
   "followingUsers": [],
   "followersUsers": [
@@ -100,6 +103,7 @@
   "email": "pepe@gmail.com",
   "bio": "",
   "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+  "userType": "client",
   "favouriteProducts": [],
   "followingUsers": [
     {
@@ -118,4 +122,119 @@
     "$date": "2024-10-12T12:37:18.910Z"
   },
   "__v": 4
+},
+{
+  "_id": {
+    "$oid": "671ad190ddfde095a7b40ba9"
+  },
+  "username": "recruiter_1",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$8n4uSAe9HDe9//Ib+SNV6w$jX3QK4edmhwyNsTM0Ule5YXs84rbNFVHR1lfnJWcePw",
+  "email": "recruiter_1@gmail.com",
+  "bio": "",
+  "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+  "favouriteProducts": [],
+  "followingUsers": [],
+  "followersUsers": [],
+  "applications": [],
+  "isWorking": false,
+  "userType": "recruiter",
+  "createdAt": {
+    "$date": "2024-10-24T23:00:32.519Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-24T23:00:32.519Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671ad197ddfde095a7b40bae"
+  },
+  "username": "recruiter_2",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$twK9kWat/X6SexT40C84MA$mbnmvqDMZO7bTqRCn+P4ICeSai+QyfBNduvFKW67iZM",
+  "email": "recruiter_2@gmail.com",
+  "bio": "",
+  "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+  "favouriteProducts": [],
+  "followingUsers": [],
+  "followersUsers": [],
+  "applications": [],
+  "isWorking": false,
+  "userType": "recruiter",
+  "createdAt": {
+    "$date": "2024-10-24T23:00:39.369Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-24T23:00:39.369Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671ad19dddfde095a7b40bb3"
+  },
+  "username": "recruiter_3",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$venWMQEYJdX4N0F2cUqqNQ$fvCc7/3sL/XAIjp2S4v1z18xAv0nxwwjORPHF0oskz4",
+  "email": "recruiter_3@gmail.com",
+  "bio": "",
+  "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+  "favouriteProducts": [],
+  "followingUsers": [],
+  "followersUsers": [],
+  "applications": [],
+  "isWorking": false,
+  "userType": "recruiter",
+  "createdAt": {
+    "$date": "2024-10-24T23:00:45.477Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-24T23:00:45.477Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671ada92299ed65d222ec3cc"
+  },
+  "username": "company_1",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$AEadQ+dcj7jVEE5oR0FT+w$mEphDiYadanYPNLd3joZsRM7DxVqoiWhEczRR3Ta7pw",
+  "email": "company_1@gmail.com",
+  "bio": "",
+  "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+  "favouriteProducts": [],
+  "followingUsers": [],
+  "followersUsers": [],
+  "applications": [],
+  "isWorking": false,
+  "userType": "company",
+  "createdAt": {
+    "$date": "2024-10-24T23:38:58.176Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-24T23:38:58.176Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671ada98299ed65d222ec3d1"
+  },
+  "username": "company_2",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$I5huU8RJPHDLzD7pNRWSpg$9TX0t8qcwEzfbqshcSoh4AvhYr4kCwp+RW/e3Kuhs5M",
+  "email": "company_2@gmail.com",
+  "bio": "",
+  "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+  "favouriteProducts": [],
+  "followingUsers": [],
+  "followersUsers": [],
+  "applications": [],
+  "isWorking": false,
+  "userType": "company",
+  "createdAt": {
+    "$date": "2024-10-24T23:39:04.739Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-24T23:39:04.739Z"
+  },
+  "__v": 0
 }]
