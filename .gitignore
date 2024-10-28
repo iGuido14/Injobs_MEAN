@@ -35,3 +35,5 @@ Desktop.ini
 
 # vscode
 .vscode
+
+.backend_typeORM_test/
