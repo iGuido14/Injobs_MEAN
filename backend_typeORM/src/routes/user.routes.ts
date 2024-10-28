@@ -1,9 +1,11 @@
-// routes/userRoutes.ts
-import express from "express";
-import { createUser } from "../controllers/user.controller";
+// src/routes/user.routes.ts
 
-const router = express.Router();
+import { Router } from "express";
+import getAllUsers from "../controllers/User/userGetAll"; // Adjust the import path as necessary
 
-router.post("/", createUser);
+const router = Router();
+
+// Route to get all users
+router.get("/", getAllUsers);
 
 export default router;

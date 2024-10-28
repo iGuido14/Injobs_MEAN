@@ -10,15 +10,17 @@ import {
     JoinTable,
     OneToMany,
     BeforeInsert,
-    BeforeUpdate
+    BeforeUpdate,
+    ObjectId,
+    ObjectIdColumn
 } from "typeorm";
 import { Product } from "./Product";
 import { Application } from "./Application";
 
 @Entity("users")
 export class User {
-    @PrimaryGeneratedColumn("uuid")
-    id!: string;
+    @ObjectIdColumn()
+    id: ObjectId;
 
     @Column({ type: "varchar", unique: true, nullable: false })
     username!: string;

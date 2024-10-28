@@ -1,9 +1,9 @@
 // data-source.ts
-import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { User } from "../entities/User";
-// import { Product } from "./entities/Product";
-// import { Application } from "./entities/Application"
+import { Product } from "../entities/Product";
+import { Application } from "../entities/Application";
+import { Comment } from "../entities/Comment";
 
 export const AppDataSource = new DataSource({
     type: "mongodb",
@@ -11,7 +11,7 @@ export const AppDataSource = new DataSource({
     useUnifiedTopology: true,
     synchronize: true,
     logging: true,
-    entities: [User],
+    entities: [User, Product, Application, Comment],
 });
 
 AppDataSource.initialize()
