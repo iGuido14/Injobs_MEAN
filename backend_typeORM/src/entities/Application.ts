@@ -14,7 +14,7 @@ export class Applications {
     user!: ObjectId;
 
     @Column({ type: "string", nullable: false }) // Use eager if you want the relation loaded automatically
-    assignedRecruiter!: ObjectId;
+    asignedRecruiter!: ObjectId;
 
     @Column({
         type: 'varchar',
