@@ -7,9 +7,9 @@ export const updateApplications = async (req: Request, res: Response) => {
         const slug = req.params.slug_application;
         const body = req.body;
 
-        const applicationList = await updateApplicationORM(slug, body);
+        const updatedApplication = await updateApplicationORM(slug, body);
 
-        return res.json(applicationList);
+        return res.json(updatedApplication);
     } catch (error) {
         res.status(500).json({ error: "An error occurred while fetching users." });
     }
