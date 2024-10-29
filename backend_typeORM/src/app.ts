@@ -1,7 +1,7 @@
 import express from "express";
 import userRouter from "./routes/api/user.routes";
 import productRouter from "./routes/api/product.routes";
-// import authRouter from "./routes/api/auth.routes";
+import authRouter from "./routes/api/auth.routes";
 // import generalErrorHandler from "./middleware/errorHandling/generalErrorHandler";
 // import { authErrorHandler } from "./middleware/errorHandling";
 import { AppDataSource } from "./config/ormConfig.ts";
@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use("/", userRouter);
 app.use("/", productRouter);
-// app.use("/", authRouter);
+app.use("/", authRouter);
 
 
 app.get("/", function (_req, res) {
