@@ -7,13 +7,16 @@ export class Applications {
     @ObjectIdColumn()
     id!: ObjectId;
 
-    @Column({ type: "string", nullable: false }) // Use eager if you want the relation loaded automatically
+    @Column({ type: "string", nullable: false })
+    slug!: string;
+
+    @Column({ type: "string", nullable: false })
     product!: ObjectId;
 
-    @Column({ type: "string", nullable: false }) // Use eager if you want the relation loaded automatically
+    @Column({ type: "string", nullable: false })
     user!: ObjectId;
 
-    @Column({ type: "string", nullable: false }) // Use eager if you want the relation loaded automatically
+    @Column({ type: "string", nullable: false })
     asignedRecruiter!: ObjectId;
 
     @Column({
