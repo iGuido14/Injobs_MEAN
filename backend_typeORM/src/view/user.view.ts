@@ -8,7 +8,8 @@ export const userViewer = (user: any, recruiter_token?: string) => {
             username: user.username,
             bio: user.bio,
             image: user.image,
-            ...(recruiter_token && { recruiter_token }) //only send if token exists
+            ...(recruiter_token && { recruiter_token }), //only send if token exists
+            userType: user.userType,
         },
     };
     return userView;

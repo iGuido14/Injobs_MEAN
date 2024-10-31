@@ -9,6 +9,7 @@ export default function userViewer(user: users, token: string) {
       bio: user.bio,
       image: user.image,
       favoriteProducts: user.favouriteProducts,
+      userType: user.userType,
     },
   };
   return userView;
