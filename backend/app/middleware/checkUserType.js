@@ -26,8 +26,6 @@ const checkUserType = async (req, res, next) => {
         // Handle errors from the target server
         return res.status(500).json({ message: 'Error forwarding request', error: error.message });
     }
-
-    return res.status(403).json({ message: 'Forbidden' });
 }
 
 module.exports = checkUserType;
