@@ -69,6 +69,7 @@ userSchema.methods.toUserResponse = function (jwt_access) {
         bio: this.bio,
         image: this.image,
         accessToken: jwt_access,
+        userType: this.userType
         // refreshToken: jwt_refresh
     };
 };
