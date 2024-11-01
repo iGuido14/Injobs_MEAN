@@ -10,6 +10,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from '../shared/layout/header/header.component';
 import { FooterComponent } from '../shared/layout/footer/footer.component';
 import { HttpTokenInterceptor, ProductService, UserService } from '../core';
+import { recruiterHeaderComponent } from '../shared/layout/_recruiter/header/recruiterHeader.component';
+import { companyHeaderComponent } from '../shared/layout/_company/header/companyHeader.component';
 
 @Component({
   selector: 'app-main',
@@ -20,6 +22,8 @@ import { HttpTokenInterceptor, ProductService, UserService } from '../core';
     RouterModule,
     RouterLink,
     HeaderComponent,
+    recruiterHeaderComponent,
+    companyHeaderComponent,
     FooterComponent,
     HttpClientModule,
     NgbModule,
@@ -29,9 +33,15 @@ import { HttpTokenInterceptor, ProductService, UserService } from '../core';
 // export class MainComponent { }
 
 export class MainComponent implements OnInit {
+  userType: String
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.populate();
+
+    this.userService.currentUser.subscribe((data) => {
+      this.userType = data.userType
+    })
   }
 }

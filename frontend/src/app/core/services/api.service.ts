@@ -20,7 +20,7 @@ export class ApiService {
   }
 
   get(path: string, options?: { params?: HttpParams; headers?: HttpHeaders }, port: string = defaultPort): Observable<any> {
-    console.log(`${URL}:${port}${path}`, options);
+    // console.log(`${URL}:${port}${path}`, options);
     return this.http.get(`${URL}:${port}${path}`, options).pipe(catchError(this.formatErrors));
   }
 

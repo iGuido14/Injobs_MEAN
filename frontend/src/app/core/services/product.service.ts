@@ -71,4 +71,14 @@ export class ProductService {
         });
         return this.apiService.delete(`/${slug}/favorite`, { headers })
     }
+
+    // company products
+    get_products_company(username: String): Observable<Product[]> {
+        // console.log(`username: `, username);
+        return this.apiService.get(`/product/company/${username}`, undefined, "3002");
+    }
+
+    // create_product_company(username: String): Observable<any> {
+    //     return this
+    // }
 }
