@@ -1,6 +1,6 @@
 import { users } from "@prisma/client";
 
-export default function userViewer(user: users, token: string) {
+export default function userViewer(user: users, token?: string) {
   const userView = {
     user: {
       email: user.email,
@@ -8,7 +8,6 @@ export default function userViewer(user: users, token: string) {
       username: user.username,
       bio: user.bio,
       image: user.image,
-      favoriteProducts: user.favouriteProducts,
       userType: user.userType,
     },
   };

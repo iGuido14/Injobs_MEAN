@@ -5,9 +5,9 @@ import { getOneUserORM } from "../../utils/db/user/getOneUserORM";
 
 export const getOneUser = async (req: Request, res: Response) => {
     try {
-        const email = req.params.email;
+        const username = req.params.username;
 
-        const user = await getOneUserORM(email);
+        const user = await getOneUserORM(username);
 
         const userSerialized = userViewer(user);
 

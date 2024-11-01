@@ -4,13 +4,7 @@ import createUserToken from "../../utils/auth/createUserToken";
 import userGetPrisma from "../../utils/db/user/userGetPrisma";
 import userViewer from "../../view/userViewer";
 
-/**
- * User controller that gets the current user based on the JWT given.
- * @param req Request with an authenticated user on the auth property.
- * @param res Response
- * @param next NextFunction
- * @returns void
- */
+
 export default async function userGet(
   req: Request,
   res: Response,
@@ -23,11 +17,11 @@ export default async function userGet(
     if (!currentUser) return res.sendStatus(404);
 
     // const token = createUserToken(currentUser);
-    const token = "hola";
+    // const token = "hola";
 
-    // const response = userViewer(currentUser, token);
+    const response = userViewer(currentUser);
 
-    return res.json(currentUser);
+    return res.json(response);
   } catch (error) {
     return next(error);
   }
