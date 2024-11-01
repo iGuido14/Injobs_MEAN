@@ -78,7 +78,8 @@ export class ProductService {
         return this.apiService.get(`/product/company/${username}`, undefined, "3002");
     }
 
-    // create_product_company(username: String): Observable<any> {
-    //     return this
-    // }
+    create_product_company(username: String, body: any): Observable<any> {
+        console.log(`entra a create_product_company`);
+        return this.apiService.post(`/productCreate/company_1`, { product: body }, undefined, "3002");
+    }
 }

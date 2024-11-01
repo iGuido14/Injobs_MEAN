@@ -30,7 +30,7 @@ export class ApiService {
   }
 
   post(path: string, body: Object = {}, options?: { headers?: HttpHeaders }, port: string = defaultPort): Observable<any> {
-    // console.log(`${URL}${path}`, body);
+    console.log(`${URL}:${port}${path}`, options, body);
     return this.http.post(`${URL}:${port}${path}`, body, options).pipe(catchError(this.formatErrors));
   }
 

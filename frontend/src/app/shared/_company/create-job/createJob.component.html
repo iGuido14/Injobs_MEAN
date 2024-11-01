@@ -1,0 +1,50 @@
+<body>
+    <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1>Create new job</h1>
+
+        <form [formGroup]="authForm" (ngSubmit)="submitForm()">
+            <fieldset [disabled]="isSubmitting">
+
+                <!-- Name Field -->
+                <fieldset class="form-group">
+                    <input formControlName="name" placeholder="Name" class="form-control form-control-lg" type="text" />
+                </fieldset>
+
+                <!-- Description Field -->
+                <fieldset class="form-group">
+                    <input formControlName="description" placeholder="Description" class="form-control form-control-lg"
+                        type="text" />
+                </fieldset>
+
+                <!-- Category ID Field -->
+                <fieldset class="form-group">
+                    <input formControlName="id_cat" placeholder="Category ID" class="form-control form-control-lg"
+                        type="text" />
+                </fieldset>
+
+                <!-- Price Field -->
+                <fieldset class="form-group">
+                    <input formControlName="price" placeholder="Price" class="form-control form-control-lg"
+                        type="number" />
+                </fieldset>
+
+                <!-- Images Field -->
+                <fieldset class="form-group">
+                    <input formControlName="images" placeholder="Images (URLs separated by commas)"
+                        class="form-control form-control-lg" type="text" />
+                </fieldset>
+
+                <!-- Img Field -->
+                <fieldset class="form-group">
+                    <input formControlName="img" placeholder="Main Image URL" class="form-control form-control-lg"
+                        type="text" />
+                </fieldset>
+
+                <!-- Submit Button -->
+                <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit">
+                    Submit
+                </button>
+            </fieldset>
+        </form>
+    </div>
+</body>
