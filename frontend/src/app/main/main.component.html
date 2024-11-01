@@ -1,24 +1,18 @@
-<!-- <app-header></app-header>
-<router-outlet></router-outlet>
-<app-footer></app-footer> -->
-
 <ng-container *ngIf="userType; else guestHeader">
-    <ng-container *ngIf="userType === 'client'; else companyHeader">
-        <app-header></app-header>
-    </ng-container>
-    <ng-template #companyHeader>
-        <ng-container *ngIf="userType === 'company'; else recruiterHeader">
-            <app-header-company></app-header-company>
+    <ng-container [ngSwitch]="userType">
+        <app-header *ngSwitchCase="'client'"></app-header>
+        <app-header-company *ngSwitchCase="'company'"></app-header-company>
+        <app-header-recruiter *ngSwitchCase="'recruiter'"></app-header-recruiter>
+        <ng-container *ngSwitchDefault>
+            <app-header></app-header>
         </ng-container>
-        <ng-template #recruiterHeader>
-            <app-header-recruiter></app-header-recruiter>
-        </ng-template>
-    </ng-template>
+    </ng-container>
 </ng-container>
 
 <ng-template #guestHeader>
-    <app-header></app-header> <!-- Header for guests or not logged in -->
+    <app-header></app-header>
 </ng-template>
 
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+
+<app-footer *ngIf="userType !== 'company' && userType !== 'recruiter'"></app-footer>

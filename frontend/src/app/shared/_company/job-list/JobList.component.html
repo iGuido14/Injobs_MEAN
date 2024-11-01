@@ -1,4 +1,10 @@
 <body>
-    <h1>Company dashboard</h1>
-    <div *ngFor="let product of products">{{product.name}}</div>
+    <h1>Your jobs</h1>
+    <div class="product-list">
+        <div class="product" *ngFor="let product of products">
+            <div class="product-name">{{product.name}}</div>
+            <div class="product-status">Revised: <span
+                    class="{{product.isAccepted ? 'accepted' : 'not-accepted'}}">{{product.isAccepted}}</span></div>
+        </div>
+    </div>
 </body>

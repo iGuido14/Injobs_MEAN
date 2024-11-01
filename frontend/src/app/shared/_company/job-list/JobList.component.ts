@@ -5,8 +5,8 @@ import { Product, ProductService, UserService } from 'src/app/core';
 
 @Component({
   selector: 'app-company-job-list',
-  templateUrl: './jobList.component.html',
-  styleUrls: ['./jobList.component.css'],
+  templateUrl: './JobList.component.html',
+  styleUrls: ['./JobList.component.css'],
   standalone: true,
   imports: [
     RouterModule,

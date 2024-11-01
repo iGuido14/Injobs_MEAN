@@ -11,4 +11,6 @@ export interface Product {
     favorited: boolean;
     favoritesCount: number;
     author: Profile;
+    isAccepted: boolean;
+    isClosed: boolean;
 }
