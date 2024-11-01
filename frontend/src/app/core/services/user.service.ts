@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, ReplaySubject } from 'rxjs';
+import { Observable, BehaviorSubject, ReplaySubject, lastValueFrom } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
@@ -26,30 +26,44 @@ export class UserService {
 
   populate() {
     const token = this.jwtService.getToken();
-    // const jwt_access = token.access_token;
-    // console.log(token);
+    let userInfo: any;
 
-    if (token) {
-      // console.log(`sí hay access`);
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Token ${token}`
-      });
-      // console.log(headers);
-      this.apiService.get("/user", { headers }).subscribe(
-        (data) => {
-          // console.log('entra');
-          return this.setAuth({ ...data.user, token });
-        },
-        // (err) => console.log(err)
-        (err) => this.purgeAuth()
-      );
-    }
-    else {
-      // console.log(`no hay access`);
+    if (!token) {
       this.purgeAuth();
+    } else {
+      // Manually manage the subscription
+      const subscription = this.currentUser.subscribe(userData => {
+        userInfo = userData;
+        console.log(`userinfo: `, userInfo);
+
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${token}`
+        });
+
+        if (userInfo.userType === "company") {
+          this.apiService.get(`/user/${userInfo.username}`, { headers }, "3002").subscribe(
+            (data) => this.setAuth({ ...data.user, token }),
+            (err) => this.purgeAuth()
+          );
+        } else if (userInfo.userType === "recruiter") {
+          this.apiService.get(`/user/${userInfo.email}`, { headers }, "3003").subscribe(
+            (data) => this.setAuth({ ...data.user, token }),
+            (err) => this.purgeAuth()
+          );
+        } else {
+          this.apiService.get("/user", { headers }).subscribe(
+            (data) => this.setAuth({ ...data.user, token }),
+            (err) => this.purgeAuth()
+          );
+        }
+
+        // Unsubscribe immediately after processing the first user data
+        subscription.unsubscribe();
+      });
     }
   }
+
 
   setAuth(user: User) {
     // console.log(user);
@@ -70,7 +84,7 @@ export class UserService {
 
   attemptAuth(type: any, credentials: any): Observable<User> {
     const route = (type === 'login') ? '/login' : '';
-    console.log(route);
+
     return this.apiService.post(`/users${route}`, { user: credentials })
       .pipe(map(
         data => {

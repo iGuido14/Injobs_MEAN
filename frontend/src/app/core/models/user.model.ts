@@ -5,4 +5,5 @@ export interface User {
   image: string;
   accessToken: string;
   refreshToken: string;
+  userType: string;
 }

@@ -67,8 +67,17 @@ export class AuthComponent implements OnInit {
     const credentials = this.authForm.value;
     this.userService.attemptAuth(this.authType, credentials).subscribe(
       data => {
-        // console.log(data);
-        this.router.navigateByUrl('/');
+        // console.log("login data: ", data);
+        if (data.userType === "client") {
+          this.router.navigateByUrl('/');
+        }
+        if (data.userType === "company") {
+          this.router.navigateByUrl('details/guia-turistico-6tgxjn');
+        }
+        if (data.userType === "recruiter") {
+          this.router.navigateByUrl('/shop');
+        }
+
       },
       err => {
         this.errors = err;
