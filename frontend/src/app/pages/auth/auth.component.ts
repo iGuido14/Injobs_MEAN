@@ -72,10 +72,10 @@ export class AuthComponent implements OnInit {
           this.router.navigateByUrl('/');
         }
         if (data.userType === "company") {
-          this.router.navigateByUrl('details/guia-turistico-6tgxjn');
+          this.router.navigateByUrl('companyDashboard');
         }
         if (data.userType === "recruiter") {
-          this.router.navigateByUrl('/shop');
+          this.router.navigateByUrl('recruiterDashboard');
         }
 
         console.log(this.userService.getCurrentUser());

@@ -31,5 +31,13 @@ export const appRoutes: Routes = [
     path: 'settings',
     loadChildren: () => import('./pages/settings/settings.routing')
   },
+  {
+    path: 'companyDashboard',
+    loadComponent: () => import('./dashboards/company/companyDashboard.component').then(c => c.companyDashboardComponent)
+  },
+  {
+    path: 'recruiterDashboard',
+    loadComponent: () => import('./dashboards/recruiter/recruiterDashboard.component').then(c => c.recruiterDashboardComponent)
+  }
 
 ]
