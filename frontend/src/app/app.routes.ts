@@ -33,11 +33,11 @@ export const appRoutes: Routes = [
   },
   {
     path: 'companyDashboard',
-    loadComponent: () => import('./dashboards/company/companyDashboard.component').then(c => c.companyDashboardComponent)
+    loadChildren: () => import('./dashboards/company/companyDashboard.routing')
   },
   {
     path: 'recruiterDashboard',
-    loadComponent: () => import('./dashboards/recruiter/recruiterDashboard.component').then(c => c.recruiterDashboardComponent)
+    loadChildren: () => import('./dashboards/recruiter/recruiterDashboard.routing')
   }
 
 ]

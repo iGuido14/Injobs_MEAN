@@ -2,6 +2,8 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product, ProductService, UserService } from 'src/app/core';
+import { jobListComponent } from 'src/app/shared/_company/job-list/JobList.component';
+import { createJobComponent } from 'src/app/shared/_company/create-job/createJob.component';
 
 @Component({
   selector: 'app-company-dashboard',
@@ -12,6 +14,8 @@ import { Product, ProductService, UserService } from 'src/app/core';
     RouterModule,
     RouterLink,
     CommonModule,
+    jobListComponent,
+    createJobComponent
   ]
 })
 

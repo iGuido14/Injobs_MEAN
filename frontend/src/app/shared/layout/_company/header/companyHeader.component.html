@@ -4,11 +4,17 @@
     </div>
     <nav>
         <ul>
-            <li>
+            <li class="username">
                 <a>
                     <img [src]="currentUser.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'"
                         *ngIf="currentUser.image" class="user-pic" alt="user image" />
                     {{ currentUser.username }}</a>
+            </li>
+            <li>
+                <a routerLink="/companyDashboard">Job List</a>
+            </li>
+            <li>
+                <a routerLink="/companyDashboard/createJob">Create Job</a>
             </li>
             <li>
                 <a (click)="logout()">Logout</a>
