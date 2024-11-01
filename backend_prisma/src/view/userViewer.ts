@@ -4,7 +4,7 @@ export default function userViewer(user: users, token?: string) {
   const userView = {
     user: {
       email: user.email,
-      company_token: token,
+      accessToken: token,
       username: user.username,
       bio: user.bio,
       image: user.image,

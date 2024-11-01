@@ -15,16 +15,18 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
             return res.json({ message: `User is ${user.userType}, must be a recruiter` });
         }
 
-        const isPasswordMatch = await compareWithHash(password, user.password);
+        return res.json(user)
 
-        if (!isPasswordMatch) {
-            return res.sendStatus(403);
-        } else {
-            const token = createUserToken(user);
-            const userView = userViewer(user, token);
+        // const isPasswordMatch = await compareWithHash(password, user.password);
 
-            return res.json(userView);
-        }
+        // if (!isPasswordMatch) {
+        //     return res.sendStatus(403);
+        // } else {
+        //     const token = createUserToken(user);
+        //     const userView = userViewer(user, token);
+
+        //     return res.json(userView);
+        // }
 
     } catch (error) {
         return next(error);

@@ -8,7 +8,7 @@ import { authenticate } from "../../middleware/auth/authenticator";
 const router = Router();
 
 router.get("/users", getAllUsers);
-router.get("/user/:username", authenticate, getOneUser);
+router.get("/user/:email", authenticate, getOneUser);
 
 router.put("/user/:username", authenticate, updateUser);
 
