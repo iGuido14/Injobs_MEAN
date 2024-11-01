@@ -78,6 +78,7 @@ export class AuthComponent implements OnInit {
           this.router.navigateByUrl('/shop');
         }
 
+        console.log(this.userService.getCurrentUser());
       },
       err => {
         this.errors = err;

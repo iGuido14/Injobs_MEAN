@@ -26,41 +26,36 @@ export class UserService {
 
   populate() {
     const token = this.jwtService.getToken();
-    let userInfo: any;
 
     if (!token) {
       this.purgeAuth();
     } else {
-      // Manually manage the subscription
-      const subscription = this.currentUser.subscribe(userData => {
-        userInfo = userData;
-        console.log(`userinfo: `, userInfo);
+      const userInfo = this.getCurrentUser();
 
-        const headers = new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': `Token ${token}`
-        });
-
-        if (userInfo.userType === "company") {
-          this.apiService.get(`/user/${userInfo.username}`, { headers }, "3002").subscribe(
-            (data) => this.setAuth({ ...data.user, token }),
-            (err) => this.purgeAuth()
-          );
-        } else if (userInfo.userType === "recruiter") {
-          this.apiService.get(`/user/${userInfo.email}`, { headers }, "3003").subscribe(
-            (data) => this.setAuth({ ...data.user, token }),
-            (err) => this.purgeAuth()
-          );
-        } else {
-          this.apiService.get("/user", { headers }).subscribe(
-            (data) => this.setAuth({ ...data.user, token }),
-            (err) => this.purgeAuth()
-          );
-        }
-
-        // Unsubscribe immediately after processing the first user data
-        subscription.unsubscribe();
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`
       });
+
+      if (userInfo.userType === "company") {
+        console.log(`es company`);
+        this.apiService.get(`/user/${userInfo.username}`, { headers }, "3002").subscribe(
+          (data) => this.setAuth({ ...data.user, token }),
+          (err) => this.purgeAuth()
+        );
+      } else if (userInfo.userType === "recruiter") {
+        console.log(`es recruiter`);
+        this.apiService.get(`/user/${userInfo.email}`, { headers }, "3003").subscribe(
+          (data) => this.setAuth({ ...data.user, token }),
+          (err) => this.purgeAuth()
+        );
+      } else {
+        console.log(`es user`);
+        this.apiService.get("/user", { headers }).subscribe(
+          (data) => this.setAuth({ ...data.user, token }),
+          (err) => this.purgeAuth()
+        );
+      }
     }
   }
 
