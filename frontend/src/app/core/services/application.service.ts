@@ -19,6 +19,10 @@ export class ApplicationService {
         return this.apiService.get(`/applications/${username}`, undefined, "3003");
     }
 
+    generate_application(slug: String, username: String): Observable<any> {
+        return this.apiService.post(`/application/${slug}/${username}`, undefined, undefined);
+    }
+
     accept_application(slug: String): Observable<any> {
         return this.apiService.put(`/application/${slug}/accept`, undefined, undefined, "3003");
     }

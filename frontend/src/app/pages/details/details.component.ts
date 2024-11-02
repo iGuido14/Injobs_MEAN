@@ -13,6 +13,7 @@ import { Comment } from 'src/app/core/models/comment.model';
 import { CommentsComponent } from 'src/app/shared/comments/comments.component';
 import { FavoriteButtonComponent } from 'src/app/shared/buttons/favorite-button/favorite-button.component';
 import { FollowButtonComponent } from 'src/app/shared/buttons/follow-button/follow-button.component';
+import { ApplicationService } from 'src/app/core/services/application.service';
 
 @Component({
   selector: 'app-details',
@@ -51,6 +52,7 @@ export class DetailsComponent implements OnInit {
     // private productService: ProductService,
     private route: ActivatedRoute,
     private userService: UserService,
+    private applicationService: ApplicationService,
     private cd: ChangeDetectorRef
   ) { }
 
@@ -173,5 +175,14 @@ export class DetailsComponent implements OnInit {
   empty_comment() {
     this.commentControl.reset('');
     this.isSubmitting = false;
+  }
+
+  apply_to_job() {
+    const slug = this.product.slug;
+    const { username } = this.userService.getCurrentUser();
+
+    this.applicationService.generate_application(slug, username).subscribe((data: any) => {
+      console.log(data);
+    })
   }
 }
