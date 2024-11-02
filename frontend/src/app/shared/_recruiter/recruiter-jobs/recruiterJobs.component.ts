@@ -2,6 +2,7 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product, ProductService, UserService } from 'src/app/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-recruiter-jobs',
@@ -37,21 +38,74 @@ export class recruiterJobsComponent implements OnInit {
       isAccepted: true
     };
 
-    this.productService.update_recruiter_product(slug, body).subscribe((data: any) => {
-      console.log(data);
-      this.router.navigateByUrl('recruiterDashboard/jobs');
-    });
+    this.productService.update_recruiter_product(slug, body).subscribe(
+      (data: any) => {
+        console.log(data);
+
+        // Show success notification with SweetAlert
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'The action has been done!',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          // This block executes when the user clicks "OK" on the Swal alert
+          this.productService.get_recruiter_products().subscribe((products: Product[]) => {
+            console.log(products);
+            this.products = products;
+          });
+        });
+      },
+      (error) => {
+        console.error(error);
+
+        // Show error notification with SweetAlert
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An error occurred while processing the action.',
+          confirmButtonText: 'Try Again'
+        });
+      }
+    );
   }
+
 
   discardJob(slug: string) {
     const body = {
-      isAccepted: false
+      isAccepted: true,
+      isClosed: true
     };
 
-    this.productService.update_recruiter_product(slug, body).subscribe((data: any) => {
-      console.log(data);
-      this.router.navigateByUrl('recruiterDashboard/jobs');
-    });
+    this.productService.update_recruiter_product(slug, body).subscribe(
+      (data: any) => {
+        console.log(data);
+
+        // Show success notification with SweetAlert
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          // This block executes when the user clicks "OK" on the Swal alert
+          this.productService.get_recruiter_products().subscribe((products: Product[]) => {
+            console.log(products);
+            this.products = products;
+          });
+        });
+      },
+      (error) => {
+        console.error(error);
+
+        // Show error notification with SweetAlert
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An error occurred while processing the action.',
+          confirmButtonText: 'Try Again'
+        });
+      }
+    );
   }
 
 }
