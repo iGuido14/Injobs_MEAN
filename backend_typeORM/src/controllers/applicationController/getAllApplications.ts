@@ -3,7 +3,11 @@ import { getAllApplicationsORM } from "../../utils/db/application/getAllApplicat
 
 export const getAllApplications = async (req: Request, res: Response) => {
     try {
-        const applicationList = await getAllApplicationsORM();
+        const { username } = req.params;
+
+        // return res.json({ username });
+
+        const applicationList = await getAllApplicationsORM(username);
 
         return res.json(applicationList);
     } catch (error) {

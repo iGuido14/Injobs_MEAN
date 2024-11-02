@@ -5,7 +5,7 @@ import { updateApplications } from "../../controllers/applicationController/upda
 
 const router = Router();
 
-router.get("/applications", getAllApplications);
+router.get("/applications/:username", getAllApplications);
 
 router.put("/application/:slug_application", updateApplications);
 

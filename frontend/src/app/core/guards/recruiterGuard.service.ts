@@ -5,7 +5,7 @@ import { UserService } from '..';
 @Injectable({
     providedIn: 'root'
 })
-export class CompanyGuard implements CanActivate {
+export class RecruiterGuard implements CanActivate {
 
     constructor(private userService: UserService, private router: Router) { }
 
