@@ -62,7 +62,7 @@ export class recruiterJobsComponent implements OnInit {
 
     this.productService.update_recruiter_product(slug, body).subscribe({
       next: (data: any) => {
-        Swal.fire('Accepted!', 'The job has been discarded!', 'success');
+        Swal.fire('Discarded!', 'The job has been discarded!', 'success');
         this.refreshProducts();
       },
       error: (err) => {

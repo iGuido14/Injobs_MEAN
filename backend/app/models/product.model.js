@@ -86,7 +86,8 @@ ProductSchema.methods.toProductResponse = async function (user) {
         favorited: user ? user.isFavourite(this._id) : false,
         favoritesCount: this.favouritesCount,
         author: authorObj.toProfileJSON(user),
-        isClosed: this.isClosed
+        isClosed: this.isClosed,
+        isAccepted: this.isAccepted
     }
 }
 

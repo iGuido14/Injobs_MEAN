@@ -70,6 +70,7 @@ const findAllProduct = asyncHandler(async (req, res) => {
     query = {
         name: { $regex: nameReg },
         $and: [{ price: { $gte: price_min } }, { price: { $lte: price_max } }],
+        isAccepted: true
     };
 
     if (category != "") {
@@ -85,6 +86,7 @@ const findAllProduct = asyncHandler(async (req, res) => {
     // return res.json({ message: "res" });
 
     const products = await Product.find(query).limit(Number(limit)).skip(Number(offset));
+
     const product_count = await Product.find(query).countDocuments();
 
     // return res.json(products)
@@ -152,7 +154,7 @@ const deleteOneProduct = asyncHandler(async (req, res) => {
 
 const GetProductsByCategory = asyncHandler(async (req, res) => {
 
-    // res.json("holaaa")
+    // return res.json("holaaa")
     // let offset = 0;
     // let limit = 3;
     const slug = req.params;
@@ -162,21 +164,25 @@ const GetProductsByCategory = asyncHandler(async (req, res) => {
 
     const category = await Category.findOne(slug).exec();
 
-    // return res.json(await Category.findOne(slug).exec())
+    // return res.json(category)
 
     if (!category) {
         res.status(400).json({ message: "Categoria no encontrada" });
     }
 
     // const user = await User.findById(req.userId);
+    query = {
+        id_cat: category.id_cat,
+        isAccepted: true
+    };
 
-    return await res.status(200).json({
-        products: await Promise.all(category.products.map(async productId => {
-            const productObj = await Product.findById(productId);
-            return await productObj.toProductResponse();
-        })),
+    const products = await Product.find(query);
+    product_count = products.length;
+
+    return res.status(200).json({
+        products: products,
         product_count: product_count
-    })
+    });
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
