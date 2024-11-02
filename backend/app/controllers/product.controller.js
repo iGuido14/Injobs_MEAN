@@ -46,16 +46,11 @@ const createProduct = asyncHandler(async (req, res) => {
 
 //findALL
 const findAllProduct = asyncHandler(async (req, res) => {
-    // return res.json({ message: "res" });
     let query = {};
     let transUndefined = (varQuery, otherResult) => {
         return varQuery != "undefined" && varQuery ? varQuery : otherResult;
     };
 
-    // return res.json({ message: "res" });
-
-    // let limit = transUndefined(req.query.limit, 4);
-    // let offset = transUndefined(req.query.offset, 0);
     const { offset, limit } = req.query;
     let category = transUndefined(req.query.category, "");
     let name = transUndefined(req.query.name, "");
@@ -63,13 +58,11 @@ const findAllProduct = asyncHandler(async (req, res) => {
     let price_max = transUndefined(req.query.price_max, Number.MAX_SAFE_INTEGER);
     let nameReg = new RegExp(name, 'i');
     let favorited = transUndefined(req.query.favorited, null);
-    // let id_user = req.auth ? req.auth.id : null;
-
-    // return res.json({ message: query });
 
     query = {
         name: { $regex: nameReg },
         $and: [{ price: { $gte: price_min } }, { price: { $lte: price_max } }],
+        isClosed: false,
         isAccepted: true
     };
 
@@ -153,28 +146,19 @@ const deleteOneProduct = asyncHandler(async (req, res) => {
 });
 
 const GetProductsByCategory = asyncHandler(async (req, res) => {
-
-    // return res.json("holaaa")
-    // let offset = 0;
-    // let limit = 3;
     const slug = req.params;
     let product_count = "";
-
-    // return res.json(slug)
+    query = {
+        id_cat: category.id_cat,
+        isClosed: false,
+        isAccepted: true
+    };
 
     const category = await Category.findOne(slug).exec();
-
-    // return res.json(category)
 
     if (!category) {
         res.status(400).json({ message: "Categoria no encontrada" });
     }
-
-    // const user = await User.findById(req.userId);
-    query = {
-        id_cat: category.id_cat,
-        isAccepted: true
-    };
 
     const products = await Product.find(query);
     product_count = products.length;

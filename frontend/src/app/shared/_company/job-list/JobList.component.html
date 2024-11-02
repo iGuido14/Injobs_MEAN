@@ -3,8 +3,14 @@
     <div class="product-list">
         <div class="product" *ngFor="let product of products">
             <div class="product-name">{{product.name}}</div>
-            <div class="product-status">Revised: <span
-                    class="{{product.isAccepted ? 'accepted' : 'not-accepted'}}">{{product.isAccepted}}</span></div>
+            <div class="product-info">
+                <div class="product-status"><b>Revised: </b><span
+                        class="{{product.isAccepted ? 'accepted' : 'not-accepted'}}">{{product.isAccepted}}</span>
+                </div>
+                <div class="product-status"><b>Closed: </b> <span
+                        class="{{product.isClosed ? 'closed' : 'not-closed'}}">{{product.isClosed}}</span>
+                </div>
+            </div>
         </div>
     </div>
 </body>
