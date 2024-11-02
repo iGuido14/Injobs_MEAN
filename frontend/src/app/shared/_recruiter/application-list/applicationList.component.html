@@ -1,0 +1,27 @@
+<body>
+    <h1>Applications to Revise</h1>
+    <div class="product-list">
+        <ng-container *ngFor="let application of applications">
+            <div class="product" *ngIf="application.status === 'pending'">
+                <div class="product-info">
+                    <div class="product-name">{{ application.product.name }}</div>
+                    <div class="info"><b>Applicant: </b>{{ application.user.username }}</div>
+                    <div class="info"><b>Job creator: </b>{{application.product_author}}</div>
+                </div>
+                <div class="product-status">
+                    Status:
+                    <span [ngClass]="{
+                            'pending': application.status === 'pending'
+                        }">
+                        {{ application.status }}
+                    </span>
+                </div>
+                <div class="buttons">
+                    <button class="accept-button">Accept</button>
+                    <button class="discard-button">Discard</button>
+                    <button class="block-button">Block</button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</body>

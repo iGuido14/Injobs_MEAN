@@ -11,10 +11,13 @@
                     {{ currentUser.username }}</a>
             </li>
             <li>
-                <a routerLink="/">Revise Applications</a>
+                <a routerLink="/recruiterDashboard">Revise Applications</a>
             </li>
             <li>
-                <a routerLink="/">Revise Jobs</a>
+                <a routerLink="/recruiterDashboard/closed">Closed Applications</a>
+            </li>
+            <li>
+                <a routerLink="/recruiterDashboard/jobs">Revise Jobs</a>
             </li>
             <li>
                 <a (click)="logout()">Logout</a>
