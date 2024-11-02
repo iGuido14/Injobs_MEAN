@@ -1,0 +1,15 @@
+<body>
+    <h1>Jobs to revise</h1>
+    <div class="product-list">
+        <div class="product" *ngFor="let product of products">
+            <div class="product-name">{{product.name}}</div>
+            <div class="product-status">Revised: <span
+                    class="{{product.isAccepted ? 'accepted' : 'not-accepted'}}">{{product.isAccepted}}</span></div>
+            <div class="buttons">
+                <button (click)="acceptJob(product.slug)" class="accept-button">Accept</button>
+                <button (click)="discardJob(product.slug)" class="discard-button">Discard</button>
+            </div>
+        </div>
+
+    </div>
+</body>

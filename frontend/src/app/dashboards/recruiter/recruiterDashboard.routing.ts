@@ -11,5 +11,10 @@ export default [
     path: 'closed',
     loadComponent: () => import('../../shared/_recruiter/accepted-applications/acceptedApplication.component').then(c => c.acceptedApplicationComponent),
     canActivate: [RecruiterGuard]
+  },
+  {
+    path: 'jobs',
+    loadComponent: () => import('../../shared/_recruiter/recruiter-jobs/recruiterJobs.component').then(c => c.recruiterJobsComponent),
+    canActivate: [RecruiterGuard]
   }
 ] as Route[]

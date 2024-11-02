@@ -80,6 +80,15 @@ export class ProductService {
 
     create_product_company(username: String, body: any): Observable<any> {
         console.log(`entra a create_product_company`);
-        return this.apiService.post(`/productCreate/company_1`, { product: body }, undefined, "3002");
+        return this.apiService.post(`/productCreate/${username}`, { product: body }, undefined, "3002");
+    }
+
+    // recruiter products
+    get_recruiter_products(): Observable<Product[]> {
+        return this.apiService.get(`/products/pending`, undefined, "3003")
+    }
+
+    update_recruiter_product(slug: String, body: any): Observable<Product> {
+        return this.apiService.put(`/product/${slug}`, body, undefined, "3003")
     }
 }
