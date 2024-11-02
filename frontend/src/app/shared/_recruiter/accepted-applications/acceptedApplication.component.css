@@ -33,14 +33,21 @@ h1 {
 }
 
 .product-name {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
+}
+
+.info {
+    margin-left: 20px;
 }
 
 .product-status {
     font-size: 14px;
     margin-left: auto;
-    /* Pushes the status to the right */
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
 .closed {
@@ -48,7 +55,7 @@ h1 {
     font-weight: bold;
 }
 
-.cancelled {
+.discarded {
     color: red;
     font-weight: bold;
 }

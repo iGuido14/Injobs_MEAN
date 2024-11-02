@@ -2,16 +2,17 @@
     <h1>Closed Applications</h1>
     <div class="product-list">
         <ng-container *ngFor="let application of applications">
-            <div class="product" *ngIf="application.status === 'closed' || application.status === 'cancelled'">
+            <div class="product" *ngIf="application.status === 'closed' || application.status === 'discarded'">
                 <div class="product-info">
                     <div class="product-name">{{ application.product.name }}</div>
-                    <div class="username">{{ application.user.username }}</div>
+                    <div class="info"><b>Applicant: </b>{{ application.user.username }}</div>
+                    <div class="info"><b>Job creator: </b>{{application.product_author}}</div>
                 </div>
                 <div class="product-status">
                     Status:
                     <span [ngClass]="{
                             'closed': application.status === 'closed',
-                            'cancelled': application.status === 'cancelled'
+                            'discarded': application.status === 'discarded'
                         }">
                         {{ application.status }}
                     </span>
