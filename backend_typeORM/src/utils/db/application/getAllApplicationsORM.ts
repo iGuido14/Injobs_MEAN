@@ -7,8 +7,11 @@ const productRepository = typeORM.getMongoRepository(Products);
 const userRepository = typeORM.getMongoRepository(Users);
 const applicationRepository = typeORM.getMongoRepository(Applications);
 
-export const getAllApplicationsORM = async () => {
-    const applications = await applicationRepository.find();
+export const getAllApplicationsORM = async (username: String) => {
+    // return username
+    const currentUser = await userRepository.findOneBy({ username: username });
+    const applications = await applicationRepository.find({ where: { asignedRecruiter: currentUser?._id } });
+    // return applications
 
     // Como el relation no funciona, se hace un fetch de los autores de los productos
     const applicationWithAuthors = await Promise.all(
