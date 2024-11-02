@@ -33,4 +33,11 @@ export class applicationListComponent implements OnInit {
     })
   }
 
+  acceptApplication(slug: String) {
+    console.log(slug);
+  }
+
+  discardApplication(slug: String) {
+    console.log(slug);
+  }
 }

@@ -83,17 +83,9 @@ button {
 }
 
 .discard-button {
-    background-color: orange;
-}
-
-.discard-button:hover {
-    background-color: rgb(204, 133, 0);
-}
-
-.block-button {
     background-color: red;
 }
 
-.block-button:hover {
+.discard-button:hover {
     background-color: rgb(194, 0, 0);
 }

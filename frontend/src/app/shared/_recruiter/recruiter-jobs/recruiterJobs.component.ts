@@ -45,15 +45,13 @@ export class recruiterJobsComponent implements OnInit {
         // Show success notification with SweetAlert
         Swal.fire({
           icon: 'success',
-          title: 'Success',
-          text: 'The action has been done!',
+          title: 'The job has been accepted!',
           confirmButtonText: 'OK'
-        }).then(() => {
-          // This block executes when the user clicks "OK" on the Swal alert
-          this.productService.get_recruiter_products().subscribe((products: Product[]) => {
-            console.log(products);
-            this.products = products;
-          });
+        })
+
+        this.productService.get_recruiter_products().subscribe((products: Product[]) => {
+          console.log(products);
+          this.products = products;
         });
       },
       (error) => {
@@ -84,14 +82,13 @@ export class recruiterJobsComponent implements OnInit {
         // Show success notification with SweetAlert
         Swal.fire({
           icon: 'success',
-          title: 'Success',
-          confirmButtonText: 'OK'
-        }).then(() => {
-          // This block executes when the user clicks "OK" on the Swal alert
-          this.productService.get_recruiter_products().subscribe((products: Product[]) => {
-            console.log(products);
-            this.products = products;
-          });
+          title: 'The job has been discarded!',
+          confirmButtonText: 'OK',
+        })
+
+        this.productService.get_recruiter_products().subscribe((products: Product[]) => {
+          console.log(products);
+          this.products = products;
         });
       },
       (error) => {
