@@ -27,10 +27,14 @@ export class recruiterJobsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.refreshProducts();
+  }
+
+  private refreshProducts() {
     this.productService.get_recruiter_products().subscribe((data: Product[]) => {
       console.log(data);
       this.products = data;
-    })
+    });
   }
 
   acceptJob(slug: string) {
@@ -38,34 +42,15 @@ export class recruiterJobsComponent implements OnInit {
       isAccepted: true
     };
 
-    this.productService.update_recruiter_product(slug, body).subscribe(
-      (data: any) => {
-        console.log(data);
-
-        // Show success notification with SweetAlert
-        Swal.fire({
-          icon: 'success',
-          title: 'The job has been accepted!',
-          confirmButtonText: 'OK'
-        })
-
-        this.productService.get_recruiter_products().subscribe((products: Product[]) => {
-          console.log(products);
-          this.products = products;
-        });
+    this.productService.update_recruiter_product(slug, body).subscribe({
+      next: (data: any) => {
+        Swal.fire('Accepted!', 'The job has been accepted!', 'success');
+        this.refreshProducts();
       },
-      (error) => {
-        console.error(error);
-
-        // Show error notification with SweetAlert
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'An error occurred while processing the action.',
-          confirmButtonText: 'Try Again'
-        });
+      error: (err) => {
+        Swal.fire('Error', 'An error occurred while processing the action', 'error');
       }
-    );
+    });
   }
 
 
@@ -75,34 +60,15 @@ export class recruiterJobsComponent implements OnInit {
       isClosed: true
     };
 
-    this.productService.update_recruiter_product(slug, body).subscribe(
-      (data: any) => {
-        console.log(data);
-
-        // Show success notification with SweetAlert
-        Swal.fire({
-          icon: 'success',
-          title: 'The job has been discarded!',
-          confirmButtonText: 'OK',
-        })
-
-        this.productService.get_recruiter_products().subscribe((products: Product[]) => {
-          console.log(products);
-          this.products = products;
-        });
+    this.productService.update_recruiter_product(slug, body).subscribe({
+      next: (data: any) => {
+        Swal.fire('Accepted!', 'The job has been discarded!', 'success');
+        this.refreshProducts();
       },
-      (error) => {
-        console.error(error);
-
-        // Show error notification with SweetAlert
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'An error occurred while processing the action.',
-          confirmButtonText: 'Try Again'
-        });
+      error: (err) => {
+        Swal.fire('Error', 'An error occurred while processing the action', 'error');
       }
-    );
+    });
   }
 
 }

@@ -18,4 +18,12 @@ export class ApplicationService {
     get_applications(username: string): Observable<any> {
         return this.apiService.get(`/applications/${username}`, undefined, "3003");
     }
+
+    accept_application(slug: String): Observable<any> {
+        return this.apiService.put(`/application/${slug}/accept`, undefined, undefined, "3003");
+    }
+
+    discard_application(slug: String): Observable<any> {
+        return this.apiService.put(`/application/${slug}/discard`, undefined, undefined, "3003");
+    }
 }

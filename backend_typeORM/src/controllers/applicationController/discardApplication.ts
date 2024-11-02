@@ -4,11 +4,13 @@ import { updateApplicationORM } from "../../utils/db/application/updateApplicati
 export const discardApplication = async (req: Request, res: Response) => {
     try {
         const slug = req.params.slug_application;
-        const body = req.body;
+        const accept = {
+            status: "discarded",
+            isUserAccepted: false,
+        }
+        await updateApplicationORM(slug, accept);
 
-        const updatedApplication = await updateApplicationORM(slug, body);
-
-        return res.json(updatedApplication);
+        return res.json({ message: "Application discarded." });
     } catch (error) {
         res.status(500).json({ error: "An error occurred while fetching users." });
     }
