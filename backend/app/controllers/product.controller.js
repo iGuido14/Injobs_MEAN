@@ -148,13 +148,14 @@ const deleteOneProduct = asyncHandler(async (req, res) => {
 const GetProductsByCategory = asyncHandler(async (req, res) => {
     const slug = req.params;
     let product_count = "";
+
+    const category = await Category.findOne(slug).exec();
+
     query = {
         id_cat: category.id_cat,
         isClosed: false,
         isAccepted: true
     };
-
-    const category = await Category.findOne(slug).exec();
 
     if (!category) {
         res.status(400).json({ message: "Categoria no encontrada" });
